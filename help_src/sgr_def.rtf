@@ -1,0 +1,2832 @@
+{\rtf1\ansi\deff1
+{\fonttbl{\f0\fnil MS Sans Serif;}{\f1\fswiss Arial;}{\f2\froman Symbol;}{\f3\fmodern Courier New;}{\f4\froman Courier;}}
+{\colortbl;\red0\green128\blue0;\red128\green0\blue0;\red0\green0\blue0;\red0\green0\blue128;\red0\green0\blue255;\red0\green0\blue240;}
+{\stylesheet{\fs24 \snext0 Normal;}
+}\pard\plain
+{\up $}
+{\up #}
+\pard {\up A}
+\b\fs24 Welcome to SGraph.
+\par 
+\par \plain\fs20 This is a s{\up A}
+et of 32 bit Delphi components and classes for 2D plot. It is relatively simple. It is more the gauge then the presentation element. The main features are:
+\par \pard\li195\fi-195\tx355 \f2\fs18 \'b7\tab \f1\fs20 Two horizontal and two vertical \uldb \cf1 axis\plain\fs20\cf1 \plain\fs20 .
+\par \f2\fs18 \'b7\tab \f1\fs20 Auto \uldb \cf1 minimum\plain\fs20\cf1 \plain\fs20  and \uldb \cf1 maximum\plain\fs20\cf1 \cf2  \plain\fs20 of axis.
+\par \f2\fs18\cf1 \'b7\tab \uldb \f1\fs20 Swap\plain\fs20\cf1 \plain\fs20  of Min and Max axis positions
+\par \f2\fs18\cf1 \'b7\tab \uldb \f1\fs20 MoveMinMax\plain\fs20\cf1 \plain\fs20  method to \fs18\cf3 provide\fs20  \fs18 smooth scrolling of ticks\plain\fs20 .
+\par \f2\fs18\cf1 \'b7\tab \uldb \f1\fs20 Panning\plain\fs20\cf1 \plain\fs20  and \uldb \cf1 Zoom\plain\fs20\cf1 \plain\fs20  by mouse.
+\par \f2\fs18\cf1 \'b7\tab \uldb \f1\fs20 Buffered\plain\fs20\cf1 \plain\fs20  screen paint, can be off.
+\par \f2\fs18 \'b7\tab \f1\fs20 Copy to clipboard \uldb \cf1 as DIB\plain\fs20\cf1 \plain\fs20  or \uldb \cf1 as Metafile\plain\fs20\cf1 \plain\fs20 .
+\par \pard\li195\fi-195\tx355 \f2\fs18 \'b7\tab \f1\fs20 Custom \uldb \cf1 Data Series\plain\fs20\cf1 \plain\fs20 .
+\par \f2\fs18\cf1 \'b7\tab \uldb \f1\fs20 DrawPlot\plain\fs20\cf1 \plain\fs20  method to replicate plot image.
+\par \f2\fs18\cf1 \'b7\tab \uldb \f1\fs20 OnDraw\plain\fs20\cf1 \plain\fs20  events
+\par \pard\tx355  
+\par \pard\tx355 The main component is  \uldb \cf1 Tsp_XYPlot\plain\fs20\cf1 \cf2 . \cf3 This component provides \plain\fs20 base plot functions, like  zoom and pan. It holds four \uldb \cf1 Tsp_Axis\plain\fs20\cf1 \plain\fs20  and controls childs of \uldb \cf1 Tsp_DataSeries\plain\fs20\cf1 \cf3 . The last implements data storage and how data are painted on the plot canvas. An example of this components is \uldb \cf1 Tsp_XYLine\plain\fs20\cf1 \cf3 .\plain\fs20 
+\par \pard\tx355 \b 
+\par \pard\tx355 Units
+\par \pard\tx355 \plain\fs20   \uldb \cf1 sgr_scale\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355   \uldb \cf1 sgr_def\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355   \uldb \cf1 sgr_data\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355   \uldb \cf1 sgr_mark\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355   sgr_misc
+\par \pard\tx355 
+\par \pard\tx355 \uldb \b\cf1 License & disclaimer\plain\b\fs20\cf1 \plain\fs20\cf2 
+\par \pard\tx355 
+\par \pard\tx355 \plain\fs20 Copyright \'a9 1998-1999 by S.P.Pod'yachev
+\par \pard\tx355 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 License and disclaimer 
+\par \uldb \plain\uldb\fs20\cf1 SGraph\plain\fs20\cf1 \b\fs16\cf5 
+\par \pard \plain\fs20\cf3 
+\par \b License\plain\fs20\cf3 
+\par The components files are freeware. You may copy those files \b as long as you copy all of them\plain\fs20\cf3 .
+\par If you want to make ActiveX using this components you must ask me for permission. \fs18 You cannot distribute source of main units in modified form, except units for data series.\fs20  If you want to change the source code for data series, you can send me the new source code so that I can have a look at it. It will be nice if the source code will contain descriptions what you have changed, and of course your name. 
+\par \pard 
+\par \b Disclaimer
+\par \plain\fs20 This software and the accompanying files are provided \b "As Is"\plain\fs20  and without any warranties as to performance of merchantability or any other warranties whether expressed or implied. The Author cannot and does not guarantee that any functions contained in the Software  will be error free. \cf3 The author is not liable for any damages resulting from the use and misuse of the components.
+\par \plain\fs20 
+\par \i Serguei P.Pod'yachev\plain\fs20 
+\par Email:  \uldb \cf4 pod@iae.nsk.su\plain\ul\fs20\cf4 \plain\fs20 
+\par \pard Homepage: \uldb \cf4 www.iae.nsk.su/~lab12/pod\plain\ul\fs20\cf4 \plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 sgr_scale unit\plain\fs28 
+\par \uldb \fs20\cf1 SGraph\plain\fs20\cf1 \plain\fs20    
+\par \pard Auxiliary  unit, there is implementation of plot axis ancestor. 
+\par 
+\par \b CONST\plain\fs20 
+\par \pard\tx355 \tab \uldb \cf1 MaxTicksCount\plain\fs20\cf1 \cf2 
+\par \tab \cf3 There are another constants in unit.
+\par \plain\b\fs20 TYPES\plain\fs20 
+\par \tab \uldb \cf1 Tsp_CustomLineAttr\plain\fs20\cf1 \plain\fs20 
+\par \tab \uldb \cf1 Tsp_LineAttr\plain\fs20\cf1 \plain\fs20 
+\par \tab \uldb \cf1 Tsp_Scale\plain\fs20\cf1 \plain\fs20 
+\par \tab 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 MaxTicksCount\plain\fs28 
+\par \pard\keepn\tx355 \fs20  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Declaration\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3 Const MaxTicksCount = 21 ;
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description\plain\fs20 
+\par \pard Maximum number of axis ticks. See \uldb \cf1 TicksCount\plain\fs20\cf1 \plain\fs20 .\page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_CustomLineAttr class\plain\fs28 
+\par \uldb \fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \cf2 \tab \uldb \cf1 events\plain\fs20\cf1  \plain\fs20         
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_CustomLineAttr = class ( TPersistent )\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Line draw attributes are copy of \uldb \cf1 TPen\plain\fs20\cf1 \plain\fs20  properties plus property \uldb Visible\plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_CustomLineAttr methods\fs16  \fs24 
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Tsp_CustomLineAttr\plain\fs20\cf1 \cf2  \b\fs24\cf5 
+\par \pard \uldb \plain\uldb\fs20\cf1 SetPenAttr\plain\fs20\cf1 \page
+{\up $}
+{\up #}
+{\up >}
+\pard\keepn \b\fs24\cf5 Tsp_CustomLineAttr properties\fs16  \fs24  
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Tsp_CustomLineAttr\plain\fs20\cf1 \cf2  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\f3\fs20 property Color : TColor
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 property Mode : TPenMode
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 property Style : TPenStyle
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 property Width : word
+\par \pard property \uldb \f1\cf1 Visible\plain\fs20\cf1 \plain\f3\fs20  : boolean\page
+{\up $}
+{\up #}
+\pard\keepn \f1\b\fs24\cf5 Tsp_CustomLineAttr events\fs32  
+\par \uldb \plain\uldb\fs20\cf1 Tsp_CustomLineAttr\plain\fs20\cf1 \cf2  \b\fs24\cf5   \plain\fs20\cf3     
+\par \pard \uldb \f3\cf1 OnChange\plain\f3\fs20\cf1 \page
+{\up $}
+\pard\keepn {\up #}
+\f1\b\fs24\cf5 OnChange event
+\par \plain\fs20  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_CustomLineAttr\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 OnChange : TNotifyEvent;\f1 
+\par 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description\plain\fs20 
+\par \pard Write an OnChange event handler to take specific action when the properties changes. The properties will reflect the new settings when OnChange occurs.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 SetPenAttr method
+\par \plain\fs20  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_CustomLineAttr\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure SetPenAttr(const APen : TPen);\f1 
+\par 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description
+\par \plain\fs20\cf3 Assign draw attributes to pen.
+\par 
+\par \f3\b procedure\plain\f3\fs20\cf3  Tsp_CustomLineAttr.SetPenAttr(\b const\plain\f3\fs20\cf3  APen:TPen);
+\par \b begin\plain\f3\fs20\cf3 
+\par  \b with\plain\f3\fs20\cf3  APen \b do\plain\f3\fs20\cf3  \b begin\plain\f3\fs20\cf3 
+\par   Color:=fColor;
+\par   Style:=fStyle;
+\par   Width:=fWidth;
+\par  \b end\plain\f3\fs20\cf3 ;
+\par \b end\plain\f3\fs20\cf3 ;
+\par \uldb \f1\cf1 Example\plain\fs20\cf1 \plain\fs20 
+\par \pard .\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Visible property
+\par  
+\par \pard \plain\b\fs20 Unit \plain\fs20 
+\par \uldb \cf1 sgr_scale\plain\fs20\cf1 \plain\strike\fs20 
+\par \plain\fs20 
+\par \b Applies to \plain\fs20 
+\par \uldb \cf1 Tsp_CustomLineAttr\plain\fs20\cf1 \plain\strike\fs20 
+\par \plain\fs20 
+\par \b Declaration\plain\fs20 
+\par \f3 property Visible : boolean \f1 
+\par 
+\par \b Description 
+\par \plain\fs20 If Visible = False then line (for example \uldb \cf1 Grid\plain\fs20\cf1  \plain\fs20 lines) is not drawn.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_LineAttr class\plain\fs28 
+\par \uldb \fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \cf2 \tab \uldb \cf1 events\plain\fs20\cf1  \plain\fs20         
+\par \pard\tx355 \b Unit \plain\fs20 
+\par \pard\tx355 \uldb \cf1 sgr_scale\plain\fs20\cf1 \plain\strike\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\fs20 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_LineAttr = class(\uldb \cf1 Tsp_CustomLineAttr\plain\f3\fs20\cf1 \cf3 )\plain\fs20 
+\par 
+\par \b Description\plain\fs20 
+\par Publishes properties of  \uldb \f3\cf1 Tsp_CustomLineAttr\plain\f3\fs20\cf1 \plain\fs20  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3 property Color ;\f1 
+\par \f3 property Style default psSolid;
+\par property Width default 1;
+\par property Visible ;\f1 
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_LineAttr  methods
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Tsp_LineAttr\plain\fs20\cf1 \b\fs24\cf5 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \fs16  \uldb \plain\uldb\fs20 IsSame\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395   
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Derived from \f3 Tsp_CustomLineAttr
+\par \uldb \plain\uldb\fs20 Create\plain\fs20 
+\par \uldb Assign\plain\fs20 
+\par \uldb AssignTo\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb SetPenAttr\plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 IsSame method\plain\fs20 
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb sgr_scale\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Applies to \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb Tsp_LineAttr\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Declaration\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3 function IsSame ( const LA : \uldb Tsp_CustomLineAttr\plain\f3\fs20  ) : boolean ;\f1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\fs20\cf3 Return true if the all properties of LA are same.
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\b\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3\cf3 function\plain\f3\fs20\cf3  Tsp_LineAttr.IsSame(\b const\plain\f3\fs20\cf3  LA:Tsp_CustomLineAttr):boolean;
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b begin\plain\f3\fs20\cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395  \b with\plain\f3\fs20\cf3  LA \b do\plain\f3\fs20\cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395  Result:=(fColor=Color) \b and\plain\f3\fs20\cf3  (fStyle=Style) \b and\plain\f3\fs20\cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395          (fWidth=Width) \b and\plain\f3\fs20\cf3  (fVisible=Visible);
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b end\plain\f3\fs20\cf3 ;
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \f1\b\fs24\cf5 Tsp_Scale class
+\par \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \plain\fs20    
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_Scale = class ( \uldb \cf1 TPersistent\plain\f3\fs20\cf1 \plain\f3\fs20  )\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Ancestor of plot \uldb \cf1 axis\plain\fs20\cf1 \plain\fs20 . 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_Scale properties   
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Tsp_Scale\plain\fs20\cf1 \cf2  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \cf1 Visible\plain\fs20\cf1 
+\par \uldb Inversed\plain\fs20\cf1 \plain\fs20 
+\par \uldb \cf1 NoTicksLabel\plain\fs20\cf1 \plain\fs20 
+\par \uldb \cf1 TicksLines\plain\fs20\cf1 \cf2 
+\par \pard \uldb \cf1 TicksAdjusted\plain\fs20\cf1 \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_Scale methods     
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Tsp_Scale\plain\fs20\cf1 \cf2  \b\fs32\cf5 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Create\plain\fs20\cf1 \plain\fs20 \tab 
+\par \pard\tx355 \uldb V2P\plain\fs20 \tab 
+\par \uldb P2V\plain\fs20 \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Create method
+\par \pard\keepn\tx355 \plain\fs20  
+\par \pard\tx355 \b Unit \plain\fs20 
+\par \pard\tx355 \uldb sgr_scale\plain\fs20 
+\par \pard\tx355 
+\par \pard\tx355 \b Applies to \plain\fs20 
+\par \pard\tx355 \uldb Tsp_Scale\plain\fs20 
+\par \pard\tx355 
+\par \pard\tx355 \b Declaration\plain\fs20 
+\par \pard\tx355 \f3 constructor Create ( Flags : integer ) ;
+\par \pard\tx355 
+\par \pard\tx355 \f1\b Flags bit
+\par \pard\li195\fi-195\tx355 \plain\f2\fs18 \'b7\tab \f1\fs20 fbposVertical         \cf4 vertical scale\plain\fs20 
+\par \f2\fs18 \'b7\tab \f1\fs20 fbposInversed        \cf4 Min is not on origin\plain\fs20 
+\par \f2\fs18 \'b7\tab \f1\fs20 fbposNoTicks        \cf4 Do not draw tick lines\plain\fs20 
+\par \f2\fs18 \'b7\tab \f1\fs20 fbposNoTicksLabel \cf4 Do not draw Label for ticks\plain\fs20 
+\par \f2\fs18 \'b7\tab \f1\fs20 fbposRevertTicks    \cf4 Ticks & Label at Top of horiz.line, on Right of vert.line\plain\fs20 
+\par \f2\fs18 \'b7\tab \f1\fs20 fbposAutoMin   
+\par \f2\fs18 \'b7\tab \f1\fs20 fbposAutoMax
+\par \f2\fs18 \'b7\tab \f1\fs20 fbposLabelAsDate\page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 V2P method
+\par \pard\keepn\tx355 \plain\fs20  
+\par \pard\tx355 \b Unit \plain\fs20 
+\par \pard\tx355 \uldb sgr_scale\plain\fs20 
+\par \pard\tx355 
+\par \pard\tx355 \b Applies to \plain\fs20 
+\par \pard\tx355 \uldb Tsp_Scale\plain\fs20 
+\par \pard\tx355 
+\par \pard\tx355 \b Declaration\plain\fs20 
+\par \pard\tx355 \f3 function V2P ( const V : double ) : integer ;\f1 
+\par \pard\tx355 
+\par \pard\tx355 \b Description\plain\fs20 
+\par \pard\tx355 Converts value to position along scale line. 
+\par \pard\tx355 \uldb \cf1 Example\plain\fs20\cf1 \plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 P2V method
+\par \plain\fs20  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Scale\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 function P2V ( const V : integer ) : double ;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Converts position along scale line to value.
+\par \uldb \cf1 Example\plain\fs20\cf1 \plain\fs20  
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Visible property
+\par \plain\fs20  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Scale\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Visible : boolean Read only\f1 
+\par 
+\par 
+\par \b Description\plain\fs20 
+\par If all scale elements (\uldb \cf1 Line\plain\fs20\cf1 \plain\fs20 , \uldb \cf1 Ticks\plain\fs20\cf1 \plain\fs20 ,  \uldb \cf1 TicksLabel\plain\fs20\cf1 \plain\fs20 ) are not drawn then visible return false.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Inversed property\plain\fs20 
+\par  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Scale\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Inversed : boolean  \f1 
+\par 
+\par \b Description\plain\fs20 
+\par If True then swap \uldb Min\plain\fs20   \uldb Max\plain\fs20  positions, normally \uldb Min\plain\fs20   on Right for horizontal scale and at Bottom for vertical scale.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 NoTicksLabel property\plain\fs20 
+\par  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Scale\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property NoTicksLabel : boolean \f1 
+\par 
+\par \b Description\plain\fs20 
+\par If True then ticks labels are not shown. 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 TicksLines property\plain\fs20 
+\par  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Scale\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property TicksLines : boolean   \f1 
+\par 
+\par \b Description\plain\fs20 
+\par If False then ticks lines are not shown.
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 TicksAdjusted  property\fs32 
+\par \plain\fs20  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_scale\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Scale\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property TicksAdjusted : boolean   \f1 
+\par 
+\par \b Description\plain\fs20 
+\par If True then ticks are adjusted to have minimal decimal position in tick values. For example, let \uldb \cf1 Min\plain\fs20\cf1 \plain\fs20 =0, Max=10 and \uldb \cf1 TicksCount\plain\fs20\cf1 \plain\fs20 =4, then for adjusted ticks we will have ticks values 
+\par (1) \b 0  \plain\fs20 (2) \b 3.3  \plain\fs20 (3) \b 6.6  \plain\fs20 (4) \b 9.9 \plain\fs20 , 
+\par othewise we will have 
+\par (1) \b 0  \plain\fs20 (2) \b 3.3333..  \plain\fs20 (3) \b 6.6666..  \plain\fs20 (4) \b 10\plain\fs20  .
+\par \pard It is recommended use TicksAdjusted:=True, it can keep more precision when plot is scrolled.
+\par 
+\par \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 sgr_def unit
+\par \uldb \plain\uldb\fs20\cf1 SGraph\plain\fs20\cf1 \plain\fs20      
+\par \pard Main unit. 
+\par \b 
+\par USES\plain\fs20 
+\par Windows, ... Clipbrd, sgr_misc\b ,  \uldb \plain\uldb\fs20\cf1 sgr_scale\plain\fs20\cf1 \plain\fs20 ;
+\par 
+\par \pard\tx-5 \b TYPES
+\par \pard\tx355 \plain\fs20 \tab \uldb \cf1 Tsp_XYPlot\plain\fs20\cf1 \plain\fs20 
+\par \tab \uldb Tsp_Axis\plain\fs20 
+\par \tab \uldb Tsp_WhatXAxis\plain\fs20 
+\par \tab \uldb Tsp_WhatYAxis\plain\fs20 
+\par \tab \uldb \cf1 TGetTickLabelEvent\plain\fs20\cf1 \plain\fs20 
+\par \tab \uldb TIP_Reason\plain\fs20 
+\par \tab \uldb Tsp_DataSeries\plain\fs20 
+\par \tab \uldb Tsp_ShiftKeys\plain\fs20 
+\par \tab \uldb \cf1 Tsp_zpDirections\plain\fs20\cf1 \cf2 
+\par \tab \uldb \cf1 TZoomAxisEvent\plain\fs20\cf1 \cf2 
+\par \plain\fs20 \tab \uldb \cf1 Tsp_BorderStyle\plain\fs20\cf1 \cf2 
+\par \tab \uldb \cf1 Tsp_PlotMarker\plain\fs20\cf1 \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_BorderStyle type 
+\par \plain\fs20\cf2 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\b\fs20 Unit \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb sgr_def\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Declaration\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 Tsp_BorderStyle = (bs_None, bs_Raised, bs_Lowered, bs_Gutter, bs_BlackRect, bs_BoldRect, bs_FocusRect)
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description\plain\fs20\cf3 
+\par \pard \plain\fs20 Used to define \uldb \cf1 BorderStyle\plain\fs20\cf1 \plain\fs20 .\page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_XYPlot component
+\par \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \cf2 \tab \uldb \cf1 events\plain\fs20\cf1 \plain\fs20      
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_XYPlot = class(\uldb \cf1 TCustomControl\plain\f3\fs20\cf1 \plain\f3\fs20 )\f1 
+\par 
+\par \b Description
+\par \pard \plain\fs20 Tsp_XYPlot is host container for the \uldb \cf1 axis\plain\fs20\cf1 \plain\fs20  and \uldb \cf1 data series\plain\fs20\cf1 \plain\fs20 . Tsp_XYPlot is canvas where axis and data series are drawn (see \uldb \cf1 Plot image\plain\fs20\cf1 \cf3 )\page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_XYPlot properties
+\par \uldb \plain\uldb\fs20\cf1 Tsp_XYPlot\plain\fs20\cf1 \b\cf2     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20 BufferedDisplay\plain\fs20 
+\par \pard\tx355 \uldb BorderStyle\plain\fs20 \tab 
+\par \strike 
+\par \uldb \plain\uldb\fs20 DCanvas\plain\fs20 \tab 
+\par \uldb DWidth\plain\fs20 \tab 
+\par \uldb DHeight\plain\fs20 \tab 
+\par \uldb FieldRect\plain\fs20 
+\par 
+\par \uldb BottomAxis\plain\fs20 \tab 
+\par \uldb LeftAxis\plain\fs20 \tab 
+\par \uldb RightAxis\plain\fs20 
+\par \uldb TopAxis\plain\fs20 \tab 
+\par \uldb \cf1 Series\plain\fs20\cf1 \plain\fs20 
+\par \uldb \cf1 SeriesCount\plain\fs20\cf1 \cf2 
+\par \plain\fs20 
+\par \uldb Pan\plain\fs20 
+\par \uldb PanShiftKeys\plain\fs20 
+\par \uldb Zoom\plain\fs20 \tab 
+\par \uldb ZoomShiftKeys\plain\fs20 \tab 
+\par \strike 
+\par \uldb \plain\uldb\fs20 FieldColor\plain\fs20 
+\par \uldb Color\plain\fs20 
+\par \uldb Font\plain\fs20 
+\par 
+\par \uldb \cf1 XCursorOn\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355 \uldb \cf1 XCursorVal\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \uldb \cf1 Other properties\plain\fs20\cf1 \cf2  \cf3 derived from ancestors\plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_XYPlot methods
+\par \uldb \plain\uldb\fs20\cf1 Tsp_XYPlot\plain\fs20\cf1 \b\cf2     
+\par \pard\tx355 \uldb \plain\uldb\fs20 Create\plain\fs20 \tab 
+\par \uldb Destroy\plain\fs20 \tab 
+\par \uldb BufferIsInvalid\plain\fs20 
+\par \uldb Invalidate\plain\fs20 \tab 
+\par \uldb \cf1 DrawPlot\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb Paint\plain\fs20 \tab \tab 
+\par \uldb CopyToClipboardMetafile\plain\fs20 \tab 
+\par \uldb CopyToClipboardBitmap\plain\fs20 \tab 
+\par \cf3 
+\par \uldb \cf1 Other methods\plain\fs20\cf1 \cf2  
+\par \cf3 derived from ancestors\page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_XYPlot events
+\par \uldb \plain\uldb\fs20\cf1 Tsp_XYPlot\plain\fs20\cf1 \b\cf2     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\strike\fs20 
+\par \pard\tx355 \uldb \plain\uldb\fs20 OnFieldDraw\plain\fs20 \tab 
+\par \uldb OnDrawEnd\plain\fs20 
+\par \uldb \cf1 OnAxisZoom\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 OnGetTickLabel\plain\fs20\cf1 \plain\fs20 
+\par \uldb OnMouseDown\plain\fs20 \tab 
+\par \uldb OnMouseMove\plain\fs20 
+\par \uldb OnMouseUp\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \cf1 Other events\plain\fs20\cf1 \cf2  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 derived from ancestors\plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Create method\plain\fs20 
+\par  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 constructor Create(AOwner : TComponent); override;\f1 
+\par \page
+{\up $}
+\pard\keepn {\up #}
+\b\fs24\cf5 Destroy method
+\par \plain\fs20  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 destructor Destroy ; override;\f1 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Invalidate method\plain\fs20 
+\par  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure Invalidate ; override;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Standard VCL function. Invalidate tells Windows to repaint the control after other important Windows messages are handled. Invalidate was override to force recalculation of axis and redraw \uldb \cf1 internal buffer\plain\fs20\cf1 \plain\fs20  during next \uldb \cf1 Paint\plain\fs20\cf1 \plain\fs20 .
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 BufferIsInvalid method\plain\fs20 
+\par  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure BufferIsInvalid ;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par \cf3 If plot painted through internal buffer, this buffer may be not redrawn at every \uldb \cf1 Paint\plain\fs20\cf1 \cf3  (handled WM_Paint). \plain\fs20 Call this procedure if you need to force redraw buffer on the next Paint.
+\par \uldb \cf1 Example\plain\fs20\cf1 \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Paint method\plain\fs20 
+\par  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure Paint ; override;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Paint draws the image of the \uldb \cf1 Tsp_XYPlot\plain\fs20\cf1 \plain\fs20  in response to paint messages. If the \uldb \cf1 BufferedDisplay\plain\fs20\cf1 \plain\fs20  property is True then Paint uses internal buffer to draw plot and copy it to screen. \cf3 This buffer is not redrawn at every Paint (see \uldb \cf1 Invalidate\plain\fs20\cf1 \cf3  and \uldb \cf1 BufferIsInvalid\plain\fs20\cf1 \cf3 ). \plain\fs20 
+\par \pard It is not recommended to override this method, use \uldb \cf1 OnDrawEnd\plain\fs20\cf1 \plain\fs20  event instead. There is also \uldb \cf1 OnFieldDraw\plain\fs20\cf1 \plain\fs20  event. See \uldb \cf1 Tsp_xyPlot draw\plain\fs20\cf1 \plain\fs20  for detailes.
+\par 
+\par Note: \cf3 in this case\plain\fs20  \uldb \cf1 sequence of draw operations\plain\fs20\cf1 \cf2  \cf3  has extra last step to Draw \uldb \cf1 XCursor\plain\fs20\cf1 \cf3 . \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 DrawPlot method \fs32 
+\par \pard \plain\b\fs20 Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par procedure DrawPlot(\b CC \plain\fs20 : TCanvas; \b W\plain\fs20 , \b H \plain\fs20 : integer);
+\par   
+\par \b Description\plain\fs20 
+\par Draw plot with width \b W\plain\fs20 ,  height \b H\plain\fs20  on Canvas \b CC\plain\fs20 . \b W\plain\fs20 ,\b  H \plain\fs20 must be greater then 10, MapMode of \b CC\plain\fs20  must be MM_TEXT or at least MM_ANISOTROPIC with positive x is to the right, positive y is down. This procedure used internally but it is public. May be it can be used to print Plot image.
+\par \pard This procedure set DCanvas, DWidth and DHeight make \uldb \cf1 draw operations\plain\fs20\cf1 \plain\fs20  and restore DCanvas, DWidth and DHeight.
+\par 
+\par \b See also
+\par \uldb \plain\uldb\fs20\cf1 Paint\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 Plot image\plain\fs20\cf1 \page
+{\up $}
+{\up #}
+\pard\keepn\li155\fi-155\tx155 \b\fs24\cf5 Tsp_XYPlot drawing
+\par \fs20\cf2  
+\par \pard\tx155 \cf3 Plot image\plain\fs20\cf3  
+\par \pard\tx155 \uldb \cf1 Plot\plain\fs20\cf1 \cf3  has 2 areas - Field and Around Area.\plain\fs20  \cf3 Field is area surrounded by 4 axis. The data series are painted on the Field.  The axis \uldb \cf1 caption\plain\fs20\cf1 \cf2 , \cf3 ticks and ticks label are painted on the Around Area
+\par \pard\tx155 \cf2 \{bmc bm0.bmp\}\cf3  
+\par \pard\tx155 
+\par \pard\tx155 \b Sequence of draw operations  {\up #}
+
+\par \pard\li255\fi-255\tx355 \plain\f2\fs18\cf3 \'b7\tab \f1\fs20 Fill Around Area by \uldb \cf1 Color\plain\fs20\cf1 \cf3 
+\par \f2\fs18 \'b7\tab \f1\fs20 Draw \uldb \cf1 axis\plain\fs20\cf1 \cf3        
+\par \f2\fs18 \'b7\tab \f1\fs20 IntersectClipRect(\uldb \cf1 DCanvas\plain\fs20\cf1 \cf3 , \uldb \cf1 FieldRect\plain\fs20\cf1 \cf3 )
+\par \f2\fs18 \'b7\tab \f1\fs20 Fill Field by \uldb \cf1 FieldColor\plain\fs20\cf1 \cf3 
+\par \f2\fs18 \'b7\tab \f1\fs20 Process \uldb \cf1 OnFieldDraw event\plain\fs20\cf1 \cf3 
+\par \f2\fs18 \'b7\tab \f1\fs20 Draw \uldb \cf1 Grids\plain\fs20\cf1 \cf3 
+\par \f2\fs18 \'b7\tab \f1\fs20 Draw markers with \uldb \cf1 WhenDraw\plain\fs20\cf1 \cf3 =dmBeforeSeries
+\par \f2\fs18 \'b7\tab \f1\fs20 Draw \uldb \cf1 series\plain\fs20\cf1 \cf3 
+\par \f2\fs18 \'b7\tab \f1\fs20 Draw markers with \uldb \cf1 WhenDraw\plain\fs20\cf1 \cf3 =dmAfterSeries
+\par \pard\li255\fi-255\tx355 \f2\fs18 \'b7\tab \f1\fs20 RestoreClipRect\f3 
+\par \f2\fs18 \'b7\tab \f1\fs20 Process \uldb \cf1 OnDrawEnd event\plain\fs20\cf1 \f3\cf2 
+\par \f2\fs18\cf3 \'b7\tab \f1\fs20 Draw \uldb \cf1 border\plain\fs20\cf1 \f3\cf2 
+\par \pard\tx355 
+\par \pard\tx355 
+\par \pard\tx355 \f1\b\cf3 Custom draw rules {\up #}
+\plain\f3\fs20\cf2 
+\par \pard\tx355 \plain\fs20 This rules apply for Data Series \uldb \cf1 Draw\plain\fs20\cf1 \plain\fs20  procedure and \uldb \cf1 OnFieldDraw\plain\fs20\cf1 \plain\fs20 , \uldb \cf1 OnDrawEnd\plain\fs20\cf1 \plain\fs20  and \uldb \cf1 OnDrawCustomPoint\plain\fs20\cf1 \f4\cf3  \plain\fs20 event handlers. They must
+\par \pard\li275\fi-275\tx355 \f2\fs18 \'b7\tab \f1\fs20 use \uldb \cf1 DCanvas\plain\fs20\cf1 \plain\fs20  to draw
+\par \f2\fs18 \'b7\tab \f1\fs20 do not change plot Font property
+\par \f2\fs18 \'b7\tab \f1\fs20 do not change MapMode or Clipping Region of the \uldb \cf1 DCanvas\plain\fs20\cf1 \plain\fs20 
+\par \f2\fs18 \'b7\tab \f1\fs20 use \uldb \cf1 DWidth\plain\fs20\cf1 \plain\fs20  as plot width, \uldb \cf1 DHeight\plain\fs20\cf1 \plain\fs20  as plot height
+\par \pard\tx355 
+\par \pard\tx355 \b Tips\plain\fs20 
+\par \pard\tx355 For another type of custom draw see \uldb \cf1 QuickAddXY Example\plain\fs20\cf1 \cf2 .
+\par \pard\tx355 \cf3 Use \uldb \cf1 FieldRect\plain\fs20\cf1 \cf3  if you need to know Field position on the plot image.
+\par \pard Use \uldb \cf1 P2V\plain\fs20\cf1 \cf3  and \uldb \cf1 V2P\plain\fs20\cf1 \cf3  methods to convert position to value and back.\page
+{\up $}
+{\up #}
+\pard \b\fs32\cf5 Garbage
+\par \plain\fs20\cf3 
+\par \plain\fs20 0, 0 - left upper point
+\par DWidth-1, DHeight-1 - right down point
+\par Field 
+\par \b\fs32\cf5 
+\par \plain\f3\i\fs20\cf6 //draw all elements around field (axis & border)\plain\f3\fs20\cf3 
+\par \f1 
+\par \f3   DrawAroundField;
+\par \b begin\plain\f3\fs20\cf3      \i\cf6 //DrawAroundField\plain\f3\fs20\cf3 
+\par  ClearBack;
+\par  DrawAxises;
+\par  DrawBorder;
+\par \b end\plain\f3\fs20\cf3 ;      \i\cf6 //DrawAroundField\plain\f3\fs20\cf3 
+\par 
+\par   DrawField;
+\par     DrawFieldBack;
+\par     DrawMarkers;
+\par     ;
+\par   Do;
+\par \f1 There is special internal procedure in Tsp_xyPlot component. Let us to see how this procedure draw plot step by step.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Example    
+\par \pard \plain\fs20\cf3 This example was cut from first version of sgr_data.pas.
+\par  
+\par \f3\b procedure\plain\f3\fs20\cf3  Tsp_XYLine.QuickAddXY(aX,aY:double);
+\par \i\cf6 \{\-don't spends time to update Plot, instead simply draws next segment
+\par  directly on DCanvas, therefore AutoMin and AutoMax are ignored \'7d\plain\f3\fs20\cf3 
+\par \b var\plain\f3\fs20\cf3  l,e:TPoint; A:Tsp_Axis;
+\par \b begin\plain\f3\fs20\cf3 
+\par  \b if\plain\f3\fs20\cf3  fPN >= fCapacity        \i\cf6 //has free space in series data storage?\plain\f3\fs20\cf3 
+\par     \b then\plain\f3\fs20\cf3  Expand;            \i\cf6 //if no, then expand data storage \plain\f3\fs20\cf3    
+\par \pard  XV[fPN]:=aX;  YV[fPN]:=aY; \i\cf6 //add values to data storage\plain\f3\fs20\cf3 
+\par  TryUpdateMinMax(aX,aY);    \i\cf6 //serve data min & max\plain\f3\fs20\cf3 
+\par  inc(fPN);                  \i\cf6 //points nubmer was increased\plain\f3\fs20\cf3 
+\par  \i\cf6 //instead InvalidatePlot(rsDataChanged) we simply draw line segment;\plain\f3\fs20\cf3 
+\par  \i\cf6 //but first check if we can draw \plain\f3\fs20\cf3 
+\par  \b if\plain\f3\fs20\cf3  CanPlot                \i\cf6 //has parent plot and can invalidate it?\plain\f3\fs20\cf3 
+\par     \b and\plain\f3\fs20\cf3  Active             \i\cf6 //series is active?\plain\f3\fs20\cf3 
+\par     \b and\plain\f3\fs20\cf3  (fPN>\cf1 1\cf3 )            \i\cf6 //have at least 2 points?\plain\f3\fs20\cf3 
+\par \pard  \b then\plain\f3\fs20\cf3  \b with\plain\f3\fs20\cf3  Plot \b do\plain\f3\fs20\cf3              
+\par  \b begin  {\up #}
+\plain\f3\fs20\cf3 
+\par    \i\cf6 //if plot painted through draw buffer, then mark buffer as invalid\plain\f3\fs20\cf3 
+\par    \b if\plain\f3\fs20\cf3  \uldb \cf1 BufferedDisplay\plain\f3\fs20\cf1 \cf3        
+\par      \b then\plain\f3\fs20\cf3  \uldb \cf1 BufferIsInvalid\plain\f3\fs20\cf1 \cf3 ; \i\cf6 //buffer will be freshen on next Paint\plain\f3\fs20\cf3 
+\par    \b with\plain\f3\fs20\cf3  \uldb \cf1 FieldRect\plain\f3\fs20\cf1 \cf3  \b do\plain\f3\fs20\cf3  
+\par       IntersectClipRect(DCanvas.Handle, Left, Top, Right, Bottom);
+\par    \b if\plain\f3\fs20\cf3  \uldb \cf1 XAxis\plain\f3\fs20\cf1 \cf3 =dsxBottom \b then\plain\f3\fs20\cf3  A:=\uldb \cf1 BottomAxis\plain\f3\fs20\cf1 \cf3  \b else\plain\f3\fs20\cf3  A:=\uldb \cf1 TopAxis\plain\f3\fs20\cf1 \cf3 ;
+\par \pard    \b with\plain\f3\fs20\cf3  A \b do\plain\f3\fs20\cf3   \b begin\plain\f3\fs20\cf3         \i\cf6 //ask horiz. axis for the scaling\plain\f3\fs20\cf3 
+\par      l.x:=V2P(XV[fPN-2]);{\up #}
+\i\cf6 //find x pos new line segment\plain\f3\fs20\cf3 
+\par      e.x:=\uldb \cf1 V2P\plain\f3\fs20\cf1 \cf3 (XV[fPN-1]);
+\par    \b end\plain\f3\fs20\cf3 ;
+\par    \b if\plain\f3\fs20\cf3  YAxis=dsyLeft \b then\plain\f3\fs20\cf3  A:=LeftAxis \b else\plain\f3\fs20\cf3  A:=RightAxis;
+\par    \b with\plain\f3\fs20\cf3  A \b do\plain\f3\fs20\cf3   \b begin\plain\f3\fs20\cf3         \i\cf6 //ask vert. axis for the scaling\plain\f3\fs20\cf3 
+\par      l.y:=V2P(YV[fPN-2]);  \i\cf6 //find y pos new line segment\plain\f3\fs20\cf3 
+\par      e.y:=\uldb \cf1 V2P\plain\f3\fs20\cf1 \cf3 (YV[fPN-1]);
+\par \pard    \b end\plain\f3\fs20\cf3 ;
+\par    \b if\plain\f3\fs20\cf3  PtInRect(FieldRect, l) \b or\plain\f3\fs20\cf3  PtInRect(FieldRect, e) \b then\plain\f3\fs20\cf3 
+\par    \b with\plain\f3\fs20\cf3  \uldb \cf1 DCanvas\plain\f3\fs20\cf1 \cf3  \b do\plain\f3\fs20\cf3   \b begin {\up #}
+\plain\f3\fs20\cf3 
+\par      fLineAttr.\uldb \cf1 SetPenAttr(\plain\f3\fs20\cf1 \cf3 Pen); \i\cf6 //set line draw attributes\plain\f3\fs20\cf3 
+\par      MoveTo(l.x,l.y);           
+\par      LineTo(e.x,e.y);           \i\cf6 //draw line \plain\f3\fs20\cf3 
+\par    \b end\plain\f3\fs20\cf3 ;
+\par  \b end\plain\f3\fs20\cf3 ;
+\par \b end\plain\f3\fs20\cf3 ;
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \f1\b\fs24\cf5 Example P2V
+\par \fs20\cf2    
+\par \pard \plain\fs20 Use code like this to show mouse position relatively Bottom and Left axis coordinate system
+\par 
+\par \f3\b\cf3 procedure\plain\f3\fs20\cf3  TPForm.PlotMouseMove(Sender: TObject; Shift: TShiftState; X,Y: Integer);
+\par \b begin\plain\f3\fs20\cf3 
+\par  \b with\plain\f3\fs20\cf3  StatusBar, Plot \b do\plain\f3\fs20\cf3 
+\par   SimpleText:=Format(\i 'X %3.1f  Y %3.1f'\plain\f3\fs20\cf3 ,
+\par   [BottomAxis.\uldb \cf1 P2V\plain\f3\fs20\cf1 \cf3 (X), LeftAxis.\uldb \cf1 P2V\plain\f3\fs20\cf1 \cf3 (Y)])
+\par \b end\plain\f3\fs20\cf3 ;
+\par \f1\b\fs32\cf5 
+\par \plain\fs20\cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Example OnGetTickLabel\plain\f3\fs20\cf3 
+\par \f1\cf2  
+\par \pard \f3\i\cf6 Handle event to show Tick Label only on the axis sides\plain\f3\fs20\cf3 
+\par \b procedure\plain\f3\fs20\cf3  TMainForm.XYPlotGetTickLabel(Sender: Tsp_Axis; LabelNum: Integer; LabelVal: Double; \b var\plain\f3\fs20\cf3  LS: \b String\plain\f3\fs20\cf3 );
+\par \b begin\plain\f3\fs20\cf3 
+\par  \b with\plain\f3\fs20\cf3  XYPlot \b do\plain\f3\fs20\cf3 
+\par   \b if\plain\f3\fs20\cf3  (Sender=BottomAxis)
+\par       \b and\plain\f3\fs20\cf3  (LabelNum>\cf1 0\cf3 )
+\par       \b and\plain\f3\fs20\cf3  (LabelNum<BottomAxis.TicksCount-\cf1 1\cf3 )
+\par   \b then\plain\f3\fs20\cf3  LS:=\i ''\plain\f3\fs20\cf3 ;
+\par \b end\plain\f3\fs20\cf3 ;\f1 
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 CopyToClipboardMetafile method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure CopyToClipboardMetafile ;\f1 
+\par 
+\par \b Description
+\par \plain\fs20 Draw plot on the Enhanced Metafile and copy it to the clipboard.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 CopyToClipboardBitmap method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure CopyToClipboardBitmap ;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Copy plot image to clipboard as bitmap
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 DCanvas property\cf1 
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property DCanvas : TCanvas Read only\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Draw target canvas, most time it is the same TCustomControl.Canvas, but can be TMetafileCanvas, TBitmapCanvas ... Do not draw on TCustomControl.Canvas.
+\par See also:
+\par \uldb \cf1 DrawPlot method\plain\fs20\cf1 \plain\fs20 
+\par \uldb \cf1 Tsp_xyPlot draw\plain\fs20\cf1 \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 DWidth, DHeight properties
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property DWidth : integer Read only\f1 
+\par \f3 property DHeight : integer Read only\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Plot draw sizes. Most time it is the same as TCustomControl width and height.
+\par See also:
+\par \uldb \cf1 DrawPlot method\plain\fs20\cf1 \plain\fs20 
+\par \uldb \cf1 Tsp_xyPlot draw\plain\fs20\cf1 \plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 FieldRect property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property FieldRect : TRect Read only\f1 
+\par 
+\par \b Description\plain\fs20 
+\par \cf3 Return \uldb \cf1 Field\plain\fs20\cf1 \plain\fs20  rectangle area for the data series drawing. Procedure Rectangle(Left, Top, Right, Bottom) will draw rectangle with sides just near plot axis.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Color property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Defines background color of \uldb \cf1 Around Area\plain\f3\fs20\cf1 \plain\f3\fs20 .\f1 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Font property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par Font used to draw axis \uldb \cf1 Caption\plain\fs20\cf1 \plain\fs20  and \uldb \cf1 tick labels\plain\fs20\cf1 \plain\fs20 .
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 OnMouseDown, OnMouseMove and OnMouseUp\plain\f3\fs20  \f1\b\fs24\cf5 events
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property OnMouseMove : TMouseMoveEvent;
+\par property OnMouseUp   : TMouseEvent; 
+\par property OnMouseDown : TMouseEvent;\f1 
+\par 
+\par \b Description
+\par \plain\fs20 This are standard TControl events. There is only note that they are called after code, which treats panning and zooming of the plot. For example MouseMove is handled like this
+\par 
+\par \f3\b\cf3 procedure\plain\f3\fs20\cf3  Tsp_XYPlot.MouseMove(Shift: TShiftState; X, Y: Integer); \i\cf5 //override\plain\f3\fs20\cf3 
+\par \pard \b begin
+\par  \plain\f3\fs20\cf3 //\f1  quasi code begin\f3\b 
+\par \plain\f3\fs20\cf3  \b case\plain\f3\fs20\cf3  PanZoom of            
+\par   Zoom: RefreshZoomRect;
+\par   Pan : begin
+\par          ScrollAxises; 
+\par          Invalidate; \cf5 //Plot\cf3 
+\par         end 
+\par  \b end\plain\f3\fs20\cf3 ;\cf5  \i  \cf3                      
+\par  //\plain\fs20  quasi code end\f3\i\cf3 
+\par \plain\f3\fs20\cf3  \b inherited\plain\f3\fs20\cf3  MouseMove(Shift, X, Y);
+\par \b end\plain\f3\fs20\cf3 ; 
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \f1\b\fs24\cf5 Zoom property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Zoom : \uldb Tsp_zpDirections\plain\f3\fs20  default \uldb \cf1 zpdBoth\plain\f3\fs20\cf1 \plain\f3\fs20   \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Defines enabled directions of zoom plot by mouse. See also \uldb \cf1 ZoomShiftKeys\plain\fs20\cf1 \plain\fs20  property.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Pan property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Pan : \uldb Tsp_zpDirections\plain\f3\fs20  default \uldb \cf1 zpdBoth\plain\f3\fs20\cf1 \plain\f3\fs20   \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Defines enabled directions of panning plot by mouse. See also \uldb \cf1 PanShiftKeys\plain\fs20\cf1 \plain\fs20 .
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 ZoomShiftKeys property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property ZoomShiftKeys : \uldb Tsp_ShiftKeys\plain\f3\fs20     \f1 
+\par 
+\par \b Description\plain\fs20 
+\par ShiftKey set need to be pressed to start zoom by mouse. See \uldb \cf1 Zoom\plain\fs20\cf1 \cf2  \cf3 property\plain\fs20 .
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 PanShiftKeys property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property PanShiftKeys : \uldb Tsp_ShiftKeys\plain\f3\fs20  \cf3 default [ssCtrl];
+\par \plain\fs20 
+\par \b Description\plain\fs20 
+\par ShiftKey set need to be pressed to start panning by mouse. See \uldb \cf1 Pan\plain\fs20\cf1 \plain\fs20  property.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 LeftAxis property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property LeftAxis : \uldb Tsp_Axis\plain\f3\fs20  Read only \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Left vertical axis of plot. 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 RightAxis property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property RightAxis : \uldb Tsp_Axis\plain\f3\fs20  Read only \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Right vertical axis of plot.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 BottomAxis property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property BottomAxis : \uldb Tsp_Axis\plain\f3\fs20  Read only \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Bottom horizontal axis of plot.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 TopAxis property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property TopAxis : \uldb Tsp_Axis\plain\f3\fs20  Read only \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Bottom horizontal axis of plot.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 BorderStyle property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property BorderStyle : \uldb \cf1 Tsp_BorderStyle\plain\f3\fs20\cf1 \plain\f3\fs20  \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Style of plot  border. Note: when this properties is changing plot is not invalidated, instead of that
+\par border is redrawn directly. So it does not spend time to redraw whole plot. \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 FieldColor property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property FieldColor : TColor \f1 
+\par 
+\par \b Description\plain\fs20 
+\par \uldb \cf1 Field\plain\fs20\cf1 \plain\fs20  background color.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 BufferedDisplay property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property BufferedDisplay : Boolean default False\f1 
+\par 
+\par \b Description\plain\fs20 
+\par If true then \uldb \cf1 Paint\plain\fs20\cf1 \plain\fs20  method draw plot on screen via internal draw buffer (Device Depended Bitmap). This prevents "flickering" and can gain speed of drawing.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 SeriesCount property
+\par \fs32  
+\par \pard \plain\b\fs20 Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \cf3 property SeriesCount:integer\plain\f3\fs20  \f1 
+\par 
+\par \b Description\plain\fs20 
+\par \cf3 Number of data series \uldb \plain\uldb\fs20 Tsp_XYPlot\plain\fs20  \cf3 component has.\plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Series property
+\par \fs32  
+\par \pard \plain\b\fs20 Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3\cf3 property Series[i:integer] : Tsp_DataSeries \plain\f3\fs20 Read only\f1 
+\par 
+\par \b Description\plain\fs20 
+\par \cf3 Property to access to data series \uldb \plain\uldb\fs20 Tsp_XYPlot\plain\fs20  \cf3 component maintains.
+\par \plain\fs20 
+\par \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 OnFieldDraw event
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property OnFieldDraw : TNotifyEvent \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Use this event to draw on the \uldb \cf1 Field\plain\fs20\cf1 \plain\fs20  under the grids and data series  During this time \uldb \cf1 DCanvas\plain\fs20\cf1 \plain\fs20  is clipped by \uldb \cf1 FieldRect\plain\fs20\cf1 \plain\fs20  (see \uldb \cf1 Sequence of draw operations\plain\fs20\cf1 \plain\fs20 ). The event handler must obey \uldb \cf1 draw rules\plain\fs20\cf1 \cf2 .\plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 OnDrawEnd event
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property OnDrawEnd : TNotifyEvent \f1 
+\par 
+\par \b Description\plain\fs20 
+\par \cf3 This event is triggered \plain\fs20 when all standard plot elements were drawn. See \uldb \cf1 Plot draw\plain\fs20\cf1 \plain\fs20  for detailes.
+\par \page
+{\up $}
+{\up #}
+\pard \b\fs24\cf5 OnAxisZoom event\fs32 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\b\fs20 Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Applies to \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration
+\par \plain\f3\fs20\cf3 property OnAxisZoom: TZoomAxisEvent\plain\fs20 
+\par \f3\cf3 
+\par TZoomAxisEvent = procedure(Sender: Tsp_Axis; var Min, Max: double; var CanZoom :boolean) of object;
+\par \plain\fs20 
+\par \b Description
+\par \plain\fs20\cf3 An Event is triggered for axis during setting of axis limits on zoom finish. If  \uldb \cf1 Zoom\plain\fs20\cf1 \cf3 =\uldb \cf1 zpdBoth\plain\fs20\cf1 \cf3  then this event will be triggerred for every plot axis.
+\par  
+\par Here is example of event handler:
+\par \f3\b procedure\plain\f3\fs20\cf3  TMainForm.XYPlotAxisZoom(Sender: Tsp_Axis; \b var\plain\f3\fs20\cf3  Min, Max: Double; \b var\plain\f3\fs20\cf3  CanZoom: Boolean);
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b begin\plain\f3\fs20\cf3 
+\par  \b with\plain\f3\fs20\cf3  XYPlot \b do\plain\f3\fs20\cf3 
+\par  \b begin\plain\f3\fs20\cf3 
+\par   \i\cf6 //disable Zoom for Right and Top axis \plain\f3\fs20\cf3 
+\par   \b if\plain\f3\fs20\cf3  (Sender=RightAxis) \b or\plain\f3\fs20\cf3  (Sender=TopAxis) \b then\plain\f3\fs20\cf3  CanZoom:=\b False\plain\f3\fs20\cf3 ;
+\par   \i\cf6 //disable Zoom if limits are not apropriate\plain\f3\fs20\cf3 
+\par   \b if\plain\f3\fs20\cf3  (Min<\cf1 0.1\cf3 ) \b or\plain\f3\fs20\cf3  (Max>\cf1 100\cf3 ) \b then\plain\f3\fs20\cf3  CanZoom:=\b False\plain\f3\fs20\cf3 ;
+\par  \b end\plain\f3\fs20\cf3 ; 
+\par \b end\plain\f3\fs20\cf3 ;
+\par \page
+{\up $}
+{\up #}
+\pard \f1\b\fs24\cf5 OnGetTickLabel event\fs32 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\b\fs20 Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Applies to \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration
+\par \plain\f3\fs20 property OnGetTickLabel : TGetTickLabelEvent
+\par \f1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3\cf3 TGetTickLabelEvent = procedure(Sender: \uldb \cf1 Tsp_Axis\plain\f3\fs20\cf1 \cf3 ; LabelNum: integer; LabelVal : double; var LS:string) of object;
+\par \plain\fs20 
+\par \b Description\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 An event is triggered for each axis tick label. LabelNum is number of axis tick (0..\uldb \cf1 TickCount\plain\fs20\cf1 \cf3 -1), LabelVal is value at ticks position, LS is string formatted by \uldb \cf1 LabelFormat\plain\fs20\cf1 \cf3 . It is seem useless, but can used if we need special format for some axis ticks label. 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \cf1 Example\plain\fs20\cf1 \cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\cf5 XCursorOn property\fs32 
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property \cf3 XCursorOn\plain\f3\fs20  :boolean; \f1 
+\par 
+\par \b Description
+\par \plain\fs20 There is XCursor - vertical line on the plot field at \uldb \cf1 XCursorVal\plain\fs20\cf1 \plain\fs20  of the \uldb \cf1 BottomAxis\plain\fs20\cf1 \plain\fs20 . This cursor is drawn only on the end of \uldb \cf1 Paint\plain\fs20\cf1 \plain\fs20  procedure if \cf3 XCursorOn is True. \uldb \cf1 DrawPlot\plain\fs20\cf1 \cf3  method does not draw XCursor.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\cf5 XCursorVal property\fs32 
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYPlot\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property \cf3 XCursorVal\plain\f3\fs20  :double; \f1 
+\par 
+\par \b Description
+\par \plain\fs20 Defines position \uldb \cf1 XCursor\plain\fs20\cf1 \plain\fs20  relatively of the \uldb \cf1 BottomAxis\plain\fs20\cf1 \plain\fs20 .\cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Tsp_Axis class \fs16 
+\par \pard\keepn\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \fs16\cf2 \tab \uldb \fs20\cf1 methods\plain\fs20\cf1 \cf2  \b\fs16\cf5  \fs22\cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 Unit
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb \plain\uldb\fs20\cf1 sgr_def\plain\fs20\cf1 \cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\b\fs20 Declaration\plain\fs20 
+\par \f3 Tsp_Axis = class(\uldb \cf1 Tsp_Scale\plain\f3\fs20\cf1 \plain\f3\fs20 )\f1 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \cf3 
+\par \b\fs22 Description
+\par \pard \plain\fs20 Plot axis. \page
+{\up $}
+{\up #}
+{\up >}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_Axis properties
+\par \uldb \plain\uldb\fs20\cf1 Tsp_Axis\plain\fs20\cf1 \b\cf2     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx195\tx635 \uldb \plain\uldb\fs20\cf1 AutoMax\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 AutoMin\plain\fs20\cf1 \cf2 
+\par \uldb \cf1 Caption\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 GridAttr\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 LabelFormat\plain\fs20\cf1 \cf2 
+\par \uldb \cf1 LabelAsDataTime\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 LineAttr\plain\fs20\cf1 \strike 
+\par \uldb \plain\uldb\fs20\cf1 Margin\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 Max\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 Min\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 TicksCount\plain\fs20\cf1 \cf3 
+\par \pard\tx195\tx635 
+\par \pard\tx195\tx635 \b derived from Tsp_Scale\plain\fs20\cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \cf1 Visible\plain\fs20\cf1 
+\par \uldb Inversed\plain\fs20\cf1 \plain\fs20 
+\par \uldb \cf1 NoTicksLabel\plain\fs20\cf1 \plain\fs20 
+\par \uldb \cf1 NoTicks\plain\fs20\cf1 \plain\fs20 
+\par \page
+{\up $}
+{\up #}
+{\up >}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_Axis methods
+\par \pard\keepn\tx195\tx635 \uldb \plain\uldb\fs20\cf1 Tsp_Axis\plain\fs20\cf1 \b\cf2   \plain\fs20\cf3 
+\par \pard\tx195\tx635 \b\cf2 
+\par \uldb \plain\uldb\fs20\cf1 Assign\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 AssignTo\plain\fs20\cf1 \cf2 
+\par \uldb \cf1 Destroy\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 Create\plain\fs20\cf1 \cf3 
+\par \uldb \cf1 MoveMinMax\plain\fs20\cf1 \strike 
+\par \pard\tx195\tx635 \plain\fs20\cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Create method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 constructor Create(Flags : integer );\f1 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 MoveMinMax method method
+\par \plain\fs20  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure MoveMinMax(aDelta:double);
+\par \f1 
+\par \b Description\plain\fs20\cf3 
+\par Used to change \uldb \cf1 Min\plain\fs20\cf1 \cf3  and \uldb \cf1 Max\plain\fs20\cf1 \cf3  on value of aDelta with 'frozen' ticks position.The aim is to permit smooth scroll of plot, without ticks jumps. Procedure is especialy useful for the program which emulates transient recorder.
+\par Note that after using this procedure the \uldb \cf1 AutoMin\plain\fs20\cf1 \cf3  and \uldb \cf1 AutoMax\plain\fs20\cf1 \cf3  are reset to False.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 SetMinMax method
+\par \plain\fs20  
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure SetMinMax(m1,m2:double);
+\par \f1 
+\par \b Description\plain\fs20\cf3 
+\par Used to set \uldb \cf1 Min\plain\fs20\cf1 \cf3  and \uldb \cf1 Max\plain\fs20\cf1 \cf3  at once. The minimal value of m1 & m2 will be assigned to Min. It is recommended to use this method to change Min and Max properties instead change them directly. Note that after using this procedure the \uldb \cf1 AutoMin\plain\fs20\cf1 \cf3  and \uldb \cf1 AutoMax\plain\fs20\cf1 \cf3  are reset to False. See also \uldb \cf1 MoveMinMax\plain\fs20\cf1 \cf3  method.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Destroy method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 destructor Destroy ; override;\f1 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Assign method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure Assign (Source : TPersistent); override;\f1 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 AssignTo method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure AssignTo ( Dest : TPersistent ) ; override;\f1 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Margin property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Margin : integer \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Gap between Axis and Plot  bounds side, see \uldb \cf1 Tsp_xyPlot draw\plain\fs20\cf1 \plain\fs20 .
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs32\cf5 Caption property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Caption : string \f1 
+\par 
+\par \b Description\plain\fs20 
+\par \cf3 Caption of the axis. Caption is drawn along axis direction and centered relatively axis length. You need set \uldb \cf1 Margin\plain\fs20\cf1 \cf3  property with value more then \uldb \cf1 Font\plain\fs20\cf1 \cf3  height to see unclipped Caption text on the plot. \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Min property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Min : double \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Min is the lowest value an axis. \cf3 Note that after changing this property the \uldb \cf1 AutoMin\plain\fs20\cf1 \cf3  is reset to False. 
+\par \cf2 Note if you try to set new value to the Min, while this value greater then current \uldb \cf1 Max\plain\fs20\cf1 \cf2 , this value will be assigned to the Max instead of Min. If then you set new Max value you will have incorrect Min value. \cf3 To avoid this problem use \uldb \cf1 SetMinMax\plain\fs20\cf1 \cf3  method, if you want to change Min and Max at once.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Max property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Max : double \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Max is the highest value an axis. \cf3 Note that after changing this property the \uldb \cf1 AutoMax\plain\fs20\cf1 \cf3   is reset to False. \cf2 Note if you try to set new value to the Max, while this value less then current \uldb \cf1 Min\plain\fs20\cf1 \cf2 , this value will be assigned to the Min instead of Max. If then you set new Min value you will have incorrect Max value. \cf3 To avoid this problem use \uldb \cf1 SetMinMax\plain\fs20\cf1 \cf3  method, if you want to change Min and Max.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 TicksCount property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property TicksCount : Byte default 5\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Return number of axis  ticks. TicksCount=0 means that axis has not any ticks. It is impossible to set ticks number greater then \uldb \cf1 MaxTicksCount\plain\fs20\cf1 \cf2 . \plain\fs20 When you set this property to value in range \cf1 >1 and \plain\fs20 <\uldb \cf1 MaxTicksCount\plain\fs20\cf1 \f3\cf3  \plain\fs20 and \uldb \cf1 NoTicksLabel\plain\fs20\cf1 \plain\fs20  property = False axis has own opinion about haw many should be ticks number. For example, if you set TicksCount:=7 (write) you can found later that TicksCount>7 (read) and depend from plot size. 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 LineAttr property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property LineAttr : \uldb Tsp_LineAttr\plain\f3\fs20    \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Axis line attributes.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 GridAttr property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property GridAttr : \uldb Tsp_LineAttr\plain\f3\fs20   \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Axis grid lines attributes.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 AutoMin property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property AutoMin : boolean default False \f1 
+\par 
+\par \b Description\plain\fs20 
+\par The AutoMin property controls if axis will adjust the \uldb \cf1 Min\plain\fs20\cf1 \plain\fs20  value automatically to based on the minimum value of its associated data \uldb \cf1 series\plain\fs20\cf1 \plain\fs20 .
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 AutoMax property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property AutoMax : boolean   \f1 
+\par 
+\par \b Description\plain\fs20 
+\par The AutoMax property controls if axis will adjust the \uldb \cf1 Max\plain\fs20\cf1 \plain\fs20  value automatically to based on the maximum value of its associated data \uldb \cf1 series\plain\fs20\cf1 \plain\fs20 .
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 LabelFormat property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property LabelFormat : string \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Format string to convert ticks values to label (template for FormatFloat or FormatDateTime ). See also \uldb \cf1 OnGetTickLabel\plain\fs20\cf1 \plain\fs20  event.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 LabelAsDateTime property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_Axis\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property LabelAsDateTime property : Boolean\f1 
+\par 
+\par \b Description\plain\fs20 
+\par If True, then axis ticks labels are created with function FormatDateTime(LabelFormat,...)  instead of
+\par FormatFloat(LabelFormat, ... ). Don't forget to set suiting \uldb \cf1 LabelFormat\plain\fs20\cf1 \cf2 .\page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_DataSeries component\cf1 
+\par \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \plain\fs20    
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_DataSeries = class(TComponent)\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Tsp_DataSeries is plot series template. It introduces but does not implement some functions, so it cannot be used by self. All real plot data series must be inherit from it and implement functions (see for example \uldb \cf1 Tsp_XYLine\plain\fs20\cf1 \plain\fs20 ). 
+\par 
+\par 
+\par \tab 
+\par 
+\par \page
+{\up $}
+{\up #}
+{\up >}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_DataSeries properties
+\par \uldb \plain\uldb\fs20\cf1 Tsp_DataSeries\plain\fs20\cf1 \b\cf2     
+\par \pard\tx355 \uldb \plain\uldb\fs20 Active\plain\fs20 \tab 
+\par \uldb \cf1 Legend\plain\fs20\cf1 \plain\fs20 
+\par \uldb \b Plot\plain\b\fs20 \plain\fs20 \tab 
+\par \uldb XAxis\plain\fs20 \tab 
+\par \uldb YAxis\plain\fs20 \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_DataSeries methods
+\par \pard\keepn\tx355 \uldb \plain\uldb\fs20\cf1 Tsp_DataSeries\plain\fs20\cf1 \b\cf2     
+\par \pard\tx355 \cf3 Interface to Plot ( ready to use)\cf2 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20 InvalidatePlot\plain\fs20 \tab 
+\par \uldb BringToFront\plain\fs20 \tab 
+\par \uldb SendToBack\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \fs24\cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs20 Child classes must implement this functions\plain\fs24\cf3 
+\par \uldb \plain\uldb\fs20 Draw\plain\fs20 \tab 
+\par \uldb GetXMin\plain\fs20 \tab 
+\par \uldb GetXMax\plain\fs20 \tab 
+\par \uldb GetYMin\plain\fs20 \tab 
+\par \uldb GetYMax\plain\fs20 
+\par 
+\par \b\cf3 Child classes can implement this functions\plain\fs20 \tab 
+\par \uldb \cf1 DrawLegendMarker\plain\fs20\cf1 \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Draw method
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \plain\fs20      
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb sgr_def\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Applies to \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb Tsp_DataSeries\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Declaration\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3 procedure Draw; virtual; abstract;\f1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 Called by \uldb \cf1 plot\plain\fs20\cf1 \plain\fs20   to draw series. During this time \uldb \cf1 DCanvas\plain\fs20\cf1 \plain\fs20  is clipped by \uldb \cf1 FieldRect\plain\fs20\cf1 \plain\fs20  (see \uldb \cf1 Sequence of draw operations\plain\fs20\cf1 \plain\fs20 ). Write this procedure to define how data series represents data on plot. There are some   \uldb \cf1 draw rules\plain\fs20\cf1 \cf2   \cf3 when draw series. Use \uldb \cf1 P2V\plain\fs20\cf1 \cf3  to find value position on the plot \uldb \cf1 Field\plain\fs20\cf1 \cf3 .\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 GetXMin method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 function GetXMin(V: double): boolean; virtual; abstract;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par This function must return in V minimum value of  X data of series. If function return False then V will be ignored. Called by \uldb \cf1 plot\plain\fs20\cf1 \plain\fs20  to find data minium if \uldb \cf1 AutoMin\plain\fs20\cf1 \plain\fs20  is True.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 GetXMax method
+\par \plain\fs20       
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 function GetXMax(V: double): boolean; virtual; abstract;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par This function must return in V maximum value of X data of series. If function return False then V will be ignored. Called by \uldb \cf1 plot\plain\fs20\cf1 \plain\fs20  to find data minium if \uldb \cf1 AutoMax\plain\fs20\cf1 \plain\fs20  is True.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 GetYMin method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 function GetYMin(V: double): boolean; virtual; abstract;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par This function must return in V minimum value of Y data of series. If function return False then V will be ignored. Called by \uldb \cf1 plot\plain\fs20\cf1 \plain\fs20  to find data minium if \uldb \cf1 AutoMin\plain\fs20\cf1 \plain\fs20  is True.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 GetYMax method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 function GetYMax(V: double): boolean; virtual; abstract;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par This function must return in V maximum value of Y data of series. If function return False then V will be ignored. Called by \uldb \cf1 plot\plain\fs20\cf1 \plain\fs20  to find data minium if \uldb \cf1 AutoMax\plain\fs20\cf1 \plain\fs20  is True.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 DrawLegendMarker method\fs32 
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure DrawLegendMarker(const LCanvas:TCanvas, MR:TRect); virtual;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par This procedure is reserved to draw Legends of plot series. \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 InvalidatePlot method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure InvalidatePlot(Reason : TIP_Reason);\f1 
+\par \f3 TIP_Reason = (rsDataChanged , rsAttrChanged);
+\par \f1 
+\par \b Description\plain\fs20 
+\par This procedure invalidate parent \uldb \cf1 Plot\plain\fs20\cf1 \plain\fs20 . If  series has not parent plot or series \uldb \cf1 Active\plain\fs20\cf1 \plain\fs20  property is False it returns silently without invalidate.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 BringToFront method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 , \uldb \cf1 Tsp_PlotMarker\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure BringToFront ;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Call this method if you  want series (marker) will be drawn on top of other \uldb \cf1 plot\plain\fs20\cf1 \plain\fs20  series  (markers with same WhenDraw). 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 SendToBack method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 , \uldb \cf1 Tsp_PlotMarker\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure SendToBack ;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Call this method if you  want series or marker will be drawn under all other \uldb \cf1 plot\plain\fs20\cf1 \plain\fs20  series.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn {\up A}
+\b\fs24\cf5 Active property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Active : boolean \f1 
+\par 
+\par \b Description\plain\fs20 
+\par If True then series is taken into account by \uldb \cf1 Plot\plain\fs20\cf1 \cf2 , \cf3 otherwise it is ignored.\plain\fs20  Plot check this property before call series \uldb \cf1 Draw\plain\fs20\cf1 \plain\fs20  procedure or check series data range (\uldb \cf1 GetXMin\plain\fs20\cf1 \plain\fs20  ...). Also \uldb \cf1 Tsp_DataSeries.InvalidatePlot\plain\fs20\cf1 \plain\fs20  return immediatelly if Active=False.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Plot property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 , \uldb \cf1 Tsp_PlotMarker\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Plot : \uldb Tsp_XYPlot\plain\f3\fs20   \f1 
+\par 
+\par \b Description\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 Plot is Tsp_xyPlot component which draws series and markers. 
+\par To add the series to a plot you need set series Plot property to this plot. Set Plot property to \b nil \plain\fs20 to delete series from Plot. You can change Plot property at design and run-time. Plot is not owner of the data series, it has only list of pointers to them. 
+\par To add the marker to a plot you need set marker Plot property to this plot. Set Plot property to \b nil \plain\fs20 to delete marker from Plot. You can change Plot property at design and run-time. Plot is not owner of the data marker, it has only list of pointers to them. \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 XAxis property
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \plain\fs20      
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb sgr_def\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Applies to \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb Tsp_DataSeries\plain\fs20 , \uldb \cf1 Tsp_PlotMarker\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Declaration\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3 property XAxis : Tsp_WhatXAxis
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 Tsp_WhatXAxis = (dsxBottom, dsxTop) \f1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 Defines what horizontal axis of plot used to scale X data of the series or marker position. Plot check this property when adjust plot axis \uldb \cf1 Min\plain\fs20\cf1 \plain\fs20  and \uldb \cf1 Max\plain\fs20\cf1 \plain\fs20   to series data range.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 YAxis property
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 , \uldb \cf1 Tsp_PlotMarker\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property YAxis : Tsp_WhatYAxis default dsyLeft;  \f1 
+\par \f3 Tsp_WhatYAxis = (dsyLeft, dsyRight);\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Defines what vertical axis of plot used to scale Y data of the series or marker position. Plot check this property when adjust plot axis \uldb \cf1 Min\plain\fs20\cf1 \plain\fs20  and \uldb \cf1 Max\plain\fs20\cf1 \plain\fs20   to series data range.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Legend property\fs32 
+\par \plain\fs20     
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_DataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Legend : string;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par This property can be used to find series by legend text and can be used to produce legend table together with \uldb \cf1 DrawLegendMarker\plain\fs20\cf1 \cf3  method.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Tsp_ShiftKeys type
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_ShiftKeys = set of (ssShift, ssAlt, ssCtrl);\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Used to define shift keys for \uldb \cf1 zooming\plain\fs20\cf1 \plain\fs20  and \uldb \cf1 panning\plain\fs20\cf1 \plain\fs20 .
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Tsp_zpDirections type
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_def\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_zpDirections=(zpdNone, zpdHorizontal, zpdVertical, zpdBoth);
+\par \f1 
+\par \b Description\plain\fs20 
+\par Used to define enabled directions for \uldb \cf1 zooming\plain\fs20\cf1 \plain\fs20  and \uldb \cf1 panning\plain\fs20\cf1 \plain\fs20 .
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 sgr_data unit
+\par \uldb \plain\uldb\fs20\cf1 SGraph\plain\fs20\cf1 \plain\fs20    
+\par \pard This is example of data series for Tsp_xyPlot. 
+\par 
+\par \b USES\plain\fs20 
+\par Windows, SysUtils, Classes, Graphics, \uldb \cf1 sgr_scale\plain\fs20\cf1 \plain\fs20 , \uldb \cf1 sgr_def\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b TYPES\plain\fs20 
+\par \pard\tx355 \tab \uldb Tsp_XYDataSeries\plain\fs20 
+\par \tab \uldb Tsp_XYLine\plain\fs20 
+\par \strike \tab \uldb \plain\uldb\fs20 Tsp_SpectrLines\plain\fs20 
+\par \tab \uldb Tsp_YOrigin\plain\fs20 
+\par \tab \uldb Tsp_WhatValues\plain\fs20 
+\par \tab \uldb \cf1 Tsp_PointAttr\plain\fs20\cf1 \plain\fs20 
+\par \tab \uldb \cf1 TPointKind\plain\fs20\cf1 \cf2 
+\par \tab \uldb \cf1 TDrawCustomPointEvent\plain\fs20\cf1 \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_XYDataSeries component\cf1 
+\par \pard\keepn\tx355 \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \plain\fs20     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_XYDataSeries = class(\uldb Tsp_DataSeries\plain\f3\fs20 )\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Ancestor of my data series, has storage for x, y data and maintains main method & properties for it.
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_XYDataSeries methods
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Tsp_XYDataSeries\plain\fs20\cf1 \b\cf2     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20 Clear\plain\fs20 \tab 
+\par \uldb AdjustCapacity\plain\fs20 \tab 
+\par \uldb SetCapacity\plain\fs20 \tab 
+\par \uldb AddXY\plain\fs20 \tab 
+\par \uldb AddXYArrays\plain\fs20 \tab 
+\par \uldb InsertXY\plain\fs20 \tab 
+\par \uldb ReplaceXY\plain\fs20 \tab 
+\par \uldb Delete\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb DeleteRange\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Derived from Tsp_DataSeries\cf2 
+\par \uldb \plain\uldb\fs20 InvalidatePlot\plain\fs20 \tab 
+\par \uldb BringToFront\plain\fs20 \tab 
+\par \uldb SendToBack\plain\fs20 
+\par \uldb Draw\plain\fs20 
+\par \b Implements\plain\fs20 
+\par \uldb GetXMin\plain\fs20 \tab 
+\par \uldb GetXMax\plain\fs20 \tab 
+\par \uldb GetYMin\plain\fs20 \tab 
+\par \uldb GetYMax\plain\fs20 \tab 
+\par \tab 
+\par \page
+{\up $}
+{\up #}
+{\up >}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_XYDataSeries properties
+\par \uldb \plain\uldb\fs20\cf1 Tsp_XYDataSeries\plain\fs20\cf1 \b\cf2     
+\par \pard\tx355 \uldb \plain\uldb\fs20 Capacity\plain\fs20 \tab 
+\par \uldb Count\plain\fs20 \tab 
+\par \uldb LockInvalidate\plain\fs20 \tab 
+\par \b\cf2 
+\par \cf3 Derived from Tsp_DataSeries\cf2 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20 Active\plain\fs20 
+\par \uldb \cf1 Legend\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \b Plot\plain\b\fs20 \plain\fs20 \tab 
+\par \uldb XAxis\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb YAxis\plain\fs20 \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Create method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 constructor Create(AOwner : TComponent); override;\f1 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Destroy method
+\par \plain\fs20       
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 destructor Destroy; override;\f1 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 GetXMin method
+\par \plain\fs20       
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 function GetXMin(V: double): boolean; override;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Return in V minimum value of  X data of series. If there is no data in series then return False.
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 GetXMax method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 function GetXMax(V: double): boolean; override;\f1 
+\par \b 
+\par Description\plain\fs20 
+\par Return in V maximum value of  X data of series. If there is no data in series then return False.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 GetYMin method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 function GetYMin(V: double): boolean; override;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Return in V minimum value of  Y data of series. If there is no data in series then return False.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 GetYMax method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 function GetYMax(V: double): boolean; override;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Return in V maximum value of  Y data of series. If there is no data in series then return False.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Clear method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure Clear ;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par This one does not free memory, only set \uldb \cf1 Count\plain\fs20\cf1 \plain\fs20 =0 and update plot, use \uldb AdjustCapacity\plain\fs20  after Clear, or \uldb SetCapacity\plain\fs20 (0) instead of Clear to free memory.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 AdjustCapacity method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure AdjustCapacity ;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Set minimum \uldb \cf1 Capacity\plain\fs20\cf1 \plain\fs20  for current \uldb \cf1 Count\plain\fs20\cf1 \plain\fs20 .
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 SetCapacity method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure SetCapacity(\b CN\plain\f3\fs20  : cardinal);\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Use it if you know how many elements data will have and don't want to loose time for the auto expand when add data. If \b CN\plain\fs20  less then \uldb \cf1 Count\plain\fs20\cf1 \plain\fs20  of data elements they will be truncated to fit capacity. Note that there is granulation during memory allocation, the granule is 32 XYpoints.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 AddXY method
+\par \plain\fs20      
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure AddXY(aX, aY : double );\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Add X, Y values at the end of series data and update plot. Use \uldb \cf1 LockInvalidate\plain\fs20\cf1 \plain\fs20  property to stop update if you want to add several points at once.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 AddXYArrays method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure AddXYArrays(pX, pY : pointer; n : integer);\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Used to add many values at the end of series data and invalidate plot,  
+\par pX, pY must points to array of double, n - number of elements in arrays.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 InsertXY method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure InsertXY(idx : integer; aX, aY : double);\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Inserts XY point into series data, i.e. values at index idx, shift rest to end. If idx<0 or idx>\uldb \cf1 Count\plain\fs20\cf1 \plain\fs20 -1 then does nothing. After data changing updates plot, use \uldb \cf1 LockInvalidate\plain\fs20\cf1 \plain\fs20  property to stop update.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 ReplaceXY method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure ReplaceXY(idx : integer; aX , aY : double);\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Replace values at index idx. If idx<0 or idx>\uldb \cf1 Count\plain\fs20\cf1 \plain\fs20 -1 then does nothing. After data changing updates plot, use \uldb \cf1 LockInvalidate\plain\fs20\cf1 \plain\fs20  property to stop update.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Delete method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure Delete(idx : integer);\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Deletes values at index idx. If idx<0 or idx>\uldb \cf1 Count\plain\fs20\cf1 \plain\fs20 -1 then does nothing. After data changing updates plot, use \uldb \cf1 LockInvalidate\plain\fs20\cf1 \plain\fs20  property to stop update.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 DeleteRange method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 procedure DeleteRange(fromi, toi : integer);\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Deletes values with indexes from \b fromi\plain\fs20  up to \b toi\plain\fs20 . If f\b romi\plain\fs20 >\b toi\plain\fs20  then swaps them, then if \b fromi\plain\fs20 <0 or \b fromi\plain\fs20 >\uldb \cf1 Count\plain\fs20\cf1 \plain\fs20 -1 then does nothing. toi can be greater then Count-1. After data changing updates plot, use \uldb \cf1 LockInvalidate\plain\fs20\cf1 \plain\fs20  property to stop update.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Capacity property
+\par \plain\fs20    
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Capacity : integer Read only\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Current memory allocation for data elements (how many number of points can be held in data storage memory).
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Count property
+\par \plain\fs20    
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Count : integer Read only\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Current number of valid data elements in data series (number of XYpoints).
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 LockInvalidate property
+\par \plain\fs20    
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYDataSeries\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property LockInvalidate : boolean \f1 
+\par 
+\par \b Description\plain\fs20 
+\par LockInvalidate controls plot invalidate when data is changed. Set it to True before make a lot of data changes and don't forget to set it False after. It also controls functions that updates plot instead invalidate, for example \uldb \cf1 AddXY\plain\fs20\cf1 \plain\fs20  or \uldb \cf1 InsertXY\plain\fs20\cf1 \plain\fs20 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_XYLine component
+\par \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \cf2 \tab \uldb \cf1 events\plain\fs20\cf1 \plain\fs20  \b\fs24\cf1  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\b\fs20 Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_XYLine = class(\uldb \cf1 Tsp_XYDataSeries\plain\f3\fs20\cf1 \plain\f3\fs20 )\f1 
+\par 
+\par \b Description\plain\fs20 
+\par \pard Draw data as chain of line segments and point markers. Line is defined by \uldb \cf1 LineAttr\plain\fs20\cf1 \plain\fs20 , point is defined by \uldb \cf1 PointAttr\plain\fs20\cf1 \cf3 .\page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_XYLine properties
+\par \uldb \plain\uldb\fs20\cf1 Tsp_XYLine\plain\fs20\cf1 \b\cf2     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 LineAttr\plain\fs20\cf1 \f3\cf2 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \f1\cf1 PointAttr\plain\fs20\cf1 \strike 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\b\fs20\cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 Derived from Tsp_XYDataSeries\cf2 
+\par \uldb \plain\uldb\fs20 Capacity\plain\fs20 \tab 
+\par \uldb Count\plain\fs20 \tab 
+\par \uldb LockInvalidate\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b\cf2 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 Derived from Tsp_DataSeries\cf2 
+\par \uldb \plain\uldb\fs20 Active\plain\fs20 
+\par \uldb \cf1 Legend\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \b Plot\plain\b\fs20 \plain\fs20 \tab 
+\par \uldb XAxis\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb YAxis\plain\fs20 \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Tsp_XYLine methods
+\par \uldb \plain\uldb\fs20\cf1 Tsp_XYLine\plain\fs20\cf1 \b\cf2     
+\par \pard\tx355 \uldb \plain\uldb\fs20 Draw\plain\fs20 \tab 
+\par \uldb \cf1 GetX\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 GetY\plain\fs20\cf1 \b\cf3 
+\par 
+\par Derived from Tsp_XYDataSeries
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20 GetXMin\plain\fs20 \tab 
+\par \uldb GetXMax\plain\fs20 \tab 
+\par \uldb GetYMin\plain\fs20 \tab 
+\par \uldb GetYMax\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 
+\par \uldb \plain\uldb\fs20 Clear\plain\fs20 \tab 
+\par \uldb AdjustCapacity\plain\fs20 \tab 
+\par \uldb SetCapacity\plain\fs20 \tab 
+\par \uldb AddXY\plain\fs20 \tab 
+\par \uldb AddXYArrays\plain\fs20 \tab 
+\par \uldb InsertXY\plain\fs20 \tab 
+\par \uldb ReplaceXY\plain\fs20 \tab 
+\par \uldb Delete\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb DeleteRange\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b\cf3 Derived from Tsp_DataSeries\cf2 
+\par \uldb \plain\uldb\fs20 InvalidatePlot\plain\fs20 \tab 
+\par \uldb BringToFront\plain\fs20 \tab 
+\par \uldb SendToBack\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \fs24\cf3 
+\par \plain\fs20 \tab 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 LineAttr property
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \plain\fs20         
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb sgr_data\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Applies to \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb Tsp_XYLine\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Declaration\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3 property LineAttr : \uldb Tsp_LineAttr\plain\f3\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395    \f1 
+\par \b Description\plain\fs20 
+\par \pard Draw attributes of line segments.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Draw method
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYLine\plain\fs20 
+\par \b 
+\par Declaration\plain\fs20 
+\par \f3 procedure Draw ; override;\f1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b 
+\par Description\plain\fs20 
+\par Override Tsp_\uldb \cf1 DataSeries.Draw\plain\fs20\cf1 \plain\fs20  method. Draw data of  series as points \uldb \cf1 markers\plain\fs20\cf1 \plain\fs20  and/or chain of \uldb \cf1 line\plain\fs20\cf1 \plain\fs20  segments beetwen the points. \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 GetX and GetY methods\fs32 
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \plain\fs20        
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb sgr_data\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Applies to \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb Tsp_XYLine\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 Declaration\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3 function GetX(Idx:integer):double;
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 function GetY(Idx:integer):double;
+\par \f1\b 
+\par Description\plain\fs20 
+\par Use this function to access to data value of series. Idx is zero-based data point index (0..\uldb \cf1 Count\plain\fs20\cf1 \plain\fs20 -1).
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Tsp_PointAttr class
+\par \pard\keepn\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs22\cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 Unit
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb \plain\uldb\fs20\cf1 sgr_data\plain\fs20\cf1 \cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\b\fs20 Declaration\plain\fs20 
+\par \f3 Tsp_PointAttr = class(TBrush)\f1 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \cf3 
+\par \b Properties\fs22 
+\par \uldb \plain\uldb\fs20\cf1 Kind\plain\fs20\cf1 \cf2 \tab \cf3 Defines how to draw point.
+\par \uldb \cf1 Visible\plain\fs20\cf1 \cf2 \tab \cf3 Is points markers are drawn.
+\par \uldb \cf1 HSize\plain\fs20\cf1 \cf2 \tab \cf3 Horizontal size of point marker.
+\par \uldb \cf1 VSize\plain\fs20\cf1 \cf2 \tab \cf3 Vertical size of point marker.
+\par \ul\cf4 BorderWidth\plain\fs20\cf3 \tab Border line width
+\par \ul\cf4 BorderColor\plain\fs20\cf3 \tab Border line color
+\par Other properties are inherited from TBrush and only 2 of them are important - \cf4 Color\cf3  and \cf4 Style\cf3 . 
+\par \plain\b\fs20 
+\par Description
+\par \plain\fs20\cf3 Point attribute defines point marker as shape of \cf4 Kind\cf3  type, which is drawn by pen with \cf4 BorderWidth\cf3  and \cf4 BorderColor\cf3  and filled by brush with \cf4 Color \cf3 and \cf4 Style\cf3 .\b\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs24\cf5 PointAttr property
+\par \pard\keepn\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs32 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\b\fs20 Unit \plain\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb sgr_data\plain\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Applies to \plain\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb Tsp_XYLine\plain\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Declaration\plain\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \f3 property PointAttr : \uldb \cf1 Tsp_PointAttr\plain\f3\fs20\cf1 \plain\f3\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635    \f1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description\plain\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \cf3 Defines is points markers are drawn and how. See \uldb \cf1 Tsp_PointAttr\plain\fs20\cf1 \cf3  for more details.
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 HSize property\fs32 
+\par \pard\keepn\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs22\cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs20 Applies to\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb \plain\uldb\fs20\cf1 Tsp_PointAttr\plain\fs20\cf1 \cf3  class
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Declaration\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\f3\fs20\cf3 property HSize: integer;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \f1 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Description\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs20\cf3 Horizontal size of point marker. When it is assigned by even digit it round it to nearest odd digit.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Kind property\fs32 
+\par \pard\keepn\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs22\cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs20 Applies to\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb \plain\uldb\fs20\cf1 Tsp_PointAttr\plain\fs20\cf1 \cf3  class
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Declaration\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\f3\fs20\cf3 property Kind: TPointKind;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b type\plain\f3\fs20\cf3  TPointKind = (ptRectangle, ptEllipse, ptDiamond, ptCross, \uldb \cf1 ptCustom\plain\f3\fs20\cf1 \cf3 ,\cf2  \cf3 ptTriangle, ptDownTriangle)\f1 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Description\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs20\cf3 Defines how to draw point.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Visible property\fs32 
+\par \pard\keepn\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs22\cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs20 Applies to\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb \plain\uldb\fs20\cf1 Tsp_PointAttr\plain\fs20\cf1 \cf3  class
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Declaration\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\f3\fs20\cf3 property Visible: boolean;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \f1 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Description\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs20\cf3 Is points markers are drawn.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 VSize property\fs32 
+\par \pard\keepn\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs22\cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs20 Applies to\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb \plain\uldb\fs20\cf1 Tsp_PointAttr\plain\fs20\cf1 \cf3  class
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Declaration\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\f3\fs20\cf3 property VSize: integer;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \f1 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Description
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs20\cf3 Vertical size of points. When it is assigned by even digit it round it to nearest odd digit.\b\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs20\cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 OnDrawCustomPoint event\fs32 
+\par \pard\keepn\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs16\cf2  \b\fs22\cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 Unit
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb \plain\uldb\fs20\cf1 sgr_data\plain\fs20\cf1 \cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Applies to 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \uldb \plain\uldb\fs20\cf1 Tsp_XYLine\plain\fs20\cf1 \strike\fs16 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\b\fs20\cf3 Declaration\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\f3\fs20\cf3 property OnDrawCustomPoint:TDrawCustomPointEvent;\b\fs22 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\f3\fs20\cf3 TDrawCustomPointEvent = procedure
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 (const XYLine:Tsp_XYLine; const xv,yv :double; x, y: Integer) of object\f1 ;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Description\plain\fs20\cf3 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs20 If assigned then called when \uldb \cf1 PointAttr\plain\fs20\cf1 \plain\fs20 .\uldb \cf1 Kind\plain\fs20\cf1 \plain\fs20 =ptCustom. XYLine points to data series; xv, yv are point's values; x,y are point coordinates on plot field. This event can be used to draw user points markers, for example using bitmap.  The event handler must obey \uldb \cf1 draw rules\plain\fs20\cf1 \cf2 . 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b Example
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs20 Here we use ImageList to store and draw the point image.
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \f3 procedure\plain\f3\fs20  TFsgrDemoMain.QLineDrawCustomPoint(\b const\plain\f3\fs20  XYLine: Tsp_XYLine;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b   const \plain\f3\fs20 xv, yv: Double; x, y: Integer);
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b var\plain\f3\fs20  xe,ye:integer;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \b begin\plain\f3\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635  \b with\plain\f3\fs20  XYLine \b do\plain\f3\fs20  begin
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635    \b with\plain\f3\fs20  PointImageList \b do\plain\f3\fs20     \cf4 //draw point as image from TImageList\plain\f3\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635     Draw(XYLine.\uldb \cf1 Canvas\plain\f3\fs20\cf1 \plain\f3\fs20 , x-width \b div\plain\f3\fs20  2, y-height \b div\plain\f3\fs20  2, 0);
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635    \b if not\plain\f3\fs20 (\cf1 D\uldb rawingLegendMarker\plain\f3\fs20\cf1 \plain\f3\fs20 ) \b then begin\plain\f3\fs20  \cf4 //no label inside legend table\plain\f3\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635      inc(sparse);            \cf4 //for every 4-th point we draw text label\plain\f3\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635      \b if\plain\f3\fs20  sparse>3 \b then with\plain\f3\fs20  XYLine.Canvas \b do\plain\f3\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635      \b begin\plain\f3\fs20 
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635        sparse:=0;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635        Font:=Plot.Font;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635        xe:=x-1;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635        ye:=y-PointAttr.VSize-6;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635        MoveTo(x-1,y-1); LineTo(xe,ye);
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635        dec(ye,abs(Font.Height));
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635        TextOut(xe-2, ye, Format('%2.1f',[yv]));
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635      \b end;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635    end;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635  end;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 end;
+\par \pard\tx1435\tx2875\tx4315\tx5755\tx7195\tx8635 \plain\fs20 
+\par \pard \f3 Tsp_XYLine.{\up #}
+\b DrawingLegendMarker\plain\f3\fs20  is true when Tsp_XYLine calls \cf3 OnDrawCustomPoint \plain\f3\fs20 handler to draw custom point\page
+{\up $}
+{\up #}
+\pard \f1\b\fs24\cf5 Canvas property\plain\fs24\cf3 
+\par \plain\b\fs20 Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_XYLine\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property Canvas : TCanvas; Read Only
+\par    \f1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description\plain\fs20 
+\par \pard This special property for using inside OnDrawCustomPoint handler. When point is drawn on plot it points to pllot DCanvas, during \uldb \cf1 DrawLegendMarker\plain\fs20\cf1 \plain\fs20 (LCanvas ...) it points on LCanvas. See example in  \uldb \cf1 OnDrawCustomPoint\plain\fs20\cf1 \plain\fs20  topic.\page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_SpectrLines componentcomponent
+\par \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \b\cf5  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \plain\b\fs20 Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_SpectrLines = class(\uldb \cf1 Tsp_XYDataSeries\plain\f3\fs20\cf1 \plain\f3\fs20 )\f1 
+\par 
+\par \b Description\plain\fs20 
+\par \pard Draw data as vertical lines with center at X position and height depended from Y.\page
+{\up $}
+{\up #}
+{\up >}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Tsp_SpectrLines properties
+\par \uldb \plain\uldb\fs20\cf1 Tsp_SpectrLines\plain\fs20\cf1 \b\cf2     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 LineAttr\plain\fs20\cf1 \f3\cf2 
+\par \uldb \f1\cf1 BaseYValue\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 LineAttr\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 YOrigin\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 LabelValues\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 LabelFormat\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 LabelFont\plain\fs20\cf1 \plain\fs20 \tab 
+\par \pard\tx355 \uldb \cf1 ShowLabel\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 ShowBaseLine\plain\fs20\cf1 \cf2 
+\par \b\cf3 
+\par Derived from Tsp_XYDataSeries\cf2 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20 Capacity\plain\fs20 \tab 
+\par \uldb Count\plain\fs20 \tab 
+\par \uldb LockInvalidate\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b\cf2 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 Derived from Tsp_DataSeries\cf2 
+\par \uldb \plain\uldb\fs20 Active\plain\fs20 \tab 
+\par \uldb Plot\plain\fs20 \tab 
+\par \uldb XAxis\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb YAxis\plain\fs20 \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Tsp_SpectrLines methods
+\par \uldb \plain\uldb\fs20\cf1 Tsp_SpectrLines\plain\fs20\cf1 \b\cf2     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20 Draw\plain\fs20 \tab 
+\par \uldb GetYMin\plain\fs20 \tab 
+\par \uldb GetYMax\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b\cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 Derived from Tsp_XYDataSeries
+\par \uldb \plain\uldb\fs20 GetXMin\plain\fs20 \tab 
+\par \uldb GetXMax\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 
+\par \uldb \plain\uldb\fs20 Clear\plain\fs20 \tab 
+\par \uldb AdjustCapacity\plain\fs20 \tab 
+\par \uldb SetCapacity\plain\fs20 \tab 
+\par \uldb AddXY\plain\fs20 \tab 
+\par \uldb AddXYArrays\plain\fs20 \tab 
+\par \uldb InsertXY\plain\fs20 \tab 
+\par \uldb ReplaceXY\plain\fs20 \tab 
+\par \uldb Delete\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb DeleteRange\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b\cf3 Derived from Tsp_DataSeries\cf2 
+\par \uldb \plain\uldb\fs20 InvalidatePlot\plain\fs20 \tab 
+\par \uldb BringToFront\plain\fs20 \tab 
+\par \uldb SendToBack\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \fs24\cf3 
+\par \plain\fs20 \tab 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs24\cf5 Draw method
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \plain\fs20         
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb sgr_data\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Applies to \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb Tsp_SpectrLines\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Declaration\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3 procedure Draw ; override;\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Draw data as vertical lines  with center at X positon and height depended from Y.\page
+{\up $}
+{\up #}
+\pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 {\up A}
+\b\fs24\cf5 BaseYValue property
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \plain\fs20         
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb sgr_data\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Applies to \plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb Tsp_SpectrLines\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Declaration\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \f3 property BaseYValue : double \f1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Description\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 If YOrigin=yoBaseLine then lines begin from BaseValue.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 LineAttr property
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_SpectrLines\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property LineAttr : \uldb Tsp_LineAttr\plain\f3\fs20    \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Defines how lines are drawn.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 YOrigin property
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_SpectrLines\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property YOrigin : Tsp_YOrigin  \f1 
+\par \f3 Tsp_YOrigin = (yoBaseLine, yoXAxises)\f1 
+\par 
+\par \b Description\plain\fs20 
+\par If YOrigin=yoBaseLine then spectral lines begin from BaseValue else from X axis 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 LabelValues property
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_SpectrLines\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property LabelValues : Tsp_WhatValues  \f1 
+\par \f3 Tsp_WhatValues = (wvXValues, wvYValues)\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Defines X or Y values used in labels near spectr line.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 LabelFormat property
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_SpectrLines\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property LabelFormat : string \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Format string to convert values to label text (template for FormatFloat).
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 LabelFont property
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_SpectrLines\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property LabelFont : TFont \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Font of label text.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 ShowLabel property
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_SpectrLines\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property ShowLabel : boolean \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Show or not value label near spectral lines.
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 ShowBaseLine property
+\par \plain\fs20         
+\par \pard \b Unit \plain\fs20 
+\par \uldb sgr_data\plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb Tsp_SpectrLines\plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 property ShowBaseLine : boolean \f1 
+\par 
+\par \b Description\plain\fs20 
+\par Draw or not horizontal line at \uldb BaseYValue\plain\fs20 .\page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_PlotMarker component \cf1 
+\par \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \plain\fs20    
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \uldb \cf1 sgr_mark\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_PlotMarker = class(TComponent)\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Tsp_PlotMarker is plot marker template. Marker is something that can be drawn on plot field using plot axis as coordinate system. Tsp_PlotMarker supplies some general properties and functionalities to cooperate with the plot. It introduce but does not implement Draw functions, so it cannot be used by self. 
+\par All real plot marker must be inherit from it and implement functions (see for example \uldb \cf1 Tsp_XYLine\plain\fs20\cf1 \plain\fs20 ). 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Tsp_PlotMarker methods\fs32 
+\par \uldb \plain\uldb\fs20\cf1 Tsp_PlotMarker\plain\fs20\cf1 \b\cf2    \cf3 
+\par \pard Interface to Plot ( ready to use)\cf2 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20 BringToFront\plain\fs20 \tab 
+\par \uldb SendToBack\plain\fs20 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \fs24\cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b\fs20 Child classes must implement this functions\plain\fs24\cf3 
+\par \uldb \plain\uldb\fs20 Draw\plain\fs20 \tab 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Tsp_PlotMarker properties\fs32 
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Tsp_PlotMarker\plain\fs20\cf1 \b\cf2     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Visible\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355 \uldb \cf1 WhenDraw\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \b\cf1 Plot\plain\b\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 XAxis\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 YAxis\plain\fs20\cf1 \cf3 
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 Tsp_PlotMarker Draw method\fs32 
+\par \pard\keepn\tx355 \plain\fs20     
+\par \pard\tx355 \b Unit \plain\fs20 
+\par \pard\tx355 \uldb \cf1 sgr_mark\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355 
+\par \pard\tx355 \b Applies to \plain\fs20 
+\par \pard\tx355 \uldb \cf1 Tsp_PlotMarker\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355 
+\par \pard\tx355 \b Declaration\plain\fs20 
+\par \pard\tx355 \f3 procedure Draw; virtual; abstract;\f1 
+\par \pard\tx355 
+\par \pard\tx355 \b Description\plain\fs20 
+\par \pard\tx355 Called by \uldb \cf1 plot\plain\fs20\cf1 \plain\fs20   to draw marker. During this time \uldb \cf1 DCanvas\plain\fs20\cf1 \plain\fs20  is clipped by \uldb \cf1 FieldRect\plain\fs20\cf1 \plain\fs20  (see \uldb \cf1 Sequence of draw operations\plain\fs20\cf1 \plain\fs20 ). Write this procedure to define how data marker is drwan on the plot. There are some   \uldb \cf1 draw rules\plain\fs20\cf1 \cf2   \cf3 when draw marker. Use \uldb \cf1 P2V\plain\fs20\cf1 \cf3  to find value position on the plot \uldb \cf1 Field\plain\fs20\cf1 \cf3 .\plain\fs20 
+\par \pard\tx355 \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Visible property\fs32 
+\par \plain\fs20    
+\par \pard \b Unit \plain\fs20 
+\par \uldb \cf1 sgr_mark\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb \cf1 Tsp_PlotMarker\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Declaration\plain\fs20\cf3 
+\par \plain\f3\fs20 property Visible : boolean
+\par 
+\par \f1\b Description\plain\fs20 
+\par Use this property to hide or show marker.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 WhenDraw property\fs32 
+\par \plain\fs20   
+\par \pard \b Unit \plain\fs20 
+\par \uldb \cf1 sgr_mark\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Applies to \plain\fs20 
+\par \uldb \cf1 Tsp_PlotMarker\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Declaration\plain\fs20\cf3 
+\par \plain\f3\fs20 property WhenDraw : Tsp_WhenDrawMarker
+\par 
+\par type Tsp_WhenDrawMarker=(dmBeforeSeries, dmAfterSeries);
+\par 
+\par \f1\b Description\plain\fs20 
+\par Defines when marker will be drawn before or after plot data series. It is clear that marker with  WhenDraw=dmAfterSeries will be drawn over data series.
+\par \cf3 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 {\up A}
+\b\fs24\cf5 Tsp_LineMarker component \cf1 
+\par \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \plain\fs20    
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \uldb \cf1 sgr_mark\plain\fs20\cf1 \plain\fs20 
+\par 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_LineMarker = class(\uldb \cf1 Tsp_PlotMarker\plain\f3\fs20\cf1 \plain\f3\fs20 )\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Tsp_LineMarker is infinite vertical or horizontal line on the plot field. 
+\par 
+\par {\up #}
+Implements properties:
+\par \pard\li395\fi-395\tx395\tx2395\tx4395\tx6395\tx8395 
+\par property \b Orientation\plain\fs20  :Tsp_LMOrientation  - clear from name
+\par type Tsp_LMOrientation=loVertical, loHorizontal. 
+\par \pard\li395\fi-395\tx395\tx2395\tx4395\tx6395\tx8395 property \b Position\plain\fs20 :double - defines vertical (horizontal) position relatively \uldb \cf1 YAxis\plain\fs20\cf1 \plain\fs20  (XAxis).
+\par \pard\li395\fi-395\tx395\tx2395\tx4395\tx6395\tx8395 property \b Pen\plain\fs20 :Tpen  - pen used to draw line.
+\par \pard\li395\fi-395 property \b Brush\plain\fs20 :TBrush - brush used to draw line.\page
+{\up $}
+{\up #}
+\pard\keepn \b\fs24\cf5 Tsp_LineMarker properties\fs32 
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Tsp_LineMarker\plain\fs20\cf1 \b\cf2   
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Orientation\plain\fs20\cf1 \cf2  \strike\cf1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Position\plain\fs20\cf1 \cf2  \strike\cf1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Pen\plain\fs20\cf1 \cf2  \strike\cf1 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Brush\plain\fs20\cf1 \cf2  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \cf3 Derived from Tsp_PlotMarker\cf2 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Visible\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355 \uldb \cf1 WhenDraw\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 Plot\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 XAxis\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 YAxis\plain\fs20\cf1 \cf3 
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 {\up A}
+\b\fs24\cf5 Tsp_ImageMarker component \cf1 
+\par \pard\keepn\tx355 \uldb \plain\uldb\fs20\cf1 properties\plain\fs20\cf1 \cf2 \tab \uldb \cf1 methods\plain\fs20\cf1 \plain\fs20    
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Unit \plain\fs20 
+\par \uldb \cf1 sgr_mark\plain\fs20\cf1 \cf2 
+\par \plain\fs20 
+\par \b Declaration\plain\fs20 
+\par \f3 Tsp_ImageMarker = class(\uldb \cf1 Tsp_PlotMarker\plain\f3\fs20\cf1 \plain\f3\fs20 )\f1 
+\par 
+\par \b Description\plain\fs20 
+\par Tsp_ImageMarker image on the plot field, can be used as background map. 
+\par 
+\par {\up #}
+Implements properties:
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\li155\fi-155\tx155 property \b Picture\plain\fs20 :TPicture - Set Picture to a TPicture object that contains an icon, metafile, bitmap graphic, or user-defined graphic to be displayed.
+\par property \b X\plain\fs20 :double - left angle of image relatively \uldb \cf1 XAxis\plain\fs20\cf1 \plain\fs20  when Stretch=False.
+\par property \b Y\plain\fs20 :double - left angle of image relatively \uldb \cf1 YAxis\plain\fs20\cf1 \plain\fs20  when Stretch=False.
+\par property \b Stretch\plain\fs20 :boolean - when True image is stretched over rectangle defined by \b X\plain\fs20 , \b Y\plain\fs20 , \b StretchX\plain\fs20 , \b StretchY\plain\fs20 .
+\par \pard\li155\fi-155\tx155 property \b StretchX\plain\fs20 :double - see \b Stretch\plain\fs20 
+\par property \b StretchY\plain\fs20 :double
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx155 \b\fs24\cf5 Tsp_ImageMarker properties\fs32 
+\par \pard\keepn\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Tsp_PlotMarker\plain\fs20\cf1 \b\cf2     
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Picture\plain\fs20\cf1 \strike 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 X\plain\fs20\cf1 \strike 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Y\plain\fs20\cf1 \strike 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 Stretch\plain\fs20\cf1 \strike 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 StretchX\plain\fs20\cf1 \strike  
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \plain\uldb\fs20\cf1 StretchY\plain\fs20\cf1 \cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \b Derived from Tsp_PlotMarker\plain\fs20\cf3 
+\par \pard\tx395\tx2395\tx4395\tx6395\tx8395 \uldb \cf1 Visible\plain\fs20\cf1 \plain\fs20 
+\par \pard\tx355 \uldb \cf1 WhenDraw\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 Plot\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 XAxis\plain\fs20\cf1 \plain\fs20 \tab 
+\par \uldb \cf1 YAxis\plain\fs20\cf1 \cf3 
+\par 
+\par \page
+{\up $}
+{\up #}
+\pard\keepn\tx355 \b\fs24\cf5 sgr_mark unit
+\par \pard\keepn\tx355 \uldb \plain\uldb\fs20\cf1 SGraph\plain\fs20\cf1 \plain\fs20      
+\par \pard\tx355 This is example of markers for Tsp_xyPlot. 
+\par \pard\tx355 \b 
+\par \pard\tx355 USES\plain\fs20 
+\par \pard\tx355 Windows, SysUtils,  Classes,  Graphics, \uldb \cf1 sgr_scale\plain\fs20\cf1 \plain\fs20 , \uldb \cf1 sgr_def\plain\fs20\cf1 \plain\fs20 ;  
+\par \pard\tx355 
+\par \pard\tx-5 \b TYPES
+\par \pard\tx355 \plain\fs20 \tab \uldb \cf1 Tsp_LineMarker\plain\fs20\cf1 \cf2 
+\par \tab \uldb \cf1 Tsp_LMOrientation\plain\fs20\cf1 \cf2 
+\par \tab \uldb \cf1 Tsp_ImageMarker\plain\fs20\cf1 \page
+}

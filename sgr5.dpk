@@ -1,0 +1,42 @@
+package sgr5;
+
+{$R *.RES}
+{$R 'sgr_reg.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS OFF}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Sgraph 2D plot components by S.P.'}
+{$DESIGNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  vcl50;
+
+contains
+  sgr_reg in 'sgr_reg.pas',
+  sgr_misc in 'sgr_misc.pas',
+  sgr_def in 'sgr_def.pas',
+  sgr_mark in 'sgr_mark.pas',
+  sgr_data in 'sgr_data.pas',
+  sgr_eds in 'sgr_eds.pas',
+  sgr_scale in 'sgr_scale.pas';
+
+end.

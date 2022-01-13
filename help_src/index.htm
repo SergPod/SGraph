@@ -1,0 +1,2797 @@
+<style>body{max-width:1250px;}body,table,td {font-size:14px; font-family: Arial, Helvetica, sans-serif;}</style><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<!--font table contains 5 fonts total-->
+</head>
+<body><div id='divhlpmain'><sup>$</sup><sup>#</sup><sup>A</sup><b><font size="3">Welcome to SGraph.<br>
+<br>
+</font></b><font size="2">This is a s<sup>A</sup>et of 32 bit Delphi components and classes for 2D plot. It is relatively simple. It is more the gauge then the presentation element. The main features are:<br>
+</font><span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Two horizontal and two vertical <u><font color="#008000">axis</font></u></font></font></span><font color="#008000"></font>.<br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Auto <u><font color="#008000">minimum</font></u></font></font></span><font color="#008000"></font> and <u><font color="#008000">maximum</font></u><font color="#008000"><font color="#800000"> </font></font>of axis.<br>
+<span style="font-size:9pt"><font color="#008000">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font face="Arial"><font size="2">Swap</font></font></u></font></span><font color="#008000"></font> of Min and Max axis positions<br>
+<span style="font-size:9pt"><font color="#008000">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font face="Arial"><font size="2">MoveMinMax</font></font></u></font></span><font color="#008000"></font> method to <span style="font-size:9pt"><font color="#000000">provide<font size="2"> <span style="font-size:9pt">smooth scrolling of ticks</span></font></font></span><font size="2">.<br>
+<span style="font-size:9pt"><font color="#008000">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font face="Arial"><font size="2">Panning</font></font></u></font></span></font><font color="#008000"></font> and <u><font color="#008000">Zoom</font></u><font color="#008000"></font> by mouse.<br>
+<span style="font-size:9pt"><font color="#008000">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font face="Arial"><font size="2">Buffered</font></font></u></font></span><font color="#008000"></font> screen paint, can be off.<br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Copy to clipboard <u><font color="#008000">as DIB</font></u></font></font></span><font color="#008000"></font> or <u><font color="#008000">as Metafile</font></u><font color="#008000"></font>.<br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Custom <u><font color="#008000">Data Series</font></u></font></font></span><font color="#008000"></font>.<br>
+<span style="font-size:9pt"><font color="#008000">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font face="Arial"><font size="2">DrawPlot</font></font></u></font></span><font color="#008000"></font> method to replicate plot image.<br>
+<span style="font-size:9pt"><font color="#008000">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font face="Arial"><font size="2">OnDraw</font></font></u></font></span><font color="#008000"></font> events<br>
+ <br>
+The main component is <u><font color="#008000">Tsp_XYPlot</font></u><font color="#008000"><font color="#800000">. <font color="#000000">This component provides </font></font></font>base plot functions, like zoom and pan. It holds four <u><font color="#008000">Tsp_Axis</font></u><font color="#008000"></font> and controls childs of <u><font color="#008000">Tsp_DataSeries</font></u><font color="#008000"><font color="#000000">. The last implements data storage and how data are painted on the plot canvas. An example of this components is <u><font color="#008000">Tsp_XYLine</font></u></font></font><font color="#008000"><font color="#000000">.</font></font><br>
+<b><br>
+</b>Units<br>
+ <u><font color="#008000">sgr_scale</font></u><font color="#008000"></font><br>
+ <u><font color="#008000">sgr_def</font></u><font color="#008000"></font><br>
+ <u><font color="#008000">sgr_data</font></u><font color="#008000"></font><br>
+ <u><font color="#008000">sgr_mark</font></u><font color="#008000"></font><br>
+ sgr_misc<br>
+<br>
+<u><b><font color="#008000">License &amp; disclaimer</font></b></u><b><font color="#008000"></font></b><font color="#800000"><br>
+</font><br>
+Copyright (c) 1998-1999 by S.P.Pod'yachev<br>
+<br>
+
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">License and disclaimer <br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">SGraph</font></font></u><font color="#008000"><b><font size="1"><font color="#0000ff"><br>
+</font></font></b></font><font size="2"><font color="#000000"><br>
+<b>License</b></font></font><font color="#000000"><br>
+The components files are freeware. You may copy those files <b>as long as you copy all of them</b></font><font color="#000000">.<br>
+If you want to make ActiveX using this components you must ask me for permission. <span style="font-size:9pt">You cannot distribute source of main units in modified form, except units for data series.<font size="2"> If you want to change the source code for data series, you can send me the new source code so that I can have a look at it. It will be nice if the source code will contain descriptions what you have changed, and of course your name. <br>
+</font></span></font><br>
+<b>Disclaimer<br>
+</b>This software and the accompanying files are provided <b>&quot;As Is&quot;</b> and without any warranties as to performance of merchantability or any other warranties whether expressed or implied. The Author cannot and does not guarantee that any functions contained in the Software will be error free. <font color="#000000">The author is not liable for any damages resulting from the use and misuse of the components.<br>
+</font><br>
+<i>Serguei P.Pod'yachev</i><br>
+Email: <u><font color="#000080">pod@iae.nsk.su</font></u><u><font color="#000080"></font></u><br>
+Homepage: <u><font color="#000080">www.iae.nsk.su/~lab12/pod</font></u><u><font color="#000080"></font></u><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">sgr_scale unit</font></font></b><font size="4"><br>
+<u><font size="2"><font color="#008000">SGraph</font></font></u></font><font color="#008000"></font> <br>
+Auxiliary unit, there is implementation of plot axis ancestor. <br>
+<br>
+<b>CONST</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">MaxTicksCount</font></u><font color="#008000"><font color="#800000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#000000">There are another constants in unit.<br>
+</font></font></font><b>TYPES</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_CustomLineAttr</font></u><font color="#008000"></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_LineAttr</font></u><font color="#008000"></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_Scale</font></u><font color="#008000"></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">MaxTicksCount</font></font></b><font size="4"><br>
+</font><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Const MaxTicksCount = 21 ;<br>
+</font><font face="Arial"><br>
+</font><b>Description</b><br>
+Maximum number of axis ticks. See <u><font color="#008000">TicksCount</font></u><font color="#008000"></font>.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_CustomLineAttr class</font></font></b><font size="4"><br>
+<u><font size="2"><font color="#008000">properties</font></font></u></font><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"><font color="#800000">&nbsp;
+<u><font color="#008000">events</font></u></font></font><font color="#008000"> </font> <br>
+<b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_CustomLineAttr = class ( TPersistent )<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Line draw attributes are copy of <u><font color="#008000">TPen</font></u><font color="#008000"></font> properties plus property <u>Visible</u><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_CustomLineAttr methods<font size="1"> <font size="3"><br>
+</font></font></font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_CustomLineAttr</font></font></u><font color="#008000"><font color="#800000"> <b><font size="3"><font color="#0000ff"><br>
+</font></font></b></font></font><u></u><u><font size="2"><font color="#008000">SetPenAttr</font></font></u><font color="#008000"><p><hr><p>
+<sup>$</sup><sup>#</sup><sup>&gt;</sup></font><b><font size="3"><font color="#0000ff">Tsp_CustomLineAttr properties<font size="1"> <font size="3"> <br>
+</font></font></font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_CustomLineAttr</font></font></u><font color="#008000"><font color="#800000"> <br>
+</font></font><font face="Courier New">property Color : TColor<br>
+</font>property Mode : TPenMode<br>
+property Style : TPenStyle<br>
+property Width : word<br>
+property <u><font face="Arial"><font color="#008000">Visible</font></font></u><font color="#008000"></font><font face="Courier New"> : boolean<p><hr><p>
+<sup>$</sup><sup>#</sup></font><font face="Arial"><b><font size="3"><font color="#0000ff">Tsp_CustomLineAttr events<span style="font-size:16pt"> <br>
+<u></u></span></font></font></b></font><u><font size="2"><font color="#008000">Tsp_CustomLineAttr</font></font></u><font color="#008000"><font color="#800000"> <b><font size="3"><font color="#0000ff"> </font></font></b></font></font><font size="2"><font color="#000000"> <br>
+</font></font><u><font face="Courier New"><font color="#008000">OnChange</font></font></u><font color="#008000"><p><hr><p>
+<sup>$</sup></font><sup>#</sup><font face="Arial"><b><font size="3"><font color="#0000ff">OnChange event<br>
+</font></font></b></font><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_CustomLineAttr</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">OnChange : TNotifyEvent;<font face="Arial"><br>
+<br>
+</font></font><b>Description</b><br>
+Write an OnChange event handler to take specific action when the properties changes. The properties will reflect the new settings when OnChange occurs.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">SetPenAttr method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_CustomLineAttr</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure SetPenAttr(const APen : TPen);<font face="Arial"><br>
+<br>
+</font></font><b>Description<br>
+</b><font color="#000000">Assign draw attributes to pen.<br>
+<br>
+<font face="Courier New"><b>procedure</b></font></font><font color="#000000"> Tsp_CustomLineAttr.SetPenAttr(<b>const</b></font><font color="#000000"> APen:TPen);<br>
+<b>begin</b></font><font color="#000000"><br>
+ <b>with</b></font><font color="#000000"> APen <b>do</b></font><font color="#000000"> <b>begin</b></font><font color="#000000"><br>
+ Color:=fColor;<br>
+ Style:=fStyle;<br>
+ Width:=fWidth;<br>
+ <b>end</b></font><font color="#000000">;<br>
+<b>end</b></font><font color="#000000">;<br>
+<u><font face="Arial"><font color="#008000">Example</font></font></u></font><font color="#008000"></font><br>
+.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Visible property<br>
+ <br>
+</font></font></b><b><font size="2">Unit </font></b><br>
+<u><font color="#008000">sgr_scale</font></u><font color="#008000"></font><s><br>
+</s><br>
+<b>Applies to </b><br>
+<u><font color="#008000">Tsp_CustomLineAttr</font></u><font color="#008000"></font><s><br>
+</s><br>
+<b>Declaration</b><br>
+<font face="Courier New">property Visible : boolean <font face="Arial"><br>
+<br>
+<b>Description <br>
+</b></font></font>If Visible = False then line (for example <u><font color="#008000">Grid</font></u><font color="#008000"> </font>lines) is not drawn.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_LineAttr class</font></font></b><font size="4"><br>
+<u><font size="2"><font color="#008000">properties</font></font></u></font><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"><font color="#800000">&nbsp;
+<u><font color="#008000">events</font></u></font></font><font color="#008000"> </font> <br>
+<b>Unit </b><br>
+<u><font color="#008000">sgr_scale</font></u><font color="#008000"></font><s><br>
+</s><br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_LineAttr = class(<u><font color="#008000">Tsp_CustomLineAttr</font></u></font><font color="#008000"><font color="#000000">)</font></font><br>
+<br>
+<b>Description</b><br>
+Publishes properties of <u><font color="#008000">Tsp_CustomLineAttr</font></u><font color="#008000"></font> <br>
+property Color ;<font face="Arial"><br>
+<font face="Courier New">property Style default psSolid;<br>
+property Width default 1;<br>
+property Visible ;<font face="Arial"><br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font></font><b><font size="3"><font color="#0000ff">Tsp_LineAttr methods<br>
+</font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_LineAttr</font></font></u><font color="#008000"><b><font size="3"><font color="#0000ff"><br>
+</font></font></b></font><font size="1"> <u></u></font><u><font size="2">IsSame</font></u><br>
+ <br>
+<b>Derived from <font face="Courier New">Tsp_CustomLineAttr<br>
+<u></u></font></b><u>Create</u><br>
+<u>Assign</u><br>
+<u>AssignTo</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>SetPenAttr</u><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">IsSame method</font></font></b><font size="2"><br>
+</font> <br>
+<b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_LineAttr</u><br>
+<br>
+<b>Declaration</b><br>
+function IsSame ( const LA : <u>Tsp_CustomLineAttr</u> ) : boolean ;<font face="Arial"><br>
+</font><br>
+<b>Description<br>
+</b><font color="#000000">Return true if the all properties of LA are same.<br>
+</font><b><br>
+</b><font face="Courier New"><font color="#000000">function</font></font><font color="#000000"> Tsp_LineAttr.IsSame(<b>const</b></font><font color="#000000"> LA:Tsp_CustomLineAttr):boolean;<br>
+</font><b>begin</b><font color="#000000"><br>
+</font> <b>with</b><font color="#000000"> LA <b>do</b></font><font color="#000000"><br>
+</font> Result:=(fColor=Color) <b>and</b><font color="#000000"> (fStyle=Style) <b>and</b></font><font color="#000000"><br>
+</font> (fWidth=Width) <b>and</b><font color="#000000"> (fVisible=Visible);<br>
+</font><b>end</b><font color="#000000">;<br>
+</font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><font face="Arial"><b><font size="3"><font color="#0000ff">Tsp_Scale class<br>
+<u></u></font></font></b></font><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"></font> <br>
+<b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_Scale = class ( <u><font color="#008000">TPersistent</font></u></font><font color="#008000"></font> )<font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Ancestor of plot <u><font color="#008000">axis</font></u><font color="#008000"></font>. <br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_Scale properties <br>
+</font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_Scale</font></font></u><font color="#008000"><font color="#800000"> <br>
+</font></font><u><font color="#008000">Visible</font></u><font color="#008000"><br>
+<u>Inversed</u></font><font color="#008000"></font><br>
+<u><font color="#008000">NoTicksLabel</font></u><font color="#008000"></font><br>
+<u><font color="#008000">TicksLines</font></u><font color="#008000"><font color="#800000"><br>
+</font></font><u><font color="#008000">TicksAdjusted</font></u><font color="#008000"><p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_Scale methods <br>
+</font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_Scale</font></font></u><font color="#008000"><font color="#800000"> <b><span style="font-size:16pt"><font color="#0000ff"><br>
+</font></span></b></font></font><u></u><u><font size="2"><font color="#008000">Create</font></font></u><font color="#008000"></font>&nbsp;&nbsp;
+<br>
+<u>V2P</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>P2V</u><font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Create method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">constructor Create ( Flags : integer ) ;<br>
+</font><br>
+<font face="Arial"><b>Flags bit<br>
+</b></font><span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">fbposVertical <font color="#000080">vertical scale</font></font></font></span><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">fbposInversed <font color="#000080">Min is not on origin</font></font></font></span><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">fbposNoTicks <font color="#000080">Do not draw tick lines</font></font></font></span><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">fbposNoTicksLabel <font color="#000080">Do not draw Label for ticks</font></font></font></span><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">fbposRevertTicks <font color="#000080">Ticks &amp; Label at Top of horiz.line, on Right of vert.line</font></font></font></span><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">fbposAutoMin <br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">fbposAutoMax<br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">fbposLabelAsDate<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font></span></font></font></span></font></font></span><b><font size="3"><font color="#0000ff">V2P method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function V2P ( const V : double ) : integer ;<font face="Arial"><br>
+</font></font><br>
+<b>Description</b><br>
+Converts value to position along scale line. <br>
+<u><font color="#008000">Example</font></u><font color="#008000"></font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">P2V method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function P2V ( const V : integer ) : double ;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Converts position along scale line to value.<br>
+<u><font color="#008000">Example</font></u><font color="#008000"></font> <br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Visible property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Visible : boolean Read only<font face="Arial"><br>
+<br>
+<br>
+<b>Description</b></font></font><br>
+If all scale elements (<u><font color="#008000">Line</font></u><font color="#008000"></font>, <u><font color="#008000">Ticks</font></u><font color="#008000"></font>, <u><font color="#008000">TicksLabel</font></u><font color="#008000"></font>) are not drawn then visible return false.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Inversed property</font></font></b><font size="2"><br>
+ <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Inversed : boolean <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+If True then swap <u>Min</u> <u>Max</u> positions, normally <u>Min</u> on Right for horizontal scale and at Bottom for vertical scale.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">NoTicksLabel property</font></font></b><font size="2"><br>
+ <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property NoTicksLabel : boolean <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+If True then ticks labels are not shown. <br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">TicksLines property</font></font></b><font size="2"><br>
+ <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property TicksLines : boolean <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+If False then ticks lines are not shown.<br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">TicksAdjusted property<span style="font-size:16pt"><br>
+</span></font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_scale</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Scale</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property TicksAdjusted : boolean <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+If True then ticks are adjusted to have minimal decimal position in tick values. For example, let <u><font color="#008000">Min</font></u><font color="#008000"></font>=0, Max=10 and <u><font color="#008000">TicksCount</font></u><font color="#008000"></font>=4, then for adjusted ticks we will have ticks values <br>
+(1) <b>0 </b>(2) <b>3.3 </b>(3) <b>6.6 </b>(4) <b>9.9 </b>, <br>
+othewise we will have <br>
+(1) <b>0 </b>(2) <b>3.3333.. </b>(3) <b>6.6666.. </b>(4) <b>10</b> .<br>
+It is recommended use TicksAdjusted:=True, it can keep more precision when plot is scrolled.<br>
+<br>
+<font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">sgr_def unit<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">SGraph</font></font></u><font color="#008000"></font> <br>
+Main unit. <br>
+<b><br>
+USES</b><br>
+Windows, ... Clipbrd, sgr_misc<b>, <u></u></b><u><font color="#008000">sgr_scale</font></u><font color="#008000"></font>;<br>
+<br>
+<b>TYPES<br>
+</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_XYPlot</font></u><font color="#008000"></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>Tsp_Axis</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>Tsp_WhatXAxis</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>Tsp_WhatYAxis</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">TGetTickLabelEvent</font></u><font color="#008000"></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>TIP_Reason</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>Tsp_DataSeries</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>Tsp_ShiftKeys</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_zpDirections</font></u><font color="#008000"><font color="#800000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">TZoomAxisEvent</font></u></font></font><font color="#008000"><font color="#800000"><br>
+</font></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_BorderStyle</font></u><font color="#008000"><font color="#800000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_PlotMarker</font></u></font></font><font color="#008000"><p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_BorderStyle type <br>
+</font></font></b><font size="2"><font color="#800000"><br>
+</font></font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Declaration</b><br>
+<font color="#000000">Tsp_BorderStyle = (bs_None, bs_Raised, bs_Lowered, bs_Gutter, bs_BlackRect, bs_BoldRect, bs_FocusRect)<br>
+</font><br>
+<b>Description</b><font color="#000000"><br>
+</font>Used to define <u><font color="#008000">BorderStyle</font></u><font color="#008000"></font>.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_XYPlot component<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"><font color="#800000">&nbsp;
+<u><font color="#008000">events</font></u></font></font><font color="#008000"></font> <br>
+<b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_XYPlot = class(<u><font color="#008000">TCustomControl</font></u></font><font color="#008000"></font>)<font face="Arial"><br>
+<br>
+<b>Description<br>
+</b></font>Tsp_XYPlot is host container for the <u><font color="#008000">axis</font></u><font color="#008000"></font> and <u><font color="#008000">data series</font></u><font color="#008000"></font>. Tsp_XYPlot is canvas where axis and data series are drawn (see <u><font color="#008000">Plot image</font></u><font color="#008000"><font color="#000000">)<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Tsp_XYPlot properties<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_XYPlot</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u>BufferedDisplay</u><br>
+<u>BorderStyle</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<s><br>
+<u></u></s><u>DCanvas</u>&nbsp;
+<br>
+<u>DWidth</u>&nbsp;&nbsp;
+<br>
+<u>DHeight</u>&nbsp;
+<br>
+<u>FieldRect</u><br>
+<br>
+<u>BottomAxis</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>LeftAxis</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>RightAxis</u><br>
+<u>TopAxis</u>&nbsp;
+<br>
+<u><font color="#008000">Series</font></u><font color="#008000"></font><br>
+<u><font color="#008000">SeriesCount</font></u><font color="#008000"><font color="#800000"><br>
+</font></font><br>
+<u>Pan</u><br>
+<u>PanShiftKeys</u><br>
+<u>Zoom</u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>ZoomShiftKeys</u>&nbsp;&nbsp;&nbsp;
+<br>
+<s><br>
+<u></u></s><u>FieldColor</u><br>
+<u>Color</u><br>
+<u>Font</u><br>
+<br>
+<u><font color="#008000">XCursorOn</font></u><font color="#008000"></font><br>
+<u><font color="#008000">XCursorVal</font></u><font color="#008000"></font><br>
+<br>
+<u><font color="#008000">Other properties</font></u><font color="#008000"><font color="#800000"> <font color="#000000">derived from ancestors</font></font></font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_XYPlot methods<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_XYPlot</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u>Create</u>&nbsp;&nbsp;
+<br>
+<u>Destroy</u>&nbsp;
+<br>
+<u>BufferIsInvalid</u><br>
+<u>Invalidate</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">DrawPlot</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>Paint</u>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>CopyToClipboardMetafile</u>&nbsp;
+<br>
+<u>CopyToClipboardBitmap</u>&nbsp;&nbsp;&nbsp;
+<br>
+<font color="#000000"><br>
+<u><font color="#008000">Other methods</font></u></font><font color="#008000"><font color="#800000"> <br>
+<font color="#000000">derived from ancestors<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font></font><b><font size="3"><font color="#0000ff">Tsp_XYPlot events<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_XYPlot</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><s><br>
+</s><u></u><u>OnFieldDraw</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>OnDrawEnd</u><br>
+<u><font color="#008000">OnAxisZoom</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">OnGetTickLabel</font></u><font color="#008000"></font><br>
+<u>OnMouseDown</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>OnMouseMove</u><br>
+<u>OnMouseUp</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<u><font color="#008000">Other events</font></u><font color="#008000"><font color="#800000"> <br>
+</font></font><font color="#000000">derived from ancestors</font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Create method</font></font></b><font size="2"><br>
+ <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">constructor Create(AOwner : TComponent); override;<font face="Arial"><br>
+<p><hr><p>
+<sup>$</sup></font></font><sup>#</sup><b><font size="3"><font color="#0000ff">Destroy method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">destructor Destroy ; override;<font face="Arial"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Invalidate method</font></font></b><font size="2"><br>
+ <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure Invalidate ; override;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Standard VCL function. Invalidate tells Windows to repaint the control after other important Windows messages are handled. Invalidate was override to force recalculation of axis and redraw <u><font color="#008000">internal buffer</font></u><font color="#008000"></font> during next <u><font color="#008000">Paint</font></u><font color="#008000"></font>.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">BufferIsInvalid method</font></font></b><font size="2"><br>
+ <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure BufferIsInvalid ;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+<font color="#000000">If plot painted through internal buffer, this buffer may be not redrawn at every <u><font color="#008000">Paint</font></u></font><font color="#008000"><font color="#000000"> (handled WM_Paint). </font></font>Call this procedure if you need to force redraw buffer on the next Paint.<br>
+<u><font color="#008000">Example</font></u><font color="#008000"><p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Paint method</font></font></b><font size="2"><br>
+ <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure Paint ; override;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Paint draws the image of the <u><font color="#008000">Tsp_XYPlot</font></u><font color="#008000"></font> in response to paint messages. If the <u><font color="#008000">BufferedDisplay</font></u><font color="#008000"></font> property is True then Paint uses internal buffer to draw plot and copy it to screen. <font color="#000000">This buffer is not redrawn at every Paint (see <u><font color="#008000">Invalidate</font></u></font><font color="#008000"><font color="#000000"> and <u><font color="#008000">BufferIsInvalid</font></u></font></font><font color="#008000"><font color="#000000">). </font></font><br>
+It is not recommended to override this method, use <u><font color="#008000">OnDrawEnd</font></u><font color="#008000"></font> event instead. There is also <u><font color="#008000">OnFieldDraw</font></u><font color="#008000"></font> event. See <u><font color="#008000">Tsp_xyPlot draw</font></u><font color="#008000"></font> for detailes.<br>
+<br>
+Note: <font color="#000000">in this case</font> <u><font color="#008000">sequence of draw operations</font></u><font color="#008000"><font color="#800000"> <font color="#000000"> has extra last step to Draw <u><font color="#008000">XCursor</font></u></font></font></font><font color="#008000"><font color="#000000">. <p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">DrawPlot method <span style="font-size:16pt"><br>
+</span></font></font></b><b><font size="2">Unit </font></b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+procedure DrawPlot(<b>CC </b>: TCanvas; <b>W</b>, <b>H </b>: integer);<br>
+ <br>
+<b>Description</b><br>
+Draw plot with width <b>W</b>, height <b>H</b> on Canvas <b>CC</b>. <b>W</b>,<b> H </b>must be greater then 10, MapMode of <b>CC</b> must be MM_TEXT or at least MM_ANISOTROPIC with positive x is to the right, positive y is down. This procedure used internally but it is public. May be it can be used to print Plot image.<br>
+This procedure set DCanvas, DWidth and DHeight make <u><font color="#008000">draw operations</font></u><font color="#008000"></font> and restore DCanvas, DWidth and DHeight.<br>
+<br>
+<b>See also<br>
+<u></u></b><u><font color="#008000">Paint</font></u><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">Plot image</font></u></font></font><font color="#008000"><p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_XYPlot drawing<br>
+<font size="2"><font color="#800000"> <br>
+</font></font></font></font></b><font color="#000000">Plot image</font><font color="#000000"> <br>
+</font><u><font color="#008000">Plot</font></u><font color="#008000"><font color="#000000"> has 2 areas - Field and Around Area.</font></font> <font color="#000000">Field is area surrounded by 4 axis. The data series are painted on the Field. The axis <u><font color="#008000">caption</font></u></font><font color="#008000"><font color="#800000">, <font color="#000000">ticks and ticks label are painted on the Around Area<br>
+</font></font></font><font color="#800000"><img data="bm0.bmp" title="bm0.bmp"><font color="#000000"> <br>
+</font></font><br>
+<b>Sequence of draw operations <sup>#</sup><br>
+</b><span style="font-size:9pt"><font color="#000000">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Fill Around Area by <u><font color="#008000">Color</font></u></font></font></font></span><font color="#008000"><font color="#000000"><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Draw <u><font color="#008000">axis</font></u></font></font></span></font></font><font color="#008000"><font color="#000000"> <br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">IntersectClipRect(<u><font color="#008000">DCanvas</font></u></font></font></span></font></font><font color="#008000"><font color="#000000">, <u><font color="#008000">FieldRect</font></u></font></font><font color="#008000"><font color="#000000">)<br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Fill Field by <u><font color="#008000">FieldColor</font></u></font></font></span></font></font><font color="#008000"><font color="#000000"><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Process <u><font color="#008000">OnFieldDraw event</font></u></font></font></span></font></font><font color="#008000"><font color="#000000"><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Draw <u><font color="#008000">Grids</font></u></font></font></span></font></font><font color="#008000"><font color="#000000"><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Draw markers with <u><font color="#008000">WhenDraw</font></u></font></font></span></font></font><font color="#008000"><font color="#000000">=dmBeforeSeries<br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Draw <u><font color="#008000">series</font></u></font></font></span></font></font><font color="#008000"><font color="#000000"><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Draw markers with <u><font color="#008000">WhenDraw</font></u></font></font></span></font></font><font color="#008000"><font color="#000000">=dmAfterSeries<br>
+</font></font><span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">RestoreClipRect<font face="Courier New"><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Process <u><font color="#008000">OnDrawEnd event</font></u></font></font></span></font></font></font></span><font color="#008000"><font face="Courier New"><font color="#800000"><br>
+<span style="font-size:9pt"><font color="#000000">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">Draw <u><font color="#008000">border</font></u></font></font></font></span></font></font></font><font color="#008000"><font face="Courier New"><font color="#800000"><br>
+</font></font></font><br>
+<br>
+<font face="Arial"><b><font color="#000000">Custom draw rules <sup>#</sup></font></b></font><font face="Courier New"><font color="#800000"><br>
+</font></font>This rules apply for Data Series <u><font color="#008000">Draw</font></u><font color="#008000"></font> procedure and <u><font color="#008000">OnFieldDraw</font></u><font color="#008000"></font>, <u><font color="#008000">OnDrawEnd</font></u><font color="#008000"></font> and <u><font color="#008000">OnDrawCustomPoint</font></u><font color="#008000"><font face="Courier"><font color="#000000"> </font></font></font>event handlers. They must<br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">use <u><font color="#008000">DCanvas</font></u></font></font></span><font color="#008000"></font> to draw<br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">do not change plot Font property<br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">do not change MapMode or Clipping Region of the <u><font color="#008000">DCanvas</font></u></font></font></span></font></font></span><font color="#008000"></font><br>
+<span style="font-size:9pt">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Arial"><font size="2">use <u><font color="#008000">DWidth</font></u></font></font></span><font color="#008000"></font> as plot width, <u><font color="#008000">DHeight</font></u><font color="#008000"></font> as plot height<br>
+<br>
+<b>Tips</b><br>
+For another type of custom draw see <u><font color="#008000">QuickAddXY Example</font></u><font color="#008000"><font color="#800000">.<br>
+</font></font><font color="#000000">Use <u><font color="#008000">FieldRect</font></u></font><font color="#008000"><font color="#000000"> if you need to know Field position on the plot image.<br>
+</font></font>Use <u><font color="#008000">P2V</font></u><font color="#008000"><font color="#000000"> and <u><font color="#008000">V2P</font></u></font></font><font color="#008000"><font color="#000000"> methods to convert position to value and back.<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><span style="font-size:16pt"><font color="#0000ff">Garbage<br>
+</font></span></b><font size="2"><font color="#000000"><br>
+</font></font>0, 0 - left upper point<br>
+DWidth-1, DHeight-1 - right down point<br>
+Field <br>
+<b><span style="font-size:16pt"><font color="#0000ff"><br>
+</font></span></b><font face="Courier New"><i><font size="2"><font color="#0000f0">//draw all elements around field (axis &amp; border)</font></font></i></font><font color="#000000"><br>
+<font face="Arial"><br>
+<font face="Courier New"> DrawAroundField;<br>
+<b>begin</b></font></font></font><font color="#000000"> <i><font color="#0000f0">//DrawAroundField</font></i></font><font color="#000000"><br>
+ ClearBack;<br>
+ DrawAxises;<br>
+ DrawBorder;<br>
+<b>end</b></font><font color="#000000">; <i><font color="#0000f0">//DrawAroundField</font></i></font><font color="#000000"><br>
+<br>
+ DrawField;<br>
+ DrawFieldBack;<br>
+ DrawMarkers;<br>
+ ;<br>
+ Do;<br>
+<font face="Arial">There is special internal procedure in Tsp_xyPlot component. Let us to see how this procedure draw plot step by step.<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Example <br>
+</font></font></b><font size="2"><font color="#000000">This example was cut from first version of sgr_data.pas.<br>
+ <br>
+<font face="Courier New"><b>procedure</b></font></font></font><font color="#000000"> Tsp_XYLine.QuickAddXY(aX,aY:double);<br>
+<i><font color="#0000f0">{don't spends time to update Plot, instead simply draws next segment<br>
+ directly on DCanvas, therefore AutoMin and AutoMax are ignored }</font></i></font><font color="#000000"><br>
+<b>var</b></font><font color="#000000"> l,e:TPoint; A:Tsp_Axis;<br>
+<b>begin</b></font><font color="#000000"><br>
+ <b>if</b></font><font color="#000000"> fPN &gt;= fCapacity <i><font color="#0000f0">//has free space in series data storage?</font></i></font><font color="#000000"><br>
+ <b>then</b></font><font color="#000000"> Expand; <i><font color="#0000f0">//if no, then expand data storage </font></i></font><font color="#000000"> <br>
+</font> XV[fPN]:=aX; YV[fPN]:=aY; <i><font color="#0000f0">//add values to data storage</font></i><font color="#000000"><br>
+ TryUpdateMinMax(aX,aY); <i><font color="#0000f0">//serve data min &amp; max</font></i></font><font color="#000000"><br>
+ inc(fPN); <i><font color="#0000f0">//points nubmer was increased</font></i></font><font color="#000000"><br>
+ <i><font color="#0000f0">//instead InvalidatePlot(rsDataChanged) we simply draw line segment;</font></i></font><font color="#000000"><br>
+ <i><font color="#0000f0">//but first check if we can draw </font></i></font><font color="#000000"><br>
+ <b>if</b></font><font color="#000000"> CanPlot <i><font color="#0000f0">//has parent plot and can invalidate it?</font></i></font><font color="#000000"><br>
+ <b>and</b></font><font color="#000000"> Active <i><font color="#0000f0">//series is active?</font></i></font><font color="#000000"><br>
+ <b>and</b></font><font color="#000000"> (fPN&gt;<font color="#008000">1<font color="#000000">) <i><font color="#0000f0">//have at least 2 points?</font></i></font></font></font><font color="#000000"><br>
+</font> <b>then</b><font color="#000000"> <b>with</b></font><font color="#000000"> Plot <b>do</b></font><font color="#000000"> <br>
+ <b>begin <sup>#</sup></b></font><font color="#000000"><br>
+ <i><font color="#0000f0">//if plot painted through draw buffer, then mark buffer as invalid</font></i></font><font color="#000000"><br>
+ <b>if</b></font><font color="#000000"> <u><font color="#008000">BufferedDisplay</font></u></font><font color="#008000"><font color="#000000"> <br>
+ <b>then</b></font></font><font color="#000000"> <u><font color="#008000">BufferIsInvalid</font></u></font><font color="#008000"><font color="#000000">; <i><font color="#0000f0">//buffer will be freshen on next Paint</font></i></font></font><font color="#000000"><br>
+ <b>with</b></font><font color="#000000"> <u><font color="#008000">FieldRect</font></u></font><font color="#008000"><font color="#000000"> <b>do</b></font></font><font color="#000000"> <br>
+ IntersectClipRect(DCanvas.Handle, Left, Top, Right, Bottom);<br>
+ <b>if</b></font><font color="#000000"> <u><font color="#008000">XAxis</font></u></font><font color="#008000"><font color="#000000">=dsxBottom <b>then</b></font></font><font color="#000000"> A:=<u><font color="#008000">BottomAxis</font></u></font><font color="#008000"><font color="#000000"> <b>else</b></font></font><font color="#000000"> A:=<u><font color="#008000">TopAxis</font></u></font><font color="#008000"><font color="#000000">;<br>
+</font></font> <b>with</b><font color="#000000"> A <b>do</b></font><font color="#000000"> <b>begin</b></font><font color="#000000"> <i><font color="#0000f0">//ask horiz. axis for the scaling</font></i></font><font color="#000000"><br>
+ l.x:=V2P(XV[fPN-2]);<sup>#</sup><i><font color="#0000f0">//find x pos new line segment</font></i></font><font color="#000000"><br>
+ e.x:=<u><font color="#008000">V2P</font></u></font><font color="#008000"><font color="#000000">(XV[fPN-1]);<br>
+ <b>end</b></font></font><font color="#000000">;<br>
+ <b>if</b></font><font color="#000000"> YAxis=dsyLeft <b>then</b></font><font color="#000000"> A:=LeftAxis <b>else</b></font><font color="#000000"> A:=RightAxis;<br>
+ <b>with</b></font><font color="#000000"> A <b>do</b></font><font color="#000000"> <b>begin</b></font><font color="#000000"> <i><font color="#0000f0">//ask vert. axis for the scaling</font></i></font><font color="#000000"><br>
+ l.y:=V2P(YV[fPN-2]); <i><font color="#0000f0">//find y pos new line segment</font></i></font><font color="#000000"><br>
+ e.y:=<u><font color="#008000">V2P</font></u></font><font color="#008000"><font color="#000000">(YV[fPN-1]);<br>
+</font></font> <b>end</b><font color="#000000">;<br>
+ <b>if</b></font><font color="#000000"> PtInRect(FieldRect, l) <b>or</b></font><font color="#000000"> PtInRect(FieldRect, e) <b>then</b></font><font color="#000000"><br>
+ <b>with</b></font><font color="#000000"> <u><font color="#008000">DCanvas</font></u></font><font color="#008000"><font color="#000000"> <b>do</b></font></font><font color="#000000"> <b>begin <sup>#</sup></b></font><font color="#000000"><br>
+ fLineAttr.<u><font color="#008000">SetPenAttr(</font></u></font><font color="#008000"><font color="#000000">Pen); <i><font color="#0000f0">//set line draw attributes</font></i></font></font><font color="#000000"><br>
+ MoveTo(l.x,l.y); <br>
+ LineTo(e.x,e.y); <i><font color="#0000f0">//draw line </font></i></font><font color="#000000"><br>
+ <b>end</b></font><font color="#000000">;<br>
+ <b>end</b></font><font color="#000000">;<br>
+<b>end</b></font><font color="#000000">;<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><font face="Arial"><b><font size="3"><font color="#0000ff">Example P2V<br>
+<font size="2"><font color="#800000"> <br>
+</font></font></font></font></b></font>Use code like this to show mouse position relatively Bottom and Left axis coordinate system<br>
+<br>
+<font face="Courier New"><b><font color="#000000">procedure</font></b></font><font color="#000000"> TPForm.PlotMouseMove(Sender: TObject; Shift: TShiftState; X,Y: Integer);<br>
+<b>begin</b></font><font color="#000000"><br>
+ <b>with</b></font><font color="#000000"> StatusBar, Plot <b>do</b></font><font color="#000000"><br>
+ SimpleText:=Format(<i>'X %3.1f Y %3.1f'</i></font><font color="#000000">,<br>
+ [BottomAxis.<u><font color="#008000">P2V</font></u></font><font color="#008000"><font color="#000000">(X), LeftAxis.<u><font color="#008000">P2V</font></u></font></font><font color="#008000"><font color="#000000">(Y)])<br>
+<b>end</b></font></font><font color="#000000">;<br>
+<font face="Arial"><b><span style="font-size:16pt"><font color="#0000ff"><br>
+</font></span></b></font></font><font size="2"><font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Example OnGetTickLabel</font></font></b><font face="Courier New"><font size="2"><font color="#000000"><br>
+<font face="Arial"><font color="#800000"> <br>
+</font></font></font></font></font><font face="Courier New"><i><font color="#0000f0">Handle event to show Tick Label only on the axis sides</font></i></font><font color="#000000"><br>
+<b>procedure</b></font><font color="#000000"> TMainForm.XYPlotGetTickLabel(Sender: Tsp_Axis; LabelNum: Integer; LabelVal: Double; <b>var</b></font><font color="#000000"> LS: <b>String</b></font><font color="#000000">);<br>
+<b>begin</b></font><font color="#000000"><br>
+ <b>with</b></font><font color="#000000"> XYPlot <b>do</b></font><font color="#000000"><br>
+ <b>if</b></font><font color="#000000"> (Sender=BottomAxis)<br>
+ <b>and</b></font><font color="#000000"> (LabelNum&gt;<font color="#008000">0<font color="#000000">)<br>
+ <b>and</b></font></font></font><font color="#000000"> (LabelNum&lt;BottomAxis.TicksCount-<font color="#008000">1<font color="#000000">)<br>
+ <b>then</b></font></font></font><font color="#000000"> LS:=<i>''</i></font><font color="#000000">;<br>
+<b>end</b></font><font color="#000000">;<font face="Arial"><br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">CopyToClipboardMetafile method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure CopyToClipboardMetafile ;<font face="Arial"><br>
+<br>
+<b>Description<br>
+</b></font></font>Draw plot on the Enhanced Metafile and copy it to the clipboard.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">CopyToClipboardBitmap method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure CopyToClipboardBitmap ;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Copy plot image to clipboard as bitmap<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">DCanvas property<font color="#008000"><br>
+</font></font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property DCanvas : TCanvas Read only<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Draw target canvas, most time it is the same TCustomControl.Canvas, but can be TMetafileCanvas, TBitmapCanvas ... Do not draw on TCustomControl.Canvas.<br>
+See also:<br>
+<u><font color="#008000">DrawPlot method</font></u><font color="#008000"></font><br>
+<u><font color="#008000">Tsp_xyPlot draw</font></u><font color="#008000"><p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">DWidth, DHeight properties<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property DWidth : integer Read only<font face="Arial"><br>
+<font face="Courier New">property DHeight : integer Read only<font face="Arial"><br>
+<br>
+<b>Description</b></font></font></font></font><br>
+Plot draw sizes. Most time it is the same as TCustomControl width and height.<br>
+See also:<br>
+<u><font color="#008000">DrawPlot method</font></u><font color="#008000"></font><br>
+<u><font color="#008000">Tsp_xyPlot draw</font></u><font color="#008000"></font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">FieldRect property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property FieldRect : TRect Read only<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+<font color="#000000">Return <u><font color="#008000">Field</font></u></font><font color="#008000"></font> rectangle area for the data series drawing. Procedure Rectangle(Left, Top, Right, Bottom) will draw rectangle with sides just near plot axis.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Color property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Defines background color of <u><font color="#008000">Around Area</font></u></font><font color="#008000"></font>.<font face="Arial"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Font property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+Font used to draw axis <u><font color="#008000">Caption</font></u><font color="#008000"></font> and <u><font color="#008000">tick labels</font></u><font color="#008000"></font>.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">OnMouseDown, OnMouseMove and OnMouseUp</font></font></b><font face="Courier New"><font size="2"> <font face="Arial"><b><font size="3"><font color="#0000ff">events<br>
+</font></font></b></font></font></font><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property OnMouseMove : TMouseMoveEvent;<br>
+property OnMouseUp : TMouseEvent; <br>
+property OnMouseDown : TMouseEvent;<font face="Arial"><br>
+<br>
+<b>Description<br>
+</b></font></font>This are standard TControl events. There is only note that they are called after code, which treats panning and zooming of the plot. For example MouseMove is handled like this<br>
+<br>
+<font face="Courier New"><b><font color="#000000">procedure</font></b></font><font color="#000000"> Tsp_XYPlot.MouseMove(Shift: TShiftState; X, Y: Integer); <i><font color="#0000ff">//override</font></i></font><font color="#000000"><br>
+</font><b>begin<br>
+ </b><font color="#000000">//<font face="Arial"> quasi code begin<font face="Courier New"><b><br>
+</b></font></font></font><font color="#000000"> <b>case</b></font><font color="#000000"> PanZoom of <br>
+ Zoom: RefreshZoomRect;<br>
+ Pan : begin<br>
+ ScrollAxises; <br>
+ Invalidate; <font color="#0000ff">//Plot<font color="#000000"><br>
+ end <br>
+ <b>end</b></font></font></font><font color="#000000">;<font color="#0000ff"> <i> <font color="#000000"> <br>
+ //</font></i></font></font> quasi code end<i><font color="#000000"><br>
+</font></i><font color="#000000"> <b>inherited</b></font><font color="#000000"> MouseMove(Shift, X, Y);<br>
+<b>end</b></font><font color="#000000">; <br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><font face="Arial"><b><font size="3"><font color="#0000ff">Zoom property<br>
+</font></font></b></font><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Zoom : <u>Tsp_zpDirections</u></font> default <u><font color="#008000">zpdBoth</font></u><font color="#008000"></font> <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Defines enabled directions of zoom plot by mouse. See also <u><font color="#008000">ZoomShiftKeys</font></u><font color="#008000"></font> property.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Pan property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Pan : <u>Tsp_zpDirections</u></font> default <u><font color="#008000">zpdBoth</font></u><font color="#008000"></font> <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Defines enabled directions of panning plot by mouse. See also <u><font color="#008000">PanShiftKeys</font></u><font color="#008000"></font>.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">ZoomShiftKeys property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property ZoomShiftKeys : <u>Tsp_ShiftKeys</u></font> <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+ShiftKey set need to be pressed to start zoom by mouse. See <u><font color="#008000">Zoom</font></u><font color="#008000"><font color="#800000"> <font color="#000000">property</font></font></font>.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">PanShiftKeys property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property PanShiftKeys : <u>Tsp_ShiftKeys</u></font> <font color="#000000">default [ssCtrl];<br>
+</font><br>
+<b>Description</b><br>
+ShiftKey set need to be pressed to start panning by mouse. See <u><font color="#008000">Pan</font></u><font color="#008000"></font> property.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">LeftAxis property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+property LeftAxis : <u>Tsp_Axis</u> Read only <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Left vertical axis of plot. <br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">RightAxis property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property RightAxis : <u>Tsp_Axis</u></font> Read only <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Right vertical axis of plot.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">BottomAxis property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property BottomAxis : <u>Tsp_Axis</u></font> Read only <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Bottom horizontal axis of plot.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">TopAxis property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property TopAxis : <u>Tsp_Axis</u></font> Read only <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Bottom horizontal axis of plot.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">BorderStyle property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property BorderStyle : <u><font color="#008000">Tsp_BorderStyle</font></u></font><font color="#008000"></font> <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Style of plot border. Note: when this properties is changing plot is not invalidated, instead of that<br>
+border is redrawn directly. So it does not spend time to redraw whole plot. <p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">FieldColor property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property FieldColor : TColor <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+<u><font color="#008000">Field</font></u><font color="#008000"></font> background color.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">BufferedDisplay property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property BufferedDisplay : Boolean default False<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+If true then <u><font color="#008000">Paint</font></u><font color="#008000"></font> method draw plot on screen via internal draw buffer (Device Depended Bitmap). This prevents &quot;flickering&quot; and can gain speed of drawing.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">SeriesCount property<br>
+<span style="font-size:16pt"> <br>
+</span></font></font></b><b><font size="2">Unit </font></b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font color="#000000">property SeriesCount:integer</font><font face="Courier New"> <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+<font color="#000000">Number of data series <u></u></font><u>Tsp_XYPlot</u> <font color="#000000">component has.</font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Series property<br>
+<span style="font-size:16pt"> <br>
+</span></font></font></b><b><font size="2">Unit </font></b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New"><font color="#000000">property Series[i:integer] : Tsp_DataSeries </font></font>Read only<font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+<font color="#000000">Property to access to data series <u></u></font><u>Tsp_XYPlot</u> <font color="#000000">component maintains.<br>
+</font><br>
+<font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">OnFieldDraw event<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property OnFieldDraw : TNotifyEvent <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Use this event to draw on the <u><font color="#008000">Field</font></u><font color="#008000"></font> under the grids and data series During this time <u><font color="#008000">DCanvas</font></u><font color="#008000"></font> is clipped by <u><font color="#008000">FieldRect</font></u><font color="#008000"></font> (see <u><font color="#008000">Sequence of draw operations</font></u><font color="#008000"></font>). The event handler must obey <u><font color="#008000">draw rules</font></u><font color="#008000"><font color="#800000">.</font></font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">OnDrawEnd event<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property OnDrawEnd : TNotifyEvent <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+<font color="#000000">This event is triggered </font>when all standard plot elements were drawn. See <u><font color="#008000">Plot draw</font></u><font color="#008000"></font> for detailes.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">OnAxisZoom event<span style="font-size:16pt"><br>
+</span></font></font></b><b><font size="2">Unit </font></b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration<br>
+</b><font face="Courier New"><font color="#000000">property OnAxisZoom: TZoomAxisEvent</font></font><br>
+<font color="#000000"><br>
+TZoomAxisEvent = procedure(Sender: Tsp_Axis; var Min, Max: double; var CanZoom :boolean) of object;<br>
+</font><br>
+<b>Description<br>
+</b><font color="#000000">An Event is triggered for axis during setting of axis limits on zoom finish. If <u><font color="#008000">Zoom</font></u></font><font color="#008000"><font color="#000000">=<u><font color="#008000">zpdBoth</font></u></font></font><font color="#008000"><font color="#000000"> then this event will be triggerred for every plot axis.<br>
+ <br>
+Here is example of event handler:<br>
+<b>procedure</b></font></font><font color="#000000"> TMainForm.XYPlotAxisZoom(Sender: Tsp_Axis; <b>var</b></font><font color="#000000"> Min, Max: Double; <b>var</b></font><font color="#000000"> CanZoom: Boolean);<br>
+</font><b>begin</b><font color="#000000"><br>
+ <b>with</b></font><font color="#000000"> XYPlot <b>do</b></font><font color="#000000"><br>
+ <b>begin</b></font><font color="#000000"><br>
+ <i><font color="#0000f0">//disable Zoom for Right and Top axis </font></i></font><font color="#000000"><br>
+ <b>if</b></font><font color="#000000"> (Sender=RightAxis) <b>or</b></font><font color="#000000"> (Sender=TopAxis) <b>then</b></font><font color="#000000"> CanZoom:=<b>False</b></font><font color="#000000">;<br>
+ <i><font color="#0000f0">//disable Zoom if limits are not apropriate</font></i></font><font color="#000000"><br>
+ <b>if</b></font><font color="#000000"> (Min&lt;<font color="#008000">0.1<font color="#000000">) <b>or</b></font></font></font><font color="#000000"> (Max&gt;<font color="#008000">100<font color="#000000">) <b>then</b></font></font></font><font color="#000000"> CanZoom:=<b>False</b></font><font color="#000000">;<br>
+ <b>end</b></font><font color="#000000">; <br>
+<b>end</b></font><font color="#000000">;<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><font face="Arial"><b><font size="3"><font color="#0000ff">OnGetTickLabel event<span style="font-size:16pt"><br>
+</span></font></font></b></font><b><font size="2">Unit </font></b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration<br>
+</b><font face="Courier New">property OnGetTickLabel : TGetTickLabelEvent<br>
+<font face="Arial"><br>
+</font></font><font face="Courier New"><font color="#000000">TGetTickLabelEvent = procedure(Sender: <u><font color="#008000">Tsp_Axis</font></u></font></font><font color="#008000"><font color="#000000">; LabelNum: integer; LabelVal : double; var LS:string) of object;<br>
+</font></font><br>
+<b>Description</b><br>
+<font color="#000000">An event is triggered for each axis tick label. LabelNum is number of axis tick (0..<u><font color="#008000">TickCount</font></u></font><font color="#008000"><font color="#000000">-1), LabelVal is value at ticks position, LS is string formatted by <u><font color="#008000">LabelFormat</font></u></font></font><font color="#008000"><font color="#000000">. It is seem useless, but can used if we need special format for some axis ticks label. <br>
+</font></font><u><font color="#008000">Example</font></u><font color="#008000"><font color="#000000"><br>
+</font></font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font color="#0000ff">XCursorOn property<span style="font-size:16pt"><br>
+</span></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+property <font color="#000000">XCursorOn</font> :boolean; <font face="Arial"><br>
+<br>
+<b>Description<br>
+</b></font>There is XCursor - vertical line on the plot field at <u><font color="#008000">XCursorVal</font></u><font color="#008000"></font> of the <u><font color="#008000">BottomAxis</font></u><font color="#008000"></font>. This cursor is drawn only on the end of <u><font color="#008000">Paint</font></u><font color="#008000"></font> procedure if <font color="#000000">XCursorOn is True. <u><font color="#008000">DrawPlot</font></u></font><font color="#008000"><font color="#000000"> method does not draw XCursor.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font color="#0000ff">XCursorVal property<span style="font-size:16pt"><br>
+</span></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYPlot</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property <font color="#000000">XCursorVal</font></font> :double; <font face="Arial"><br>
+<br>
+<b>Description<br>
+</b></font>Defines position <u><font color="#008000">XCursor</font></u><font color="#008000"></font> relatively of the <u><font color="#008000">BottomAxis</font></u><font color="#008000"></font>.<font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_Axis class <font size="1"><br>
+</font></font></font></b><u></u><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font size="1"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font size="2"><font color="#008000">methods</font></font></u></font></font></font><font color="#008000"><font color="#800000"> <b><font size="1"><font color="#0000ff"> <span style="font-size:11pt"><font color="#000000"><br>
+</font></span></font></font></b></font></font>Unit<br>
+<u></u><u><font size="2"><font color="#008000">sgr_def</font></font></u><font color="#008000"><font color="#000000"><br>
+</font></font><br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_Axis = class(<u><font color="#008000">Tsp_Scale</font></u></font><font color="#008000"></font>)<font face="Arial"><br>
+</font><font color="#000000"><br>
+<b><span style="font-size:11pt">Description<br>
+</span></b></font><font size="2">Plot axis. <p><hr><p>
+<sup>$</sup><sup>#</sup><sup>&gt;</sup></font><b><font size="3"><font color="#0000ff">Tsp_Axis properties<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_Axis</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><br>
+<u></u><u><font color="#008000">AutoMax</font></u><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">AutoMin</font></u></font></font><font color="#008000"><font color="#800000"><br>
+<u><font color="#008000">Caption</font></u></font></font><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">GridAttr</font></u></font></font><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">LabelFormat</font></u></font></font><font color="#008000"><font color="#800000"><br>
+<u><font color="#008000">LabelAsDataTime</font></u></font></font><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">LineAttr</font></u></font></font><font color="#008000"><s><br>
+<u></u></s></font><u><font color="#008000">Margin</font></u><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">Max</font></u></font></font><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">Min</font></u></font></font><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">TicksCount</font></u></font></font><font color="#008000"><font color="#000000"><br>
+</font></font><br>
+<b>derived from Tsp_Scale</b><font color="#000000"><br>
+</font><u><font color="#008000">Visible</font></u><font color="#008000"><br>
+<u>Inversed</u></font><font color="#008000"></font><br>
+<u><font color="#008000">NoTicksLabel</font></u><font color="#008000"></font><br>
+<u><font color="#008000">NoTicks</font></u><font color="#008000"></font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><sup>&gt;</sup><b><font size="3"><font color="#0000ff">Tsp_Axis methods<br>
+</font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_Axis</font></font></u><font color="#008000"><b><font color="#800000"> </font></b></font><font color="#000000"><br>
+</font><b><font color="#800000"><br>
+<u></u></font></b><u><font color="#008000">Assign</font></u><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">AssignTo</font></u></font></font><font color="#008000"><font color="#800000"><br>
+<u><font color="#008000">Destroy</font></u></font></font><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">Create</font></u></font></font><font color="#008000"><font color="#000000"><br>
+<u><font color="#008000">MoveMinMax</font></u></font></font><font color="#008000"><s><br>
+</s></font><font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Create method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">constructor Create(Flags : integer );<font face="Arial"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">MoveMinMax method method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure MoveMinMax(aDelta:double);<br>
+<font face="Arial"><br>
+<b>Description</b></font></font><font color="#000000"><br>
+Used to change <u><font color="#008000">Min</font></u></font><font color="#008000"><font color="#000000"> and <u><font color="#008000">Max</font></u></font></font><font color="#008000"><font color="#000000"> on value of aDelta with 'frozen' ticks position.The aim is to permit smooth scroll of plot, without ticks jumps. Procedure is especialy useful for the program which emulates transient recorder.<br>
+Note that after using this procedure the <u><font color="#008000">AutoMin</font></u></font></font><font color="#008000"><font color="#000000"> and <u><font color="#008000">AutoMax</font></u></font></font><font color="#008000"><font color="#000000"> are reset to False.<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">SetMinMax method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure SetMinMax(m1,m2:double);<br>
+<font face="Arial"><br>
+<b>Description</b></font></font><font color="#000000"><br>
+Used to set <u><font color="#008000">Min</font></u></font><font color="#008000"><font color="#000000"> and <u><font color="#008000">Max</font></u></font></font><font color="#008000"><font color="#000000"> at once. The minimal value of m1 &amp; m2 will be assigned to Min. It is recommended to use this method to change Min and Max properties instead change them directly. Note that after using this procedure the <u><font color="#008000">AutoMin</font></u></font></font><font color="#008000"><font color="#000000"> and <u><font color="#008000">AutoMax</font></u></font></font><font color="#008000"><font color="#000000"> are reset to False. See also <u><font color="#008000">MoveMinMax</font></u></font></font><font color="#008000"><font color="#000000"> method.<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Destroy method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">destructor Destroy ; override;<font face="Arial"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Assign method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure Assign (Source : TPersistent); override;<font face="Arial"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">AssignTo method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure AssignTo ( Dest : TPersistent ) ; override;<font face="Arial"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Margin property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Margin : integer <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Gap between Axis and Plot bounds side, see <u><font color="#008000">Tsp_xyPlot draw</font></u><font color="#008000"></font>.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><span style="font-size:16pt"><font color="#0000ff">Caption property<br>
+</font></span></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Caption : string <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+<font color="#000000">Caption of the axis. Caption is drawn along axis direction and centered relatively axis length. You need set <u><font color="#008000">Margin</font></u></font><font color="#008000"><font color="#000000"> property with value more then <u><font color="#008000">Font</font></u></font></font><font color="#008000"><font color="#000000"> height to see unclipped Caption text on the plot. <p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Min property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Min : double <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Min is the lowest value an axis. <font color="#000000">Note that after changing this property the <u><font color="#008000">AutoMin</font></u></font><font color="#008000"><font color="#000000"> is reset to False. <br>
+<font color="#800000">Note if you try to set new value to the Min, while this value greater then current <u><font color="#008000">Max</font></u></font></font></font><font color="#008000"><font color="#800000">, this value will be assigned to the Max instead of Min. If then you set new Max value you will have incorrect Min value. <font color="#000000">To avoid this problem use <u><font color="#008000">SetMinMax</font></u></font></font></font><font color="#008000"><font color="#000000"> method, if you want to change Min and Max at once.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Max property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Max : double <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Max is the highest value an axis. <font color="#000000">Note that after changing this property the <u><font color="#008000">AutoMax</font></u></font><font color="#008000"><font color="#000000"> is reset to False. <font color="#800000">Note if you try to set new value to the Max, while this value less then current <u><font color="#008000">Min</font></u></font></font></font><font color="#008000"><font color="#800000">, this value will be assigned to the Min instead of Max. If then you set new Min value you will have incorrect Max value. <font color="#000000">To avoid this problem use <u><font color="#008000">SetMinMax</font></u></font></font></font><font color="#008000"><font color="#000000"> method, if you want to change Min and Max.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">TicksCount property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property TicksCount : Byte default 5<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Return number of axis ticks. TicksCount=0 means that axis has not any ticks. It is impossible to set ticks number greater then <u><font color="#008000">MaxTicksCount</font></u><font color="#008000"><font color="#800000">. </font></font>When you set this property to value in range <font color="#008000">&gt;1 and </font>&lt;<u><font color="#008000">MaxTicksCount</font></u><font color="#008000"><font face="Courier New"><font color="#000000"> </font></font></font>and <u><font color="#008000">NoTicksLabel</font></u><font color="#008000"></font> property = False axis has own opinion about haw many should be ticks number. For example, if you set TicksCount:=7 (write) you can found later that TicksCount&gt;7 (read) and depend from plot size. <br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">LineAttr property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+property LineAttr : <u>Tsp_LineAttr</u> <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Axis line attributes.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">GridAttr property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property GridAttr : <u>Tsp_LineAttr</u></font> <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Axis grid lines attributes.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">AutoMin property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property AutoMin : boolean default False <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+The AutoMin property controls if axis will adjust the <u><font color="#008000">Min</font></u><font color="#008000"></font> value automatically to based on the minimum value of its associated data <u><font color="#008000">series</font></u><font color="#008000"></font>.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">AutoMax property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property AutoMax : boolean <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+The AutoMax property controls if axis will adjust the <u><font color="#008000">Max</font></u><font color="#008000"></font> value automatically to based on the maximum value of its associated data <u><font color="#008000">series</font></u><font color="#008000"></font>.<br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">LabelFormat property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property LabelFormat : string <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Format string to convert ticks values to label (template for FormatFloat or FormatDateTime ). See also <u><font color="#008000">OnGetTickLabel</font></u><font color="#008000"></font> event.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">LabelAsDateTime property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_Axis</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property LabelAsDateTime property : Boolean<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+If True, then axis ticks labels are created with function FormatDateTime(LabelFormat,...) instead of<br>
+FormatFloat(LabelFormat, ... ). Don't forget to set suiting <u><font color="#008000">LabelFormat</font></u><font color="#008000"><font color="#800000">.<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Tsp_DataSeries component<font color="#008000"><br>
+<u></u></font></font></font></b><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"></font> <br>
+<b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_DataSeries = class(TComponent)<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Tsp_DataSeries is plot series template. It introduces but does not implement some functions, so it cannot be used by self. All real plot data series must be inherit from it and implement functions (see for example <u><font color="#008000">Tsp_XYLine</font></u><font color="#008000"></font>). <br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><sup>&gt;</sup><b><font size="3"><font color="#0000ff">Tsp_DataSeries properties<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_DataSeries</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u>Active</u>&nbsp;&nbsp;
+<br>
+<u><font color="#008000">Legend</font></u><font color="#008000"></font><br>
+<u><b>Plot</b></u><b></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>XAxis</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>YAxis</u><font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_DataSeries methods<br>
+</font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_DataSeries</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><font color="#000000">Interface to Plot ( ready to use)<font color="#800000"><br>
+</font></font><u></u><u>InvalidatePlot</u>&nbsp;&nbsp;
+<br>
+<u>BringToFront</u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>SendToBack</u><br>
+<font size="3"><font color="#000000"><br>
+</font></font><b><font size="2">Child classes must implement this functions</font></b><font size="3"><font color="#000000"><br>
+<u></u></font></font><u><font size="2">Draw</font></u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>GetXMin</u>&nbsp;
+<br>
+<u>GetXMax</u>&nbsp;
+<br>
+<u>GetYMin</u>&nbsp;
+<br>
+<u>GetYMax</u><br>
+<br>
+<b><font color="#000000">Child classes can implement this functions</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">DrawLegendMarker</font></u><font color="#008000"><p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Draw method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure Draw; virtual; abstract;<font face="Arial"><br>
+</font></font><br>
+<b>Description</b><br>
+Called by <u><font color="#008000">plot</font></u><font color="#008000"></font> to draw series. During this time <u><font color="#008000">DCanvas</font></u><font color="#008000"></font> is clipped by <u><font color="#008000">FieldRect</font></u><font color="#008000"></font> (see <u><font color="#008000">Sequence of draw operations</font></u><font color="#008000"></font>). Write this procedure to define how data series represents data on plot. There are some <u><font color="#008000">draw rules</font></u><font color="#008000"><font color="#800000"> <font color="#000000">when draw series. Use <u><font color="#008000">P2V</font></u></font></font></font><font color="#008000"><font color="#000000"> to find value position on the plot <u><font color="#008000">Field</font></u></font></font><font color="#008000"><font color="#000000">.</font></font><br>
+<br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">GetXMin method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function GetXMin(V: double): boolean; virtual; abstract;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+This function must return in V minimum value of X data of series. If function return False then V will be ignored. Called by <u><font color="#008000">plot</font></u><font color="#008000"></font> to find data minium if <u><font color="#008000">AutoMin</font></u><font color="#008000"></font> is True.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">GetXMax method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function GetXMax(V: double): boolean; virtual; abstract;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+This function must return in V maximum value of X data of series. If function return False then V will be ignored. Called by <u><font color="#008000">plot</font></u><font color="#008000"></font> to find data minium if <u><font color="#008000">AutoMax</font></u><font color="#008000"></font> is True.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">GetYMin method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function GetYMin(V: double): boolean; virtual; abstract;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+This function must return in V minimum value of Y data of series. If function return False then V will be ignored. Called by <u><font color="#008000">plot</font></u><font color="#008000"></font> to find data minium if <u><font color="#008000">AutoMin</font></u><font color="#008000"></font> is True.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">GetYMax method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function GetYMax(V: double): boolean; virtual; abstract;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+This function must return in V maximum value of Y data of series. If function return False then V will be ignored. Called by <u><font color="#008000">plot</font></u><font color="#008000"></font> to find data minium if <u><font color="#008000">AutoMax</font></u><font color="#008000"></font> is True.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">DrawLegendMarker method<span style="font-size:16pt"><br>
+</span></font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure DrawLegendMarker(const LCanvas:TCanvas, MR:TRect); virtual;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+This procedure is reserved to draw Legends of plot series. <font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">InvalidatePlot method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure InvalidatePlot(Reason : TIP_Reason);<font face="Arial"><br>
+<font face="Courier New">TIP_Reason = (rsDataChanged , rsAttrChanged);<br>
+<font face="Arial"><br>
+<b>Description</b></font></font></font></font><br>
+This procedure invalidate parent <u><font color="#008000">Plot</font></u><font color="#008000"></font>. If series has not parent plot or series <u><font color="#008000">Active</font></u><font color="#008000"></font> property is False it returns silently without invalidate.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">BringToFront method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u>, <u><font color="#008000">Tsp_PlotMarker</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure BringToFront ;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Call this method if you want series (marker) will be drawn on top of other <u><font color="#008000">plot</font></u><font color="#008000"></font> series (markers with same WhenDraw). <br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">SendToBack method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u>, <u><font color="#008000">Tsp_PlotMarker</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure SendToBack ;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Call this method if you want series or marker will be drawn under all other <u><font color="#008000">plot</font></u><font color="#008000"></font> series.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><sup>A</sup><b><font size="3"><font color="#0000ff">Active property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Active : boolean <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+If True then series is taken into account by <u><font color="#008000">Plot</font></u><font color="#008000"><font color="#800000">, <font color="#000000">otherwise it is ignored.</font></font></font> Plot check this property before call series <u><font color="#008000">Draw</font></u><font color="#008000"></font> procedure or check series data range (<u><font color="#008000">GetXMin</font></u><font color="#008000"></font> ...). Also <u><font color="#008000">Tsp_DataSeries.InvalidatePlot</font></u><font color="#008000"></font> return immediatelly if Active=False.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Plot property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u>, <u><font color="#008000">Tsp_PlotMarker</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Plot : <u>Tsp_XYPlot</u></font> <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Plot is Tsp_xyPlot component which draws series and markers. <br>
+To add the series to a plot you need set series Plot property to this plot. Set Plot property to <b>nil </b>to delete series from Plot. You can change Plot property at design and run-time. Plot is not owner of the data series, it has only list of pointers to them. <br>
+To add the marker to a plot you need set marker Plot property to this plot. Set Plot property to <b>nil </b>to delete marker from Plot. You can change Plot property at design and run-time. Plot is not owner of the data marker, it has only list of pointers to them. <p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">XAxis property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u>, <u><font color="#008000">Tsp_PlotMarker</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property XAxis : Tsp_WhatXAxis<br>
+</font>Tsp_WhatXAxis = (dsxBottom, dsxTop) <font face="Arial"><br>
+</font><br>
+<b>Description</b><br>
+Defines what horizontal axis of plot used to scale X data of the series or marker position. Plot check this property when adjust plot axis <u><font color="#008000">Min</font></u><font color="#008000"></font> and <u><font color="#008000">Max</font></u><font color="#008000"></font> to series data range.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">YAxis property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u>, <u><font color="#008000">Tsp_PlotMarker</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property YAxis : Tsp_WhatYAxis default dsyLeft; <font face="Arial"><br>
+<font face="Courier New">Tsp_WhatYAxis = (dsyLeft, dsyRight);<font face="Arial"><br>
+<br>
+<b>Description</b></font></font></font></font><br>
+Defines what vertical axis of plot used to scale Y data of the series or marker position. Plot check this property when adjust plot axis <u><font color="#008000">Min</font></u><font color="#008000"></font> and <u><font color="#008000">Max</font></u><font color="#008000"></font> to series data range.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Legend property<span style="font-size:16pt"><br>
+</span></font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_DataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Legend : string;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+This property can be used to find series by legend text and can be used to produce legend table together with <u><font color="#008000">DrawLegendMarker</font></u><font color="#008000"><font color="#000000"> method.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Tsp_ShiftKeys type<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_ShiftKeys = set of (ssShift, ssAlt, ssCtrl);<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Used to define shift keys for <u><font color="#008000">zooming</font></u><font color="#008000"></font> and <u><font color="#008000">panning</font></u><font color="#008000"></font>.<br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_zpDirections type<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_def</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_zpDirections=(zpdNone, zpdHorizontal, zpdVertical, zpdBoth);<br>
+<font face="Arial"><br>
+<b>Description</b></font></font><br>
+Used to define enabled directions for <u><font color="#008000">zooming</font></u><font color="#008000"></font> and <u><font color="#008000">panning</font></u><font color="#008000"></font>.<br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">sgr_data unit<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">SGraph</font></font></u><font color="#008000"></font> <br>
+This is example of data series for Tsp_xyPlot. <br>
+<br>
+<b>USES</b><br>
+Windows, SysUtils, Classes, Graphics, <u><font color="#008000">sgr_scale</font></u><font color="#008000"></font>, <u><font color="#008000">sgr_def</font></u><font color="#008000"></font><br>
+<br>
+<b>TYPES</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>Tsp_XYDataSeries</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>Tsp_XYLine</u><br>
+<s>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u></u></s><u>Tsp_SpectrLines</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>Tsp_YOrigin</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u>Tsp_WhatValues</u><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_PointAttr</font></u><font color="#008000"></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">TPointKind</font></u><font color="#008000"><font color="#800000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">TDrawCustomPointEvent</font></u></font></font><font color="#008000"><p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_XYDataSeries component<font color="#008000"><br>
+</font></font></font></b><u></u><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"></font> <br>
+<b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_XYDataSeries = class(<u>Tsp_DataSeries</u></font>)<font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Ancestor of my data series, has storage for x, y data and maintains main method &amp; properties for it.<br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_XYDataSeries methods<br>
+</font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_XYDataSeries</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u>Clear</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>AdjustCapacity</u>&nbsp;&nbsp;
+<br>
+<u>SetCapacity</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>AddXY</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>AddXYArrays</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>InsertXY</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>ReplaceXY</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>Delete</u>&nbsp;&nbsp;
+<br>
+<u>DeleteRange</u><br>
+<font color="#000000"><br>
+</font><b>Derived from Tsp_DataSeries<font color="#800000"><br>
+<u></u></font></b><u>InvalidatePlot</u>&nbsp;&nbsp;
+<br>
+<u>BringToFront</u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>SendToBack</u><br>
+<u>Draw</u><br>
+<b>Implements</b><br>
+<u>GetXMin</u>&nbsp;
+<br>
+<u>GetXMax</u>&nbsp;
+<br>
+<u>GetYMin</u>&nbsp;
+<br>
+<u>GetYMax</u>&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><sup>&gt;</sup><b><font size="3"><font color="#0000ff">Tsp_XYDataSeries properties<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_XYDataSeries</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u>Capacity</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>Count</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>LockInvalidate</u>&nbsp;&nbsp;
+<br>
+<b><font color="#800000"><br>
+<font color="#000000">Derived from Tsp_DataSeries<font color="#800000"><br>
+</font></font></font></b><u></u><u>Active</u><br>
+<u><font color="#008000">Legend</font></u><font color="#008000"></font>&nbsp;&nbsp;
+<br>
+<u><b>Plot</b></u><b></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>XAxis</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>YAxis</u><font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Create method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">constructor Create(AOwner : TComponent); override;<font face="Arial"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Destroy method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">destructor Destroy; override;<font face="Arial"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">GetXMin method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function GetXMin(V: double): boolean; override;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Return in V minimum value of X data of series. If there is no data in series then return False.<br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">GetXMax method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function GetXMax(V: double): boolean; override;<font face="Arial"><br>
+<b><br>
+Description</b></font></font><br>
+Return in V maximum value of X data of series. If there is no data in series then return False.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">GetYMin method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function GetYMin(V: double): boolean; override;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Return in V minimum value of Y data of series. If there is no data in series then return False.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">GetYMax method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">function GetYMax(V: double): boolean; override;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Return in V maximum value of Y data of series. If there is no data in series then return False.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Clear method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure Clear ;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+This one does not free memory, only set <u><font color="#008000">Count</font></u><font color="#008000"></font>=0 and update plot, use <u>AdjustCapacity</u> after Clear, or <u>SetCapacity</u>(0) instead of Clear to free memory.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">AdjustCapacity method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure AdjustCapacity ;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Set minimum <u><font color="#008000">Capacity</font></u><font color="#008000"></font> for current <u><font color="#008000">Count</font></u><font color="#008000"></font>.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">SetCapacity method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure SetCapacity(<b>CN</b></font> : cardinal);<font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Use it if you know how many elements data will have and don't want to loose time for the auto expand when add data. If <b>CN</b> less then <u><font color="#008000">Count</font></u><font color="#008000"></font> of data elements they will be truncated to fit capacity. Note that there is granulation during memory allocation, the granule is 32 XYpoints.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">AddXY method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure AddXY(aX, aY : double );<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Add X, Y values at the end of series data and update plot. Use <u><font color="#008000">LockInvalidate</font></u><font color="#008000"></font> property to stop update if you want to add several points at once.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">AddXYArrays method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure AddXYArrays(pX, pY : pointer; n : integer);<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Used to add many values at the end of series data and invalidate plot, <br>
+pX, pY must points to array of double, n - number of elements in arrays.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">InsertXY method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure InsertXY(idx : integer; aX, aY : double);<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Inserts XY point into series data, i.e. values at index idx, shift rest to end. If idx&lt;0 or idx&gt;<u><font color="#008000">Count</font></u><font color="#008000"></font>-1 then does nothing. After data changing updates plot, use <u><font color="#008000">LockInvalidate</font></u><font color="#008000"></font> property to stop update.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">ReplaceXY method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure ReplaceXY(idx : integer; aX , aY : double);<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Replace values at index idx. If idx&lt;0 or idx&gt;<u><font color="#008000">Count</font></u><font color="#008000"></font>-1 then does nothing. After data changing updates plot, use <u><font color="#008000">LockInvalidate</font></u><font color="#008000"></font> property to stop update.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Delete method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure Delete(idx : integer);<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Deletes values at index idx. If idx&lt;0 or idx&gt;<u><font color="#008000">Count</font></u><font color="#008000"></font>-1 then does nothing. After data changing updates plot, use <u><font color="#008000">LockInvalidate</font></u><font color="#008000"></font> property to stop update.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">DeleteRange method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure DeleteRange(fromi, toi : integer);<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Deletes values with indexes from <b>fromi</b> up to <b>toi</b>. If f<b>romi</b>&gt;<b>toi</b> then swaps them, then if <b>fromi</b>&lt;0 or <b>fromi</b>&gt;<u><font color="#008000">Count</font></u><font color="#008000"></font>-1 then does nothing. toi can be greater then Count-1. After data changing updates plot, use <u><font color="#008000">LockInvalidate</font></u><font color="#008000"></font> property to stop update.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Capacity property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Capacity : integer Read only<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Current memory allocation for data elements (how many number of points can be held in data storage memory).<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Count property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Count : integer Read only<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Current number of valid data elements in data series (number of XYpoints).<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">LockInvalidate property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYDataSeries</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property LockInvalidate : boolean <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+LockInvalidate controls plot invalidate when data is changed. Set it to True before make a lot of data changes and don't forget to set it False after. It also controls functions that updates plot instead invalidate, for example <u><font color="#008000">AddXY</font></u><font color="#008000"></font> or <u><font color="#008000">InsertXY</font></u><font color="#008000"></font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_XYLine component<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"><font color="#800000">&nbsp;
+<u><font color="#008000">events</font></u></font></font><font color="#008000"></font> <b><font size="3"><font color="#008000"> <br>
+</font></font></b><b><font size="2">Unit </font></b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_XYLine = class(<u><font color="#008000">Tsp_XYDataSeries</font></u></font><font color="#008000"></font>)<font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Draw data as chain of line segments and point markers. Line is defined by <u><font color="#008000">LineAttr</font></u><font color="#008000"></font>, point is defined by <u><font color="#008000">PointAttr</font></u><font color="#008000"><font color="#000000">.<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Tsp_XYLine properties<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_XYLine</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u><font color="#008000">LineAttr</font></u><font color="#008000"><font face="Courier New"><font color="#800000"><br>
+</font></font></font><u><font face="Arial"><font color="#008000">PointAttr</font></font></u><font color="#008000"><s><br>
+</s></font><b><font color="#000000"><br>
+</font></b>Derived from Tsp_XYDataSeries<font color="#800000"><br>
+<u></u></font><u>Capacity</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>Count</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>LockInvalidate</u>&nbsp;&nbsp;
+<br>
+<b><font color="#800000"><br>
+</font></b><font color="#000000">Derived from Tsp_DataSeries<font color="#800000"><br>
+<u></u></font></font><u>Active</u><br>
+<u><font color="#008000">Legend</font></u><font color="#008000"></font>&nbsp;&nbsp;
+<br>
+<u><b>Plot</b></u><b></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>XAxis</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>YAxis</u><font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_XYLine methods<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_XYLine</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u>Draw</u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">GetX</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">GetY</font></u><font color="#008000"><b><font color="#000000"><br>
+<br>
+Derived from Tsp_XYDataSeries<br>
+</font></b></font><u></u><u>GetXMin</u>&nbsp;
+<br>
+<u>GetXMax</u>&nbsp;
+<br>
+<u>GetYMin</u>&nbsp;
+<br>
+<u>GetYMax</u><br>
+<font color="#000000"><br>
+<u></u></font><u>Clear</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>AdjustCapacity</u>&nbsp;&nbsp;
+<br>
+<u>SetCapacity</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>AddXY</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>AddXYArrays</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>InsertXY</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>ReplaceXY</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>Delete</u>&nbsp;&nbsp;
+<br>
+<u>DeleteRange</u><br>
+<br>
+<b><font color="#000000">Derived from Tsp_DataSeries<font color="#800000"><br>
+<u></u></font></font></b><u>InvalidatePlot</u>&nbsp;&nbsp;
+<br>
+<u>BringToFront</u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>SendToBack</u><br>
+<font size="3"><font color="#000000"><br>
+</font></font><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">LineAttr property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYLine</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property LineAttr : <u>Tsp_LineAttr</u></font><br>
+ <font face="Arial"><br>
+<b>Description</b></font><br>
+Draw attributes of line segments.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Draw method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYLine</u><br>
+<b><br>
+Declaration</b><br>
+<font face="Courier New">procedure Draw ; override;<font face="Arial"><br>
+</font></font><b><br>
+Description</b><br>
+Override Tsp_<u><font color="#008000">DataSeries.Draw</font></u><font color="#008000"></font> method. Draw data of series as points <u><font color="#008000">markers</font></u><font color="#008000"></font> and/or chain of <u><font color="#008000">line</font></u><font color="#008000"></font> segments beetwen the points. <p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">GetX and GetY methods<span style="font-size:16pt"><br>
+</span></font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYLine</u><br>
+<b><br>
+</b>Declaration<br>
+<font face="Courier New">function GetX(Idx:integer):double;<br>
+</font>function GetY(Idx:integer):double;<br>
+<font face="Arial"><b><br>
+Description</b></font><br>
+Use this function to access to data value of series. Idx is zero-based data point index (0..<u><font color="#008000">Count</font></u><font color="#008000"></font>-1).<br>
+<font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_PointAttr class<br>
+</font></font></b><span style="font-size:11pt"><font color="#000000"><br>
+</font></span>Unit<br>
+<u></u><u><font size="2"><font color="#008000">sgr_data</font></font></u><font color="#008000"><font color="#000000"><br>
+</font></font><br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_PointAttr = class(TBrush)<font face="Arial"><br>
+</font></font><font color="#000000"><br>
+<b>Properties<span style="font-size:11pt"><br>
+<u></u></span></b></font><u><font size="2"><font color="#008000">Kind</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#000000">Defines how to draw point.<br>
+<u><font color="#008000">Visible</font></u></font></font></font><font color="#008000"><font color="#800000">&nbsp;
+<font color="#000000">Is points markers are drawn.<br>
+<u><font color="#008000">HSize</font></u></font></font></font><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;
+<font color="#000000">Horizontal size of point marker.<br>
+<u><font color="#008000">VSize</font></u></font></font></font><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;
+<font color="#000000">Vertical size of point marker.<br>
+<u><font color="#000080">BorderWidth</font></u></font></font></font><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Border line width<br>
+<u><font color="#000080">BorderColor</font></u></font><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Border line color<br>
+Other properties are inherited from TBrush and only 2 of them are important - <font color="#000080">Color<font color="#000000"> and <font color="#000080">Style<font color="#000000">. <br>
+</font></font></font></font></font><b><br>
+Description<br>
+</b><font color="#000000">Point attribute defines point marker as shape of <font color="#000080">Kind<font color="#000000"> type, which is drawn by pen with <font color="#000080">BorderWidth<font color="#000000"> and <font color="#000080">BorderColor<font color="#000000"> and filled by brush with <font color="#000080">Color <font color="#000000">and <font color="#000080">Style<font color="#000000">.<b><span style="font-size:11pt"><br>
+</span></b></font></font></font></font></font></font></font></font></font></font></font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><font size="3"><font color="#0000ff">PointAttr property<br>
+</font></font><span style="font-size:16pt"><br>
+</span><b><font size="2">Unit </font></b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYLine</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property PointAttr : <u><font color="#008000">Tsp_PointAttr</font></u></font><font color="#008000"></font><br>
+ <font face="Arial"><br>
+</font><b>Description</b><br>
+<font color="#000000">Defines is points markers are drawn and how. See <u><font color="#008000">Tsp_PointAttr</font></u></font><font color="#008000"><font color="#000000"> for more details.<br>
+</font></font><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">HSize property<span style="font-size:16pt"><br>
+</span></font></font></b><span style="font-size:11pt"><font color="#000000"><br>
+</font></span><font size="2">Applies to<span style="font-size:11pt"><br>
+</span></font><u></u><u><font size="2"><font color="#008000">Tsp_PointAttr</font></font></u><font color="#008000"><font color="#000000"> class<br>
+</font></font><br>
+<b>Declaration<span style="font-size:11pt"><br>
+</span></b><font face="Courier New"><font size="2"><font color="#000000">property HSize: integer;<br>
+</font></font></font><font face="Arial"><br>
+</font><b>Description<span style="font-size:11pt"><br>
+</span></b><font size="2"><font color="#000000">Horizontal size of point marker. When it is assigned by even digit it round it to nearest odd digit.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Kind property<span style="font-size:16pt"><br>
+</span></font></font></b><span style="font-size:11pt"><font color="#000000"><br>
+</font></span><font size="2">Applies to<span style="font-size:11pt"><br>
+</span></font><u></u><u><font size="2"><font color="#008000">Tsp_PointAttr</font></font></u><font color="#008000"><font color="#000000"> class<br>
+</font></font><br>
+<b>Declaration<span style="font-size:11pt"><br>
+</span></b><font face="Courier New"><font size="2"><font color="#000000">property Kind: TPointKind;<br>
+</font></font></font><br>
+<b>type</b><font color="#000000"> TPointKind = (ptRectangle, ptEllipse, ptDiamond, ptCross, <u><font color="#008000">ptCustom</font></u></font><font color="#008000"><font color="#000000">,<font color="#800000"> <font color="#000000">ptTriangle, ptDownTriangle)<font face="Arial"><br>
+</font></font></font></font></font><br>
+<b>Description<span style="font-size:11pt"><br>
+</span></b><font size="2"><font color="#000000">Defines how to draw point.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Visible property<span style="font-size:16pt"><br>
+</span></font></font></b><span style="font-size:11pt"><font color="#000000"><br>
+</font></span><font size="2">Applies to<span style="font-size:11pt"><br>
+</span></font><u></u><u><font size="2"><font color="#008000">Tsp_PointAttr</font></font></u><font color="#008000"><font color="#000000"> class<br>
+</font></font><br>
+<b>Declaration<span style="font-size:11pt"><br>
+</span></b><font face="Courier New"><font size="2"><font color="#000000">property Visible: boolean;<br>
+</font></font></font><font face="Arial"><br>
+</font><b>Description<span style="font-size:11pt"><br>
+</span></b><font size="2"><font color="#000000">Is points markers are drawn.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">VSize property<span style="font-size:16pt"><br>
+</span></font></font></b><span style="font-size:11pt"><font color="#000000"><br>
+</font></span><font size="2">Applies to<span style="font-size:11pt"><br>
+</span></font><u></u><u><font size="2"><font color="#008000">Tsp_PointAttr</font></font></u><font color="#008000"><font color="#000000"> class<br>
+</font></font><br>
+<b>Declaration<span style="font-size:11pt"><br>
+</span></b><font face="Courier New"><font size="2"><font color="#000000">property VSize: integer;<br>
+</font></font></font><font face="Arial"><br>
+</font><b>Description<br>
+</b><font color="#000000">Vertical size of points. When it is assigned by even digit it round it to nearest odd digit.<b><span style="font-size:11pt"><br>
+</span></b></font><font size="2"><font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">OnDrawCustomPoint event<span style="font-size:16pt"><br>
+</span></font></font></b><font size="1"><font color="#800000"> <b><span style="font-size:11pt"><font color="#000000"><br>
+</font></span></b></font></font>Unit<br>
+<u></u><u><font size="2"><font color="#008000">sgr_data</font></font></u><font color="#008000"><font color="#000000"><br>
+</font></font><br>
+<b>Applies to <br>
+</b><u></u><u><font color="#008000">Tsp_XYLine</font></u><font color="#008000"><s><font size="1"><br>
+</font></s></font><br>
+<b><font size="2"><font color="#000000">Declaration<span style="font-size:11pt"><br>
+</span></font></font></b><font face="Courier New"><font size="2"><font color="#000000">property OnDrawCustomPoint:TDrawCustomPointEvent;<b><span style="font-size:11pt"><br>
+</span></b></font></font></font><font size="2"><br>
+</font><font color="#000000">TDrawCustomPointEvent = procedure<br>
+</font>(const XYLine:Tsp_XYLine; const xv,yv :double; x, y: Integer) of object<font face="Arial">;<br>
+</font><br>
+<b>Description</b><font color="#000000"><br>
+</font>If assigned then called when <u><font color="#008000">PointAttr</font></u><font color="#008000"></font>.<u><font color="#008000">Kind</font></u><font color="#008000"></font>=ptCustom. XYLine points to data series; xv, yv are point's values; x,y are point coordinates on plot field. This event can be used to draw user points markers, for example using bitmap. The event handler must obey <u><font color="#008000">draw rules</font></u><font color="#008000"><font color="#800000">. <br>
+</font></font><br>
+<b>Example<br>
+</b><br>
+Here we use ImageList to store and draw the point image.<br>
+<b><br>
+</b><font face="Courier New">procedure</font> TFsgrDemoMain.QLineDrawCustomPoint(<b>const</b> XYLine: Tsp_XYLine;<br>
+<b> const </b>xv, yv: Double; x, y: Integer);<br>
+<b>var</b> xe,ye:integer;<br>
+<b>begin</b><br>
+ <b>with</b> XYLine <b>do</b> begin<br>
+ <b>with</b> PointImageList <b>do</b> <font color="#000080">//draw point as image from TImageList</font><br>
+ Draw(XYLine.<u><font color="#008000">Canvas</font></u><font color="#008000"></font>, x-width <b>div</b> 2, y-height <b>div</b> 2, 0);<br>
+ <b>if not</b>(<font color="#008000">D<u>rawingLegendMarker</u></font><font color="#008000"></font>) <b>then begin</b> <font color="#000080">//no label inside legend table</font><br>
+ inc(sparse); <font color="#000080">//for every 4-th point we draw text label</font><br>
+ <b>if</b> sparse&gt;3 <b>then with</b> XYLine.Canvas <b>do</b><br>
+ <b>begin</b><br>
+ sparse:=0;<br>
+ Font:=Plot.Font;<br>
+ xe:=x-1;<br>
+ ye:=y-PointAttr.VSize-6;<br>
+ MoveTo(x-1,y-1); LineTo(xe,ye);<br>
+ dec(ye,abs(Font.Height));<br>
+ TextOut(xe-2, ye, Format('%2.1f',[yv]));<br>
+ <b>end;<br>
+</b> end;<br>
+ end;<br>
+end;<br>
+<br>
+Tsp_XYLine.<sup>#</sup><b>DrawingLegendMarker</b> is true when Tsp_XYLine calls <font color="#000000">OnDrawCustomPoint </font>handler to draw custom point<p><hr><p>
+<sup>$</sup><sup>#</sup><font face="Arial"><b><font size="3"><font color="#0000ff">Canvas property</font></font></b></font><font color="#000000"><br>
+</font><b><font size="2">Unit </font></b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_XYLine</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property Canvas : TCanvas; Read Only<br>
+ <font face="Arial"><br>
+</font></font><b>Description</b><br>
+This special property for using inside OnDrawCustomPoint handler. When point is drawn on plot it points to pllot DCanvas, during <u><font color="#008000">DrawLegendMarker</font></u><font color="#008000"></font>(LCanvas ...) it points on LCanvas. See example in <u><font color="#008000">OnDrawCustomPoint</font></u><font color="#008000"></font> topic.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_SpectrLines componentcomponent<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"><b><font color="#0000ff"> <br>
+</font></b></font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_SpectrLines = class(<u><font color="#008000">Tsp_XYDataSeries</font></u></font><font color="#008000"></font>)<font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Draw data as vertical lines with center at X position and height depended from Y.<p><hr><p>
+<sup>$</sup><sup>#</sup><sup>&gt;</sup><b><font size="3"><font color="#0000ff">Tsp_SpectrLines properties<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_SpectrLines</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u><font color="#008000">LineAttr</font></u><font color="#008000"><font face="Courier New"><font color="#800000"><br>
+<u><font face="Arial"><font color="#008000">BaseYValue</font></font></u></font></font></font><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">LineAttr</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">YOrigin</font></u><font color="#008000"></font>&nbsp;
+<br>
+<u><font color="#008000">LabelValues</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">LabelFormat</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">LabelFont</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">ShowLabel</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">ShowBaseLine</font></u><font color="#008000"><font color="#800000"><br>
+<b><font color="#000000"><br>
+Derived from Tsp_XYDataSeries<font color="#800000"><br>
+</font></font></b></font></font><u></u><u>Capacity</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>Count</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>LockInvalidate</u>&nbsp;&nbsp;
+<br>
+<b><font color="#800000"><br>
+</font></b><font color="#000000">Derived from Tsp_DataSeries<font color="#800000"><br>
+<u></u></font></font><u>Active</u>&nbsp;&nbsp;
+<br>
+<u>Plot</u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>XAxis</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>YAxis</u><font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_SpectrLines methods<br>
+<u></u></font></font></b><u><font size="2"><font color="#008000">Tsp_SpectrLines</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u>Draw</u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>GetYMin</u>&nbsp;
+<br>
+<u>GetYMax</u><br>
+<b><font color="#000000"><br>
+</font></b>Derived from Tsp_XYDataSeries<br>
+<u></u><u>GetXMin</u>&nbsp;
+<br>
+<u>GetXMax</u>&nbsp;
+<br>
+<font color="#000000"><br>
+<u></u></font><u>Clear</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>AdjustCapacity</u>&nbsp;&nbsp;
+<br>
+<u>SetCapacity</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>AddXY</u>&nbsp;&nbsp;&nbsp;
+<br>
+<u>AddXYArrays</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>InsertXY</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>ReplaceXY</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>Delete</u>&nbsp;&nbsp;
+<br>
+<u>DeleteRange</u><br>
+<br>
+<b><font color="#000000">Derived from Tsp_DataSeries<font color="#800000"><br>
+<u></u></font></font></b><u>InvalidatePlot</u>&nbsp;&nbsp;
+<br>
+<u>BringToFront</u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>SendToBack</u><br>
+<font size="3"><font color="#000000"><br>
+</font></font><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Draw method<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_SpectrLines</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure Draw ; override;<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Draw data as vertical lines with center at X positon and height depended from Y.<p><hr><p>
+<sup>$</sup><sup>#</sup><sup>A</sup><b><font size="3"><font color="#0000ff">BaseYValue property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_SpectrLines</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property BaseYValue : double <font face="Arial"><br>
+</font></font><br>
+<b>Description</b><br>
+If YOrigin=yoBaseLine then lines begin from BaseValue.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">LineAttr property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_SpectrLines</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property LineAttr : <u>Tsp_LineAttr</u></font> <font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Defines how lines are drawn.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">YOrigin property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_SpectrLines</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property YOrigin : Tsp_YOrigin <font face="Arial"><br>
+<font face="Courier New">Tsp_YOrigin = (yoBaseLine, yoXAxises)<font face="Arial"><br>
+<br>
+<b>Description</b></font></font></font></font><br>
+If YOrigin=yoBaseLine then spectral lines begin from BaseValue else from X axis <br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">LabelValues property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_SpectrLines</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property LabelValues : Tsp_WhatValues <font face="Arial"><br>
+<font face="Courier New">Tsp_WhatValues = (wvXValues, wvYValues)<font face="Arial"><br>
+<br>
+<b>Description</b></font></font></font></font><br>
+Defines X or Y values used in labels near spectr line.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">LabelFormat property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_SpectrLines</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property LabelFormat : string <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Format string to convert values to label text (template for FormatFloat).<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">LabelFont property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_SpectrLines</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property LabelFont : TFont <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Font of label text.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">ShowLabel property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_SpectrLines</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property ShowLabel : boolean <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Show or not value label near spectral lines.<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">ShowBaseLine property<br>
+</font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u>sgr_data</u><br>
+<br>
+<b>Applies to </b><br>
+<u>Tsp_SpectrLines</u><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">property ShowBaseLine : boolean <font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Draw or not horizontal line at <u>BaseYValue</u>.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_PlotMarker component <font color="#008000"><br>
+<u></u></font></font></font></b><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"></font> <br>
+<b>Unit </b><br>
+<u><font color="#008000">sgr_mark</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_PlotMarker = class(TComponent)<font face="Arial"><br>
+<br>
+<b>Description</b></font></font><br>
+Tsp_PlotMarker is plot marker template. Marker is something that can be drawn on plot field using plot axis as coordinate system. Tsp_PlotMarker supplies some general properties and functionalities to cooperate with the plot. It introduce but does not implement Draw functions, so it cannot be used by self. <br>
+All real plot marker must be inherit from it and implement functions (see for example <u><font color="#008000">Tsp_XYLine</font></u><font color="#008000"></font>). <br>
+<font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_PlotMarker methods<span style="font-size:16pt"><br>
+<u></u></span></font></font></b><u><font size="2"><font color="#008000">Tsp_PlotMarker</font></font></u><font color="#008000"><b><font color="#800000"> <font color="#000000"><br>
+</font></font></b></font>Interface to Plot ( ready to use)<font color="#800000"><br>
+</font><u></u><u>BringToFront</u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u>SendToBack</u><br>
+<font size="3"><font color="#000000"><br>
+</font></font><b><font size="2">Child classes must implement this functions</font></b><font size="3"><font color="#000000"><br>
+<u></u></font></font><u><font size="2">Draw</font></u>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Tsp_PlotMarker properties<span style="font-size:16pt"><br>
+</span></font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_PlotMarker</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><u></u><u><font color="#008000">Visible</font></u><font color="#008000"></font><br>
+<u><font color="#008000">WhenDraw</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><b><font color="#008000">Plot</font></b></u><b><font color="#008000"></font></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">XAxis</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">YAxis</font></u><font color="#008000"><font color="#000000"><br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">Tsp_PlotMarker Draw method<span style="font-size:16pt"><br>
+</span></font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u><font color="#008000">sgr_mark</font></u><font color="#008000"></font><br>
+<br>
+<b>Applies to </b><br>
+<u><font color="#008000">Tsp_PlotMarker</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">procedure Draw; virtual; abstract;<font face="Arial"><br>
+</font></font><br>
+<b>Description</b><br>
+Called by <u><font color="#008000">plot</font></u><font color="#008000"></font> to draw marker. During this time <u><font color="#008000">DCanvas</font></u><font color="#008000"></font> is clipped by <u><font color="#008000">FieldRect</font></u><font color="#008000"></font> (see <u><font color="#008000">Sequence of draw operations</font></u><font color="#008000"></font>). Write this procedure to define how data marker is drwan on the plot. There are some <u><font color="#008000">draw rules</font></u><font color="#008000"><font color="#800000"> <font color="#000000">when draw marker. Use <u><font color="#008000">P2V</font></u></font></font></font><font color="#008000"><font color="#000000"> to find value position on the plot <u><font color="#008000">Field</font></u></font></font><font color="#008000"><font color="#000000">.</font></font><br>
+<font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><b><font size="3"><font color="#0000ff">Visible property<span style="font-size:16pt"><br>
+</span></font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u><font color="#008000">sgr_mark</font></u><font color="#008000"></font><br>
+<br>
+<b>Applies to </b><br>
+<u><font color="#008000">Tsp_PlotMarker</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><font color="#000000"><br>
+</font><font face="Courier New">property Visible : boolean<br>
+<br>
+<font face="Arial"><b>Description</b></font></font><br>
+Use this property to hide or show marker.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">WhenDraw property<span style="font-size:16pt"><br>
+</span></font></font></b><font size="2"> <br>
+</font><b>Unit </b><br>
+<u><font color="#008000">sgr_mark</font></u><font color="#008000"></font><br>
+<br>
+<b>Applies to </b><br>
+<u><font color="#008000">Tsp_PlotMarker</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><font color="#000000"><br>
+</font><font face="Courier New">property WhenDraw : Tsp_WhenDrawMarker<br>
+<br>
+type Tsp_WhenDrawMarker=(dmBeforeSeries, dmAfterSeries);<br>
+<br>
+<font face="Arial"><b>Description</b></font></font><br>
+Defines when marker will be drawn before or after plot data series. It is clear that marker with WhenDraw=dmAfterSeries will be drawn over data series.<br>
+<font color="#000000"><br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font><sup>A</sup><b><font size="3"><font color="#0000ff">Tsp_LineMarker component <font color="#008000"><br>
+<u></u></font></font></font></b><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"></font> <br>
+<b>Unit </b><br>
+<u><font color="#008000">sgr_mark</font></u><font color="#008000"></font><br>
+<br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_LineMarker = class(<u><font color="#008000">Tsp_PlotMarker</font></u></font><font color="#008000"></font>)<font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Tsp_LineMarker is infinite vertical or horizontal line on the plot field. <br>
+<br>
+<sup>#</sup>Implements properties:<br>
+<br>
+property <b>Orientation</b> :Tsp_LMOrientation - clear from name<br>
+type Tsp_LMOrientation=loVertical, loHorizontal. <br>
+property <b>Position</b>:double - defines vertical (horizontal) position relatively <u><font color="#008000">YAxis</font></u><font color="#008000"></font> (XAxis).<br>
+property <b>Pen</b>:Tpen - pen used to draw line.<br>
+property <b>Brush</b>:TBrush - brush used to draw line.<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_LineMarker properties<span style="font-size:16pt"><br>
+</span></font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_LineMarker</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><br>
+<u></u><u><font color="#008000">Orientation</font></u><font color="#008000"><font color="#800000"> <s><font color="#008000"><br>
+</font></s></font></font><u></u><u><font color="#008000">Position</font></u><font color="#008000"><font color="#800000"> <s><font color="#008000"><br>
+</font></s></font></font><u></u><u><font color="#008000">Pen</font></u><font color="#008000"><font color="#800000"> <s><font color="#008000"><br>
+</font></s></font></font><u></u><u><font color="#008000">Brush</font></u><font color="#008000"><font color="#800000"> <br>
+</font></font><b><br>
+</b><font color="#000000">Derived from Tsp_PlotMarker<font color="#800000"><br>
+</font></font><u></u><u><font color="#008000">Visible</font></u><font color="#008000"></font><br>
+<u><font color="#008000">WhenDraw</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">Plot</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">XAxis</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">YAxis</font></u><font color="#008000"><font color="#000000"><br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><sup>A</sup><b><font size="3"><font color="#0000ff">Tsp_ImageMarker component <font color="#008000"><br>
+</font></font></font></b><u></u><u><font size="2"><font color="#008000">properties</font></font></u><font color="#008000"><font color="#800000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">methods</font></u></font></font><font color="#008000"></font> <br>
+<b>Unit </b><br>
+<u><font color="#008000">sgr_mark</font></u><font color="#008000"><font color="#800000"><br>
+</font></font><br>
+<b>Declaration</b><br>
+<font face="Courier New">Tsp_ImageMarker = class(<u><font color="#008000">Tsp_PlotMarker</font></u></font><font color="#008000"></font>)<font face="Arial"><br>
+<br>
+<b>Description</b></font><br>
+Tsp_ImageMarker image on the plot field, can be used as background map. <br>
+<br>
+<sup>#</sup>Implements properties:<br>
+<br>
+property <b>Picture</b>:TPicture - Set Picture to a TPicture object that contains an icon, metafile, bitmap graphic, or user-defined graphic to be displayed.<br>
+property <b>X</b>:double - left angle of image relatively <u><font color="#008000">XAxis</font></u><font color="#008000"></font> when Stretch=False.<br>
+property <b>Y</b>:double - left angle of image relatively <u><font color="#008000">YAxis</font></u><font color="#008000"></font> when Stretch=False.<br>
+property <b>Stretch</b>:boolean - when True image is stretched over rectangle defined by <b>X</b>, <b>Y</b>, <b>StretchX</b>, <b>StretchY</b>.<br>
+property <b>StretchX</b>:double - see <b>Stretch</b><br>
+property <b>StretchY</b>:double<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup><b><font size="3"><font color="#0000ff">Tsp_ImageMarker properties<span style="font-size:16pt"><br>
+</span></font></font></b><u></u><u><font size="2"><font color="#008000">Tsp_PlotMarker</font></font></u><font color="#008000"><b><font color="#800000"> <br>
+</font></b></font><br>
+<u></u><u><font color="#008000">Picture</font></u><font color="#008000"><s><br>
+</s></font><u></u><u><font color="#008000">X</font></u><font color="#008000"><s><br>
+</s></font><u></u><u><font color="#008000">Y</font></u><font color="#008000"><s><br>
+</s></font><u></u><u><font color="#008000">Stretch</font></u><font color="#008000"><s><br>
+</s></font><u></u><u><font color="#008000">StretchX</font></u><font color="#008000"><s> <br>
+</s></font><u></u><u><font color="#008000">StretchY</font></u><font color="#008000"><font color="#000000"><br>
+</font></font><br>
+<b>Derived from Tsp_PlotMarker</b><font color="#000000"><br>
+</font><u><font color="#008000">Visible</font></u><font color="#008000"></font><br>
+<u><font color="#008000">WhenDraw</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">Plot</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">XAxis</font></u><font color="#008000"></font>&nbsp;&nbsp;&nbsp;
+<br>
+<u><font color="#008000">YAxis</font></u><font color="#008000"><font color="#000000"><br>
+<br>
+<p><hr><p>
+<sup>$</sup><sup>#</sup></font></font><b><font size="3"><font color="#0000ff">sgr_mark unit<br>
+</font></font></b><u></u><u><font size="2"><font color="#008000">SGraph</font></font></u><font color="#008000"></font> <br>
+This is example of markers for Tsp_xyPlot. <br>
+<b><br>
+</b>USES<br>
+Windows, SysUtils, Classes, Graphics, <u><font color="#008000">sgr_scale</font></u><font color="#008000"></font>, <u><font color="#008000">sgr_def</font></u><font color="#008000"></font>; <br>
+<br>
+<b>TYPES<br>
+</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_LineMarker</font></u><font color="#008000"><font color="#800000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_LMOrientation</font></u></font></font><font color="#008000"><font color="#800000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><font color="#008000">Tsp_ImageMarker</font></u></font></font><font color="#008000"><p><hr><p>
+</font></div></body>
+</html>
+
+<style>#divhlpmain img{max-width:1000px}#divhlpmain canvas{max-width:400px}</style>
+<script>
+var g_wmf_injected=false; var g_wmf_list=[];
+function init_index(){
+function getWindowHeight(){
+    var windowHeight = 0;
+    if (typeof(window.innerHeight) == 'number'){
+        windowHeight = window.innerHeight;
+    }else{
+        var ieStrict = document.documentElement.clientHeight; 
+        var ieQuirks = document.body.clientHeight;
+        windowHeight = (ieStrict > 0) ? ieStrict : ieQuirks;
+    }
+	if(!windowHeight) windowHeight=0;
+    return windowHeight;
+}
+function getScrollTop(){
+    var scrollTop;
+	if(document.body && document.body.scrollTop){
+		scrollTop = document.body.scrollTop;
+	}else if(document.documentElement && document.documentElement.scrollTop){
+		scrollTop = document.documentElement.scrollTop;
+	}
+	if(!scrollTop) scrollTop=0;
+    return scrollTop;
+} 
+function getOffset(b){
+    var a = 0;
+    var c = 0;
+    while (b && !isNaN(b.offsetLeft) && !isNaN(b.offsetTop)) {
+        a += b.offsetLeft;
+        c += b.offsetTop;
+        b = b.offsetParent;
+    }     
+    return {
+        left: a,
+        top: c
+    }
+}
+function getfileext(s){
+	if(!s) s='';
+	var arr=s.split('.');
+	if(arr.length>1){
+		return arr[arr.length-1].toLowerCase();
+	}
+	return '';
+}
+function inject(s){
+	var o = document.createElement('scri' + 'pt');
+	o.setAttribute('src', s);
+	o.setAttribute('type', 'text/javascript');
+	document.body.appendChild(o);
+}	
+function proc_loadimg(){
+	var wh=getWindowHeight();
+	var st=getScrollTop();
+	var dt=st-(wh*2);
+	var db=st+wh+(wh*2);
+	var dy,data,c,ext;	
+	var a=document.getElementsByTagName('IMG');	
+	for(var i = 0; i < a.length; i++){ 
+		if(a[i].src)continue;
+		data=a[i].getAttribute('data');
+		if(!data)continue;
+		c=getOffset(a[i]);
+		if (c.top>=dt && c.top<=db){
+			a[i].src=data;
+			ext=getfileext(data);
+			if(ext=='wmf'){
+				g_wmf_list.push(a[i]);
+				if(!g_wmf_injected){
+					g_wmf_injected=true;
+					inject('/chmviewer/js/all_wmf.js');
+				}
+			}
+		}
+	}	
+}
+function proc_fix1(){
+	var a=document.getElementsByTagName('SPAN');	
+	for(var i = 0; i < a.length; i++){ 		
+		if(a[i].style.backgroundColor=='rgb(0, 0, 0)'){
+			if(a[i].parentNode.tagName=='FONT'){
+				if(a[i].parentNode.color=='#000000'){
+					a[i].style.backgroundColor='#FFFFFF';
+				}
+			}
+		}
+	}
+	var a=document.getElementsByTagName('FONT');	
+	for(var i = 0; i < a.length; i++){ 		
+		if(a[i].color=='#000000'){
+			if(a[i].parentNode.tagName=='SPAN'){
+				if(a[i].parentNode.style.backgroundColor=='rgb(0, 0, 0)'){
+					a[i].parentNode.style.backgroundColor='#FFFFFF';
+				}
+			}
+		}
+	}
+}
+	var timer1;
+	window.onscroll=function(){
+		clearTimeout(timer1);
+		timer1=setTimeout(function(){
+			proc_loadimg();
+		},50);
+	}
+	proc_loadimg();
+	proc_fix1();
+}
+init_index();
+</script>

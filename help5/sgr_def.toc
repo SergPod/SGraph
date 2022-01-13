@@ -1,0 +1,18 @@
+:BASE SGR_DEF.hlp>main
+;
+1 Overview
+2 Introduction=Contents
+2 License and disclaimer=License_and_disclaimer
+1 Components
+2 Tsp_XYPlot=class_Tsp_XYPlot
+2 Tsp_DataSeries=class_Tsp_DataSeries
+2 Tsp_XYLine=class_Tsp_XYLine
+2 Tsp_SpectrLines=class_Tsp_SpectrLines
+2 Tsp_PlotMarker=class_Tsp_PlotMarker
+2 Tsp_LineMarker=class_Tsp_LineMarker
+2 Tsp_ImageMarker=class_Tsp_ImageMarker
+1 Units
+2 sgr_scale.pas=unit_sgr_scale
+2 sgr_def.pas=unit_sgr_def
+2 sgr_data.pas=unit_sgr_data
+2 sgr_mark.pas=unit_sgr_mark

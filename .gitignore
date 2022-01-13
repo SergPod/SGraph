@@ -1,0 +1,11 @@
+*.dcu
+*.dof
+*.dsk
+*.~dfm
+*.~pas
+*.~dpr
+*.~dsk
+*.bpl
+*.map
+*.bak
+

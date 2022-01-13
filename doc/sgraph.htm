@@ -1,0 +1,154 @@
+<html>
+
+<head>
+<title>SGraph Description File</title>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<meta NAME="AUTHOR" CONTENT="S.P.Pod'yachev">
+</head>
+
+<body BGCOLOR="#FFFFFF" background="../white.gif">
+
+<h2 align="left"><img height="1" width="1" src="http://counter.list.ru/counter?id=15599" alt> <!--LIST100 COUNTER--> SGraph ver 2.3</h2>
+
+<p><a HREF="#Introduction">Introduction</a> <br>
+<a HREF="#License">License</a> <br>
+<a HREF="#Disclaimer">Disclaimer</a> <br>
+<a HREF="#Files">Files</a> <br>
+<a HREF="#Install components">Install components</a> <br>
+<a HREF="#Update">Replace old version</a> <br>
+<a HREF="#Start">How to start</a> <br>
+
+<p><a HREF="history.htm">History</a>&nbsp; <a href="notes.htm">Notes</a></p>
+
+<h3><a NAME="Introduction"></a><b>Introduction</b></h3>
+
+<p>This is a set of 32-bit Delphi components and classes for 2D plot. It is relatively
+simple. It is more gauge then presentation element. The main features are: 
+
+<ul>
+  <li>Two horizontal and two vertical axis.</li>
+  <li>Auto minimum and maximum of the axis.</li>
+  <li>Swap of Min and Max axis positions. </li>
+  <li>MoveMinMax method to provide smooth scrolling of axis ticks.</li>
+  <li>Panning and Zoom by mouse.</li>
+  <li>Buffered screen paint, can be off.</li>
+  <li>Copy to clipboard as DIB or as Metafile.</li>
+  <li>Custom Data Series.</li>
+  <li>DrawPlot method to replicate plot image </li>
+  <li>OnDrawField OnDrawEnd events</li>
+</ul>
+
+<p>The main component is Tsp_XYPlot. It holds four Tsp_Axis and controls Data Series. The
+Tsp_XYPlot and Tsp_Axis provide base plot functionality like auto scale, zoom and pan and
+so on. The Data Series must be derived from Tsp_DataSeries and implements data storage and
+how data are painted on the plot canvas. An example of these components are Tsp_XYLine and
+Tsp_SpectrLines. Plot also can has and controls components inherited from Tsp_PlotMarker.
+Plot marker draws something on the plot using axis coordinate system. An example of these
+components are Tsp_LineMarker and Tsp_ImageMarker.</p>
+
+<h3><a NAME="License"></a>License </h3>
+
+<p>The component files are <b>freeware</b>. 
+Copyright © 1998-1999, Sergei P. Pod'yachev.</p>
+
+<h3><a NAME="Disclaimer"></a>Disclaimer </h3>
+
+<p>This software and the accompanying files are provided &quot;<b>As Is</b>&quot; and
+without any warranties as to performance of merchantability or any other warranties
+whether expressed or implied. The Author cannot and does not guarantee that any functions
+contained in the Software will be error free. The author is not liable for any damages
+resulting from the use and misuse of the component. </p>
+
+<h3><a NAME="Files"></a>Files </h3>
+
+<p><u>Root directory </u>contans SGraph <a name="source files">source files</a><br>
+<b>sgr_misc.pas </b>&nbsp; Auxiliary unit, used by sgr_def.dcu. <br>
+<b>sgr_scale.pas&nbsp; </b>Auxiliary unit, there is implementation of the plot axis
+ancestor. <br>
+<b>sgr_def.pas </b>&nbsp;&nbsp;&nbsp; Main unit. There are Tsp_xyPlot, Tsp_Axis,
+Tsp_DataSeries and Tsp_PlotMarker.<br>
+<b>sgr_data.pas</b>&nbsp;&nbsp; Data series for Tsp_xyPlot derived from Tsp_DataSeries. <br>
+<b>sgr_mark.pas</b>&nbsp; Plot markers for Tsp_xyPlot derived from Tsp_PlotMarker. <font color="#800000"><sup>v.2.3</sup></font><br>
+<b>sgr_reg.pas</b>&nbsp;&nbsp;&nbsp;&nbsp; Registers components, used to install
+components. <br>
+<b>sgr_reg.dcr</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Resource file with components&nbsp;
+icons. <br>
+<b>sgr5.dpk </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Packet source,
+can be used to install components ( Delphi 5 ). <br>
+<b>sgr5.res </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Need to
+compile sgr.dpk file.<br>
+</p>
+
+<p><u>subdirectory</u> <b>\doc </b>contains Sgraph documentation <br>
+here this file your read, I also encourage you to read <a href="notes.htm">notes</a>.</p>
+
+<p><u>subdirectory</u> <b>\help5 </b>contains help files:<br>
+<b>sgr_def.hlp</b>&nbsp;&nbsp;&nbsp;Components help file <br>
+<b>sgr_def.cnt</b>&nbsp;&nbsp;&nbsp;Help context file<br>
+<b>sgr_defi.cnt</b>&nbsp; Help context file to <a href="#Include CNT">make link</a> from
+DelphiX.cnt file to SGraph help.</p>
+
+<p><u>subdirectory</u> <b>demo</b> contains files of demo program. </p>
+
+<p><a href="sgraph_demo.gif"><img src="sgraph_demo_sml.gif" alt="sgraph_demo.gif (9308 bytes)" WIDTH="100" HEIGHT="60"></a></p>
+
+<p><font color="#800000">I recommend to see demo program, there are some extensions of
+SGraph (<a href="notes.htm#Print">print</a>, legend).</font></p>
+
+<h3><a NAME="Install components"></a>Install components </h3>
+
+<h4>Extract files. </h4>
+
+<p>You have to use unzip program which preserve long file name or you must correct names
+manually if they was cut. Place to one directory all SGraph <a href="#source files">source
+files</a>. If you want place components on other then &quot;Sample&quot; tab, then edit
+sgr_reg.pas.</p>
+
+
+<h4>Delphi 5</h4>
+You can use <strong>sgr5.dpk</strong> packet file.
+You also can add Sgraph components to dclusr50 package preinstaled in the Delphi. Select in the menu Component than 
+Install component... and enter way to the sgr_reg.pas in the Unit file name.
+
+<h4>Install Help files</h4>
+
+<p><a name="Include CNT">I also recommend</a> to add to the Include section<font color="#800000"> </font>of the DELPHI3.CNT file this line <br>
+<tt><font color="#800000">:Include sgr_defi.cnt</font></tt> <br>
+I do not check installation for <strong>Delphi 4</strong>, but I find that there are DELPHI4.CFG and
+DELPHI4.CNT files in \HELP directory are same as ones in Delphi 3.</p>
+
+<p>To install help file for <strong>Delphi 5</strong>
+run Delphi (as Administrator) and select in the menu Help and than Customize... It opens Open Help tool. 
+To add sgraph help to the context-sensitive Help search range choose the Contents tab and select Edit|Add and select sgr_def.toc file to add.<br> 
+add sgr_def.hlp to Index and Link. See more details in the tool help i.e. in the tool menus select Help and read.
+
+<p>After installation I recommend to compile demo program to check components<font SIZE="-1">.</font> It also demonstrates some possibilities of SGraph and contains some
+extensions like print dialog. </p>
+
+<h3><a NAME="Update"></a>Replace old version of Sgraph</h3>
+
+<p>If you already have old version SGraph you need copy all SGraph new source files
+(*.pas, *.res,&nbsp; and *.dcr) over old version files (of course you can first backup old
+files). Then open packet file where you included old SGraph file and recompile this
+packet. Don't forget to replace sgr_def.hlp and sgr_def.cnt files. Notice, demo program
+was modified, try to compile it to check that all was reinstalled properly.</p>
+
+<h3><a NAME="Start"></a>How to start</h3>
+
+<p>Place the plot component and data series component on the form, set Plot property of
+data series to link it with plot. Play with visual properties of plot and series, while
+select properties press &lt;F1&gt; key to see help file topic. Please set true-type font
+to Font property of plot if you want have vertical axis captions. There is also some <a href="notes.htm">notes</a> of using SGraph.</p>
+
+
+<h3><a NAME="Aknowledgements"></a>Aknowledgements </h3>
+
+<p>I wish to thank to Peter Kravtsov for comprehensive advise to add DataTime format of
+ticks label and Mauro J. Cavalcanti for the useful discussions and suggestions. A would
+like to thank to all who wrote me good words about SGraph. </p>
+
+<p>My best wishes. </p>
+
+<p>S.P.Pod'yachev</p>
+</body>
+</html>
